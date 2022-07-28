@@ -89,19 +89,3 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaults()) {
 
     return todoItemObj;
 }
-
-/*
-export default function loadTodoItems() {
-    // const t1 = todoItemFactory('Brush Teeth', 'For oral hygiene', '01/01/2023', ['Hygiene']);
-    const t1 = todoItemFactory('Brush Teeth');
-    const t2 = todoItemFactory('Take Shower', 'Tomorrow', '02/01/2023', ['Entertainment'], 'For overall hygiene');
-    t1.appendTag('Leisure');
-    // t1.printTags();
-    t1.addTask('Buy new toothpaste');
-    // t1.printChecklist();
-    t1.addTask('Buy new toothbrush');
-    t1.printChecklist();
-    t1.printSummary();
-    // t2.printSummary();
-}
-*/
