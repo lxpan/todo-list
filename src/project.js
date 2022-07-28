@@ -16,14 +16,23 @@ class Project {
     get todoItems() {
         return this._todoItems;
     }
+
+    set notes(text) {
+        this._notes = text;
+    }
 }
 
 export default function loadProject() {
     const p = new Project('Daily Tasks');
     console.log(p.name);
 
+    p.notes = 'My food journal.';
     p.addItem('Drink water');
-    console.log(p.todoItems);
     p.addItem('Eat pizza');
-    console.log(p.todoItems);
+
+    p.todoItems.forEach(item => {
+        item.printSummary();
+    });
+
+    console.log(p.notes);
 }
