@@ -1,14 +1,14 @@
 export default (function view() {
 
-    function updateProjectName(projectName) {
-        const contentDiv = document.getElementById('content');
+    function updateProjectName(query, projectName) {
+        const contentDiv = document.querySelector(query);
         const projectHeading = document.createElement('h2');
         projectHeading.textContent = projectName;
         contentDiv.appendChild(projectHeading);
     }
 
-    function updateProjectTodoItems(textToUpdate) {
-        const contentDiv = document.getElementById('content');
+    function updateProjectTodoItems(query, textToUpdate) {
+        const contentDiv = document.getElementById(query);
         const newItem = document.createElement('div');
         newItem.textContent = textToUpdate;
         contentDiv.appendChild(newItem);
