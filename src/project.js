@@ -17,6 +17,9 @@ class Project {
         return this._todoItems;
     }
 
+    /**
+     * @param {string} text
+     */
     set notes(text) {
         this._notes = text;
     }
