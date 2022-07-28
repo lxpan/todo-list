@@ -36,10 +36,8 @@ class Project {
 
 export default function buildProject() {
     const p = new Project('Daily Tasks');
-    console.log(p.name);
-
     p.notes = 'My food journal';
-    
+
     p.addItem('Mail parcel to Mum');
     p.addItem('Pay the bills');
     p.todoItems[0].appendTag('Errands');
@@ -53,8 +51,8 @@ export default function buildProject() {
 
     // p.todoItems.splice(2, 1);
 
-    console.log(p.getUniqueTags());       
-    console.log(p.todoItems);
+    // console.log(p.getUniqueTags());       
+    // console.log(p.todoItems);
 
     return p;
 }

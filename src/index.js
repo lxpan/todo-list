@@ -3,7 +3,7 @@ import view from './view.js';
 
 const run = () => {
     const defaultProject = buildProject();
-    console.log(view);
+    
     view.insertProjectHeading('#content', defaultProject.name);
 
     // enumerate items in default project
