@@ -38,14 +38,14 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
     const _checklist = [];
 
     const printSummary = () => {
-        console.log(`
+        return `
             Title: ${title},
             Date: ${date},
             Due Date: ${dueDate},
             Tags: ${tags},
             Notes: ${notes},
             Checklist: ${_checklist}
-        `);
+        `;
     }
 
     const factoryMethods = {
