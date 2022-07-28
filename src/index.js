@@ -3,6 +3,8 @@ import buildProject from './project.js';
 const run = () => {
     const defaultProject = buildProject();
 
+    updateProjectName(defaultProject.name);
+
     // enumerate items in default project
     defaultProject.todoItems.forEach(item => {
         let itemString = item.printSummary();
@@ -15,6 +17,13 @@ function updateDOM(textToUpdate) {
     const newItem = document.createElement('div');
     newItem.textContent = textToUpdate;
     contentDiv.appendChild(newItem);
+}
+
+function updateProjectName(projectName) {
+    const contentDiv = document.getElementById('content');
+    const projectHeading = document.createElement('h2');
+    projectHeading.textContent = projectName;
+    contentDiv.appendChild(projectHeading);
 }
 
 const setupHTML  = () => {
