@@ -36,7 +36,7 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
     const tags = itemTags;
     const notes = itemNotes;
     const _checklist = [];
-    const completion = itemCompletion;
+    let completion = itemCompletion;
 
     const printSummary = () => {
         return `
@@ -50,8 +50,13 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
         `;
     }
 
+    const setCompleted = () => {
+        completion = true;
+    }
+
     const factoryMethods = {
-        printSummary
+        printSummary,
+        setCompleted
     }
 
     // copies "tag" properties into "item" properties
