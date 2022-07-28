@@ -28,15 +28,27 @@ const checklistMixin = {
     }
 }
 
+// using a closure to ensure a new itemTags Array is created every time this is called
+const getDefaults = function() {
+    return {
+        itemDate: 'Today', 
+        itemDueDate: null, 
+        itemTags: new Array(), 
+        itemNotes: null, 
+        itemChecklist: new Array(),
+        itemCompletion: false,
+    }
+}
+
 // Responsibility: return/construct a todoItem object, which represents a single todo item
-export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDate=null, itemTags=[], itemNotes=null, itemCompletion=false) {
+export default function todoItemFactory(itemTitle, {...def} = getDefaults()) {
     const title = itemTitle;
-    const date = itemDate;
-    const dueDate = itemDueDate;
-    const tags = itemTags;
-    const notes = itemNotes;
-    const _checklist = [];
-    let completion = itemCompletion;
+    const date = def.itemDate;
+    const dueDate = def.itemDueDate;
+    const tags = def.itemTags;
+    const notes = def.itemNotes;
+    const _checklist = def.itemChecklist;
+    let completion = def.itemCompletion;
 
     const printSummary = () => {
         return `
