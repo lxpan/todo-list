@@ -32,11 +32,12 @@ const checkListProto = {
 }
 
 // Responsibility: return/construct a todoItem object, which represents a single todo item
-const todoItemFactory = (itemTitle, itemDescription=null, itemDueDate=null, itemTags=[]) => {
+const todoItemFactory = (itemTitle, itemDate='Today', itemDueDate=null, itemTags=[], itemNotes=null) => {
     const title = itemTitle;
-    const description = itemDescription;
+    const date = itemDate;
     const dueDate = itemDueDate;
     const tags = itemTags;
+    const notes = itemNotes;
     const _checklist = [];
 
     const oneMethod = () => console.log("Foo");
@@ -49,8 +50,10 @@ const todoItemFactory = (itemTitle, itemDescription=null, itemDueDate=null, item
 
     // copies "tag" properties into "item" properties
     let proto = Object.assign(itemProto, tagProto, checkListProto);  // (targetObj, sourceObj)
+    
     // creates a new object, using an existing object as its prototype of newly created object
     let todoItemObj = Object.create(proto);
+    
     // "mix-in" methods defined in factory function
     todoItemObj = Object.assign(todoItemObj, factoryMethods);
 
