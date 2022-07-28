@@ -53,12 +53,7 @@ export default function buildProject() {
 
     // p.todoItems.splice(2, 1);
 
-    p.todoItems.forEach(item => {
-        item.printSummary();
-    });
-
     console.log(p.getUniqueTags());       
-
     console.log(p.todoItems);
 
     return p;
