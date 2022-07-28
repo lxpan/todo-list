@@ -22,10 +22,9 @@ class Project {
     }
 
     getUniqueTags() {
-        const tags =  this.todoItems
-            .map(item => {
-                return item.tags[0];
-            });
+        const tags = this.todoItems
+            .map(item => item.tags )
+            .flat();
 
         const uniqueArray = Array.from(new Set(tags));
         return uniqueArray;
