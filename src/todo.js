@@ -29,13 +29,14 @@ const checklistMixin = {
 }
 
 // Responsibility: return/construct a todoItem object, which represents a single todo item
-export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDate=null, itemTags=[], itemNotes=null) {
+export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDate=null, itemTags=[], itemNotes=null, itemCompletion=false) {
     const title = itemTitle;
     const date = itemDate;
     const dueDate = itemDueDate;
     const tags = itemTags;
     const notes = itemNotes;
     const _checklist = [];
+    const completion = itemCompletion;
 
     const printSummary = () => {
         return `
@@ -44,7 +45,8 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
             Due Date: ${dueDate},
             Tags: ${tags},
             Notes: ${notes},
-            Checklist: ${_checklist}
+            Checklist: ${_checklist},
+            Completion: ${completion}
         `;
     }
 
@@ -66,6 +68,7 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
     todoItemObj.dueDate = dueDate;
     todoItemObj.tags = tags;
     todoItemObj.checklist = _checklist;
+    todoItemFactory.completion = completion;
 
     return todoItemObj;
 }
