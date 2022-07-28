@@ -34,7 +34,7 @@ class Project {
     }
 }
 
-export default function loadProject() {
+export default function buildProject() {
     const p = new Project('Daily Tasks');
     console.log(p.name);
 
@@ -51,9 +51,15 @@ export default function loadProject() {
     p.addItem('Study on the exercise bike');
     p.todoItems[3].appendTag('Fitness', 'Study', 123);
 
-    // p.todoItems.forEach(item => {
-    //     item.printSummary();
-    // });
+    // p.todoItems.splice(2, 1);
 
-    console.log(p.getUniqueTags());
+    p.todoItems.forEach(item => {
+        item.printSummary();
+    });
+
+    console.log(p.getUniqueTags());       
+
+    console.log(p.todoItems);
+
+    return p;
 }

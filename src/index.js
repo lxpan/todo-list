@@ -1,7 +1,7 @@
-import loadProject from './project.js';
+import buildProject from './project.js';
 
 const run = () => {
-    const defaultProject = loadProject();
+    const defaultProject = buildProject();
 }
 
 const createHeading  = () => {
