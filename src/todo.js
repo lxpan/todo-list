@@ -70,14 +70,4 @@ export default function loadTodoItems() {
     t1.printChecklist();
     t1.addTask('Buy new toothbrush');
     t1.printChecklist();
-    console.log("------------------");
-
-    // for (let key in t1) {
-    //     if(t1.hasOwnProperty(key)) {
-    //         console.log(key + " --> " + t1[key]);
-    //     }
-    // }
-
-    t1.myFunc();
-    t2.myFunc();
 }
