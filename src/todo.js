@@ -1,4 +1,4 @@
-const itemProto = {
+const itemMixin = {
     describe () {
         console.log(`Item ${this.title} is due by ${this.dueDate}`);
     },
@@ -8,7 +8,7 @@ const itemProto = {
     }
 }
 
-const tagProto = {
+const tagMixin = {
     printTags () {
         console.log(`Tags: ${this.tags}`);        
     },
@@ -22,7 +22,7 @@ const tagProto = {
     }
 }
 
-const checkListProto = {
+const checklistMixin = {
     printChecklist () {
         console.log(this.checklist);
     },
@@ -44,7 +44,7 @@ const todoItemFactory = (itemTitle, itemDate='Today', itemDueDate=null, itemTags
     }
 
     // copies "tag" properties into "item" properties
-    let proto = Object.assign(itemProto, tagProto, checkListProto);  // (targetObj, sourceObj)
+    let proto = Object.assign(itemMixin, tagMixin, checklistMixin);  // (targetObj, sourceObj)
     
     // creates a new object, using an existing object as its prototype of newly created object
     let todoItemObj = Object.create(proto);
