@@ -68,7 +68,7 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
     todoItemObj.dueDate = dueDate;
     todoItemObj.tags = tags;
     todoItemObj.checklist = _checklist;
-    todoItemFactory.completion = completion;
+    todoItemObj.completion = completion;
 
     return todoItemObj;
 }
