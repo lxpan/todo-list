@@ -1,13 +1,13 @@
 export default (function view() {
 
-    function updateProjectName(query, projectName) {
+    function insertProjectHeading(query, projectName) {
         const contentDiv = document.querySelector(query);
         const projectHeading = document.createElement('h2');
         projectHeading.textContent = projectName;
         contentDiv.appendChild(projectHeading);
     }
 
-    function updateProjectTodoItems(query, textToUpdate) {
+    function insertProjectItems(query, textToUpdate) {
         const contentDiv = document.getElementById(query);
         const newItem = document.createElement('div');
         newItem.textContent = textToUpdate;
@@ -15,8 +15,8 @@ export default (function view() {
     }
 
     return {
-        updateProjectTodoItems,
-        updateProjectName
+        insertProjectHeading,
+        insertProjectItems
     };
     
 })();
