@@ -40,12 +40,7 @@ const todoItemFactory = (itemTitle, itemDate='Today', itemDueDate=null, itemTags
     const notes = itemNotes;
     const _checklist = [];
 
-    const oneMethod = () => console.log("Foo");
-    const anotherMethod = () => console.log("Bar");
-
     const factoryMethods = {
-        oneMethod,
-        anotherMethod
     }
 
     // copies "tag" properties into "item" properties
