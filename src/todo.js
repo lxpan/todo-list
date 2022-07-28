@@ -65,6 +65,7 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
     todoItemObj = Object.assign(todoItemObj, factoryMethods);
 
     todoItemObj.title = title;
+    todoItemObj.date = date;
     todoItemObj.dueDate = dueDate;
     todoItemObj.tags = tags;
     todoItemObj.checklist = _checklist;
