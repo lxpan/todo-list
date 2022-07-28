@@ -29,7 +29,7 @@ const checklistMixin = {
 }
 
 // using a closure to ensure a new itemTags Array is created every time this is called
-const getDefaults = function() {
+const getDefaultArgs = function() {
     return {
         itemDate: 'Today', 
         itemDueDate: null, 
@@ -41,7 +41,7 @@ const getDefaults = function() {
 }
 
 // Responsibility: return/construct a todoItem object, which represents a single todo item
-export default function todoItemFactory(itemTitle, {...def} = getDefaults()) {
+export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) {
     const title = itemTitle;
     const date = def.itemDate;
     const dueDate = def.itemDueDate;
