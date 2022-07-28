@@ -46,7 +46,7 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
             Date: ${date},
             Due Date: ${dueDate},
             Tags: ${tags},
-            Notes: ${notes}.
+            Notes: ${notes},
             Checklist: ${_checklist}
         `);
     }
