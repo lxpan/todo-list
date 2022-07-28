@@ -49,6 +49,8 @@ export default function buildProject() {
     p.addItem('Study on the exercise bike');
     p.todoItems[3].appendTag('Fitness', 'Study', 123);
 
+    p.todoItems[0].setCompleted();
+
     // p.todoItems.splice(2, 1);
 
     // console.log(p.getUniqueTags());       
