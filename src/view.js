@@ -7,7 +7,7 @@ export default (function view() {
         contentDiv.appendChild(projectHeading);
     }
 
-    function insertProjectItems(query, textToUpdate) {
+    function insertProjectItem(query, textToUpdate) {
         const contentDiv = document.querySelector(query);
         const newItem = document.createElement('div');
         newItem.textContent = textToUpdate;
@@ -16,7 +16,7 @@ export default (function view() {
 
     return {
         insertProjectHeading,
-        insertProjectItems
+        insertProjectItem
     };
     
 })();

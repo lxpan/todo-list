@@ -9,7 +9,7 @@ const run = () => {
     // enumerate items in default project
     defaultProject.todoItems.forEach(item => {
         let itemString = item.printSummary();
-        view.insertProjectItems('#content', itemString);
+        view.insertProjectItem('#content', itemString);
     })
 }
 
