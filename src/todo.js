@@ -1,13 +1,3 @@
-const itemMixin = {
-    describe () {
-        console.log(`Item ${this.title} is due by ${this.dueDate}`);
-    },
-
-    myFunc() {
-        console.log('From itemProto');
-    }
-}
-
 const tagMixin = {
     printTags () {
         console.log(`Tags: ${this.tags}`);        
@@ -63,7 +53,7 @@ export default function todoItemFactory (itemTitle, itemDate='Today', itemDueDat
     }
 
     // copies "tag" properties into "item" properties
-    let proto = Object.assign(itemMixin, tagMixin, checklistMixin);  // (targetObj, sourceObj)
+    let proto = Object.assign(tagMixin, checklistMixin);  // (targetObj, sourceObj)
     
     // creates a new object, using an existing object as its prototype of newly created object
     let todoItemObj = Object.create(proto);
