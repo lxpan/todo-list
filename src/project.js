@@ -48,9 +48,12 @@ export default function loadProject() {
     p.addItem('Run for 10 minutes');
     p.todoItems[2].appendTag('Fitness');
 
-    p.todoItems.forEach(item => {
-        item.printSummary();
-    });
+    p.addItem('Study on the exercise bike');
+    p.todoItems[3].appendTag('Fitness', 'Study', 123);
+
+    // p.todoItems.forEach(item => {
+    //     item.printSummary();
+    // });
 
     console.log(p.getUniqueTags());
 }
