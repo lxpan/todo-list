@@ -13,8 +13,15 @@ const tagMixin = {
         console.log(`Tags: ${this.tags}`);        
     },
 
-    appendTag (tag) {
-        this.tags.push(tag);
+    appendTag () {
+        for (const [_, val] of Object.entries(arguments)) {
+            if(typeof(val) == 'string') {
+                this.tags.push(val);
+            }
+            else {
+                console.log(`Non-string argument detected: ${val}`);
+            }
+        }
     },
 
     myFunc() {
