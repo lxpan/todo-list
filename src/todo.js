@@ -23,7 +23,7 @@ const tagProto = {
 }
 
 // Responsibility: return/construct a todoItem object, which represents a single todo item
-const todoItemFactory = (itemTitle, itemDescription=null, itemDueDate=null, itemTags=null) => {
+const todoItemFactory = (itemTitle, itemDescription=null, itemDueDate=null, itemTags=[]) => {
     const title = itemTitle;
     const description = itemDescription;
     const dueDate = itemDueDate;
