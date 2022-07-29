@@ -8,10 +8,13 @@ export default (function view() {
         targetDiv.appendChild(projectHeading);
     }
 
-    function insertProjectItem(query, itemTitle, uuid) {
+    function insertProjectItem(query, itemTitle, uuid, callbackFunc) {
         const toggleCheckboxFunc = (e) => {
             if(e.target.checked) {
                 alert('Checked!');
+                const checkedCallback = callbackFunc();
+                checkedCallback();
+                // set item object to completed
             } else {
                 alert('Not checked!');
             }
