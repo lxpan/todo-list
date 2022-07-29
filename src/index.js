@@ -11,17 +11,11 @@ const run = () => {
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
 
-        const toggleCompletionStatus = () => {
-            // item['uuid'].setCompleted();
+        const toggleCompletionStatus = () => {        
             return function() {
-                // item.completion = true;
                 item.toggleCompletion();
-                // console.log(item);
             }
         }
-
-        // console.log(item.printSummary());
-        // view.insertProjectItem('#content', item.title, item.uuid, toggleCompletionStatus);
         view.insertProjectItem('#content', item, toggleCompletionStatus);
     })
 
