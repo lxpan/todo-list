@@ -4,3 +4,8 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+#content {
+    font-size: 2rem;
+    font-family: arial;
+}
