@@ -8,7 +8,7 @@ const run = () => {
     view.insertProjectHeading('#content', defaultProject.name);
 
     // enumerate items in default project
-    defaultProject.todoItems.forEach(item => {
+    Object.values(defaultProject.todoItems).forEach(item => {
         // console.log(item.printSummary());
         view.insertProjectItem('#content', item.title, item.uuid);
     })

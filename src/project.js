@@ -2,7 +2,7 @@ import todoItemFactory from './todo.js';
 
 class Project {
     notes;
-    todoItems = [];
+    todoItems = {};
 
     constructor(name) {
         this.name = name;
@@ -10,7 +10,8 @@ class Project {
 
     addItem(title) {
         const item = todoItemFactory(title);
-        this.todoItems.push(item);
+        // this.todoItems.push(item);
+        this.todoItems[item.uuid] = item;
     }
 
     get todoItems() {
@@ -40,18 +41,17 @@ export default function buildProject() {
 
     p.addItem('Mail parcel to Mum');
     p.addItem('Pay the bills');
-    p.todoItems[0].appendTag('Errands');
-    p.todoItems[1].appendTag('Errands');
-    
     p.addItem('Run for 10 minutes');
-    p.todoItems[2].appendTag('Fitness');
-
     p.addItem('Study on the exercise bike');
-    p.todoItems[3].appendTag('Fitness', 'Study', 123);
 
-    p.todoItems[0].setCompleted();
-
-    // p.todoItems.splice(2, 1);
+    let itemValues = Object.values(p.todoItems);
+    console.log(itemValues);
+    
+    itemValues[0].appendTag('Errands');
+    itemValues[0].setCompleted();
+    itemValues[1].appendTag('Errands');
+    itemValues[2].appendTag('Fitness');
+    itemValues[3].appendTag('Fitness', 'Study', 123);
 
     // console.log(p.getUniqueTags());       
     // console.log(p.todoItems);
