@@ -8,28 +8,33 @@ export default (function view() {
         targetDiv.appendChild(projectHeading);
     }
 
-    function insertProjectItem(query, itemTitle, uuid, callbackFunc) {
+    function insertProjectItem(query, item, callbackFunc) {
         const toggleItemCompletionOnClick = (e) => {
+            
+            const checkedCallback = callbackFunc();
+
             if(e.target.checked) {
-                alert('Checked!');
-                const checkedCallback = callbackFunc();
-                checkedCallback();
+                alert('Checked!');    
                 // set item object to completed
+                checkedCallback();
+                console.log(item);
             } else {
                 alert('Not checked!');
+                checkedCallback();
+                console.log(item);
             }
         }
 
         const targetDiv = document.querySelector(query);
         const itemDiv = document.createElement('div');
-        itemDiv.dataset.itemId = uuid;
+        itemDiv.dataset.itemId = item.uuid;
 
         const input = document.createElement('input');
         const label = document.createElement('label');
 
         input.type = 'checkbox';
         input.id = elementID; // link "id" and "for"
-        label.textContent = itemTitle;
+        label.textContent = item.title;
         label.setAttribute('for', elementID); // link "id" and "for"
 
         input.addEventListener('click', toggleItemCompletionOnClick);
