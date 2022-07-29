@@ -45,10 +45,10 @@ export default function buildProject() {
     p.addItem('Study on the exercise bike');
 
     let itemValues = Object.values(p.todoItems);
-    console.log(itemValues);
+    // console.log(itemValues);
     
     itemValues[0].appendTag('Errands');
-    itemValues[0].setCompleted();
+    // itemValues[0].setCompleted();
     itemValues[1].appendTag('Errands');
     itemValues[2].appendTag('Fitness');
     itemValues[3].appendTag('Fitness', 'Study', 123);
