@@ -9,6 +9,14 @@ export default (function view() {
     }
 
     function insertProjectItem(query, textToUpdate) {
+        const toggleCheckboxFunc = (e) => {
+            if(e.target.checked) {
+                console.log('Checked!');
+            } else {
+                console.log('Not checked!');
+            }
+        }
+
         const targetDiv = document.querySelector(query);
         const itemDiv = document.createElement('div');
         itemDiv.dataset.itemId = 'testID';
@@ -20,6 +28,8 @@ export default (function view() {
         input.id = elementID; // link "id" and "for"
         label.textContent = textToUpdate;
         label.setAttribute('for', elementID); // link "id" and "for"
+
+        input.addEventListener('click', toggleCheckboxFunc);
 
         itemDiv.append(input, label);
         targetDiv.appendChild(itemDiv);
