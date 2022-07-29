@@ -11,9 +11,9 @@ export default (function view() {
     function insertProjectItem(query, textToUpdate, uuid) {
         const toggleCheckboxFunc = (e) => {
             if(e.target.checked) {
-                console.log('Checked!');
+                alert('Checked!');
             } else {
-                console.log('Not checked!');
+                alert('Not checked!');
             }
         }
 
