@@ -11,12 +11,12 @@ const run = () => {
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
 
-        const toggleCompletionStatus = () => {        
+        const completionToggleCallback = () => {        
             return function() {
                 item.toggleCompletion();
             }
         }
-        view.insertProjectItem('#content', item, toggleCompletionStatus);
+        view.insertProjectItem('#content', item, completionToggleCallback);
     })
 
     // console.log(defaultProject.todoItems);
