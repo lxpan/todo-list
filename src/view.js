@@ -8,7 +8,7 @@ export default (function view() {
         targetDiv.appendChild(projectHeading);
     }
 
-    function insertProjectItem(query, textToUpdate) {
+    function insertProjectItem(query, textToUpdate, uuid) {
         const toggleCheckboxFunc = (e) => {
             if(e.target.checked) {
                 console.log('Checked!');
@@ -19,7 +19,7 @@ export default (function view() {
 
         const targetDiv = document.querySelector(query);
         const itemDiv = document.createElement('div');
-        itemDiv.dataset.itemId = 'testID';
+        itemDiv.dataset.itemId = uuid;
 
         const input = document.createElement('input');
         const label = document.createElement('label');
