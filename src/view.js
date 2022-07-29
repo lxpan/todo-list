@@ -8,19 +8,15 @@ export default (function view() {
         targetDiv.appendChild(projectHeading);
     }
 
-    function insertProjectItem(query, item, callbackFunc) {
+    function insertProjectItem(query, item) {
         const toggleItemCompletionOnClick = (e) => {
-            
-            const checkedCallback = callbackFunc();
-
             if(e.target.checked) {
                 alert('Checked!');    
-                // set item object to completed
-                checkedCallback();
+                item.toggleCompletion();
                 console.log(item);
             } else {
                 alert('Not checked!');
-                checkedCallback();
+                item.toggleCompletion();
                 console.log(item);
             }
         }
