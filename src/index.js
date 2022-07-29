@@ -15,13 +15,14 @@ const run = () => {
             // item['uuid'].setCompleted();
             return function() {
                 // item.completion = true;
-                item.setCompleted();
-                console.log(item);
+                item.toggleCompletion();
+                // console.log(item);
             }
         }
 
         // console.log(item.printSummary());
-        view.insertProjectItem('#content', item.title, item.uuid, toggleCompletionStatus);
+        // view.insertProjectItem('#content', item.title, item.uuid, toggleCompletionStatus);
+        view.insertProjectItem('#content', item, toggleCompletionStatus);
     })
 
     // console.log(defaultProject.todoItems);

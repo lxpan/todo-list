@@ -67,13 +67,17 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
         `;
     }
 
-    const setCompleted = () => {
-        completion = true;
+    const toggleCompletion = function() {
+        if(this.completion) {
+            this.completion = false;
+        } else {
+            this.completion = true;
+        }
     }
 
     const factoryMethods = {
         printSummary,
-        setCompleted
+        toggleCompletion
     }
 
     // copies "tag" properties into "item" properties
