@@ -91,7 +91,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     todoItemObj.tags = tags;
     todoItemObj.checklist = _checklist;
     todoItemObj.completion = completion;
-    todoItemFactory.id = uuid;
+    todoItemObj.uuid = uuid;
 
     return todoItemObj;
 }
