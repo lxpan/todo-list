@@ -9,7 +9,7 @@ export default (function view() {
     }
 
     function insertProjectItem(query, itemTitle, uuid, callbackFunc) {
-        const toggleCheckboxFunc = (e) => {
+        const toggleItemCompletionOnClick = (e) => {
             if(e.target.checked) {
                 alert('Checked!');
                 const checkedCallback = callbackFunc();
@@ -32,7 +32,7 @@ export default (function view() {
         label.textContent = itemTitle;
         label.setAttribute('for', elementID); // link "id" and "for"
 
-        input.addEventListener('click', toggleCheckboxFunc);
+        input.addEventListener('click', toggleItemCompletionOnClick);
 
         itemDiv.append(input, label);
         targetDiv.appendChild(itemDiv);
