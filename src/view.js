@@ -8,7 +8,7 @@ export default (function view() {
         targetDiv.appendChild(projectHeading);
     }
 
-    function insertProjectItem(query, textToUpdate, uuid) {
+    function insertProjectItem(query, itemTitle, uuid) {
         const toggleCheckboxFunc = (e) => {
             if(e.target.checked) {
                 alert('Checked!');
@@ -26,7 +26,7 @@ export default (function view() {
 
         input.type = 'checkbox';
         input.id = elementID; // link "id" and "for"
-        label.textContent = textToUpdate;
+        label.textContent = itemTitle;
         label.setAttribute('for', elementID); // link "id" and "for"
 
         input.addEventListener('click', toggleCheckboxFunc);
