@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const tagMixin = {
     printTags () {
         console.log(`Tags: ${this.tags}`);        
@@ -50,6 +52,8 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     const _checklist = def.itemChecklist;
     let completion = def.itemCompletion;
 
+    const uuid = uuidv4();
+
     const printSummary = () => {
         return `
             Title: ${title},
@@ -58,7 +62,8 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
             Tags: ${tags},
             Notes: ${notes},
             Checklist: ${_checklist},
-            Completion: ${completion}
+            Completion: ${completion},
+            UUID: ${uuid}
         `;
     }
 
@@ -86,6 +91,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     todoItemObj.tags = tags;
     todoItemObj.checklist = _checklist;
     todoItemObj.completion = completion;
+    todoItemFactory.id = uuid;
 
     return todoItemObj;
 }
