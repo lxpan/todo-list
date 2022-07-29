@@ -1,5 +1,6 @@
 import buildProject from './project.js';
 import view from './view.js';
+import './style.css';
 
 const run = () => {
     const defaultProject = buildProject();
@@ -8,9 +9,11 @@ const run = () => {
 
     // enumerate items in default project
     defaultProject.todoItems.forEach(item => {
-        let itemString = item.printSummary();
-        view.insertProjectItem('#content', itemString);
+        // console.log(item.printSummary());
+        view.insertProjectItem('#content', item.title, item.uuid);
     })
+
+    console.log(defaultProject.todoItems);
 }
 
 const setupHTML  = () => {
