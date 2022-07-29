@@ -26,7 +26,7 @@ class Project {
     }
 
     getUniqueTags() {
-        const tags = this.todoItems
+        const tags = Object.values(this.todoItems)
             .map(item => item.tags )
             .flat();
 
