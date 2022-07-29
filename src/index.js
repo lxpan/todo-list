@@ -2,18 +2,29 @@ import buildProject from './project.js';
 import view from './view.js';
 import './style.css';
 
+const defaultProject = buildProject();
+
 const run = () => {
-    const defaultProject = buildProject();
-    
     view.insertProjectHeading('#content', defaultProject.name);
+    // console.log(defaultProject.getUniqueTags());
 
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
+
+        const toggleCompletionStatus = () => {
+            // item['uuid'].setCompleted();
+            return function() {
+                // item.completion = true;
+                item.setCompleted();
+                console.log(item);
+            }
+        }
+
         // console.log(item.printSummary());
-        view.insertProjectItem('#content', item.title, item.uuid);
+        view.insertProjectItem('#content', item.title, item.uuid, toggleCompletionStatus);
     })
 
-    console.log(defaultProject.todoItems);
+    // console.log(defaultProject.todoItems);
 }
 
 const setupHTML  = () => {
