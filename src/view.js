@@ -38,6 +38,54 @@ export default (function view() {
             return label;
         }
 
+        const createItemInfoExpandable = () => {
+            const notesDiv = (() => {
+                const notes = document.createElement('div');
+                notes.textContent = `Notes: ${item.notes}`;
+                return notes;
+            })();
+
+            const itemTaskListDiv = (() => {
+                const checklistDiv = document.createElement('div');
+                const checklistList = document.createElement('ul');
+                
+                item.checklist.forEach(task => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = task;
+                    checklistList.appendChild(listItem);
+                })
+                
+                checklistDiv.appendChild(checklistList);
+                return checklistDiv;
+            })();
+
+            const datesDiv = (() => {
+                // includes both 'date' and 'dueDate';
+                const dates = document.createElement('div');
+                const date = document.createElement('div');
+                const dueDate = document.createElement('div');
+                
+                date.textContent = `Date: ${item.date}`;
+                dueDate.textContent = `Due: ${item.dueDate}`;
+                dates.append(date, dueDate);
+                
+                return dates;
+            })();
+
+            const tagsDiv = (() => {
+                const tags = document.createElement('div');
+                tags.textContent = item.getTags();
+                return tags;
+            })();
+
+            // content that will show (expand) when item title is clicked
+            const expandable = document.createElement('div');
+            expandable.classList.add('itemInfo', 'hidden');
+            expandable.append(notesDiv, itemTaskListDiv, datesDiv, tagsDiv);
+            
+            return expandable;
+        }
+
         const checkbox = createCheckbox();
         const itemLabel = createLabel();
 
@@ -45,7 +93,7 @@ export default (function view() {
         const itemDiv = document.createElement('div');
         itemDiv.dataset.itemId = item.uuid;
         
-        itemDiv.append(checkbox, itemLabel);
+        itemDiv.append(checkbox, itemLabel, createItemInfoExpandable());
         targetDiv.appendChild(itemDiv);
 
         // ensure each input-label pair has a unique integer identifier
