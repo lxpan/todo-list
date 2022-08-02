@@ -28,10 +28,6 @@ const tagMixin = {
             }
         }
     },
-
-    myFunc() {
-        console.log('From tagProto');
-    }
 }
 
 const checklistMixin = {
