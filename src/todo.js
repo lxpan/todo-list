@@ -1,10 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
 const tagMixin = {
-    printTags () {
-        console.log(`Tags: ${this.tags}`);
-    },
-
     getTags () {
         let tagString = 'Tags: ';
         let isFirstTag = false;
@@ -18,7 +14,7 @@ const tagMixin = {
             }
             
         })
-        
+
         return tagString;
     },
 
