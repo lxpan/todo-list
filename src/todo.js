@@ -6,7 +6,20 @@ const tagMixin = {
     },
 
     getTags () {
-        return `Tags: ${this.tags}`;
+        let tagString = 'Tags: ';
+        let isFirstTag = false;
+
+        this.tags.forEach(tag => {
+            if(!isFirstTag) {
+                tagString += `${tag}`;
+                isFirstTag = true;
+            } else {
+                tagString += `, ${tag}`;
+            }
+            
+        })
+        
+        return tagString;
     },
 
     appendTag () {
