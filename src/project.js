@@ -48,6 +48,12 @@ export default function buildProject() {
     // console.log(itemValues);
     
     itemValues[0].appendTag('Errands');
+    itemValues[0].notes = 'Needs to be done at the post office.'
+    itemValues[0].addTask('Find item.');
+    itemValues[0].addTask('Pack parcel.');
+    itemValues[0].addTask('Mail parcel.');
+
+
     // itemValues[0].setCompleted();
     itemValues[1].appendTag('Errands');
     itemValues[2].appendTag('Fitness');
