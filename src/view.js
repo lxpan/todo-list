@@ -9,6 +9,7 @@ export default (function view() {
     }
 
     function insertProjectItem(query, item) {
+        // callback function for the 'todo' checkbox
         const toggleItemCompletionOnClick = (e) => {
             if(e.target.checked) {
                 alert('Checked!');    
@@ -25,16 +26,17 @@ export default (function view() {
         const itemDiv = document.createElement('div');
         itemDiv.dataset.itemId = item.uuid;
 
+        // Create checkbox
         const input = document.createElement('input');
-        const label = document.createElement('label');
-
         input.type = 'checkbox';
         input.id = elementID; // link "id" and "for"
-        label.textContent = item.title;
-        label.setAttribute('for', elementID); // link "id" and "for"
-
         input.addEventListener('click', toggleItemCompletionOnClick);
 
+        // Create label (featuring item title)
+        const label = document.createElement('label');
+        label.setAttribute('for', elementID); // link "id" and "for"
+        label.textContent = item.title;
+        
         itemDiv.append(input, label);
         targetDiv.appendChild(itemDiv);
 
