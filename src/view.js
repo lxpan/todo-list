@@ -22,22 +22,30 @@ export default (function view() {
             }
         }
 
+        const createCheckbox = () => {
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.id = elementID; // link "id" and "for"
+            input.addEventListener('click', toggleItemCompletionOnClick);            
+            return input
+        }
+
+        const createLabel = () => {
+            // Create label (featuring item title)
+            const label = document.createElement('label');
+            label.setAttribute('for', elementID); // link "id" and "for"
+            label.textContent = item.title;
+            return label;
+        }
+
+        const checkbox = createCheckbox();
+        const itemLabel = createLabel();
+
         const targetDiv = document.querySelector(query);
         const itemDiv = document.createElement('div');
         itemDiv.dataset.itemId = item.uuid;
-
-        // Create checkbox
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        input.id = elementID; // link "id" and "for"
-        input.addEventListener('click', toggleItemCompletionOnClick);
-
-        // Create label (featuring item title)
-        const label = document.createElement('label');
-        label.setAttribute('for', elementID); // link "id" and "for"
-        label.textContent = item.title;
         
-        itemDiv.append(input, label);
+        itemDiv.append(checkbox, itemLabel);
         targetDiv.appendChild(itemDiv);
 
         // ensure each input-label pair has a unique integer identifier
