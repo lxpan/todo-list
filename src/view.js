@@ -33,8 +33,23 @@ export default (function view() {
         const createLabel = () => {
             // Create label (featuring item title)
             const label = document.createElement('label');
-            label.setAttribute('for', elementID); // link "id" and "for"
+            // label.setAttribute('for', elementID); // link "id" and "for"
             label.textContent = item.title;
+            label.addEventListener('click', (e) => {
+                
+                // hide all
+                const allItems = document.querySelectorAll('.itemInfo');
+                console.log(allItems);
+                Array.from(allItems).forEach(info => {
+                    info.classList.remove('active');
+                    info.classList.add('hidden');
+                });
+                
+                // set active
+                const siblingInfoDiv = e.target.parentNode.querySelector('.itemInfo');
+                siblingInfoDiv.classList.remove('hidden');
+                siblingInfoDiv.classList.add('active');
+            })
             return label;
         }
 
@@ -80,8 +95,7 @@ export default (function view() {
 
             // content that will show (expand) when item title is clicked
             const expandable = document.createElement('div');
-            // expandable.classList.add('itemInfo', 'hidden');
-            expandable.classList.add('itemInfo');
+            expandable.classList.add('itemInfo', 'hidden');
             expandable.append(notesDiv, itemTaskListDiv, datesDiv, tagsDiv);
             
             return expandable;
