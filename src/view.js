@@ -38,9 +38,8 @@ export default (function view() {
             label.addEventListener('click', (e) => {
                 
                 // hide all
-                const allItems = document.querySelectorAll('.itemInfo');
-                console.log(allItems);
-                Array.from(allItems).forEach(info => {
+                const itemInfoDiv = document.querySelectorAll('.itemInfo');
+                Array.from(itemInfoDiv).forEach(info => {
                     info.classList.remove('active');
                     info.classList.add('hidden');
                 });
