@@ -12,11 +12,11 @@ export default (function view() {
         // callback function for the 'todo' checkbox
         const toggleItemCompletionOnClick = (e) => {
             if(e.target.checked) {
-                alert('Checked!');    
+                // alert('Checked!');    
                 item.toggleCompletion();
                 console.log(item);
             } else {
-                alert('Not checked!');
+                // alert('Not checked!');
                 item.toggleCompletion();
                 console.log(item);
             }
@@ -80,7 +80,8 @@ export default (function view() {
 
             // content that will show (expand) when item title is clicked
             const expandable = document.createElement('div');
-            expandable.classList.add('itemInfo', 'hidden');
+            // expandable.classList.add('itemInfo', 'hidden');
+            expandable.classList.add('itemInfo');
             expandable.append(notesDiv, itemTaskListDiv, datesDiv, tagsDiv);
             
             return expandable;
