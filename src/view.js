@@ -30,6 +30,24 @@ export default (function view() {
             return input
         }
 
+        const getExclusiveSiblingNodes = (node) => {
+            let siblings = [];
+
+            if(!node.parentNode) {
+                return siblings;
+            }
+
+            let sibling = node.parentNode.firstChild;
+
+            while (sibling) {
+                if(sibling.nodeType === 1 && sibling !== node) {
+                    siblings.push(sibling);
+                }
+                sibling = sibling.nextSibling;
+            }
+            return siblings;
+        }
+
         const makeTodoItemExpand = (e) => {
             const siblingInfoDiv = e.target.parentNode.querySelector('.itemInfo');
 
@@ -49,7 +67,10 @@ export default (function view() {
            
             label.addEventListener('click', (e) => {
                 makeTodoItemExpand(e);
+                const sibs = getExclusiveSiblingNodes(e.target);
+                console.log(sibs);
             })
+
             return label;
         }
 
@@ -106,6 +127,7 @@ export default (function view() {
 
         const targetDiv = document.querySelector(query);
         const itemDiv = document.createElement('div');
+        itemDiv.classList.add('todoItem');
         itemDiv.dataset.itemId = item.uuid;
         
         itemDiv.append(checkbox, itemLabel, createItemInfoExpandable());
