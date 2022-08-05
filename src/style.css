@@ -34,11 +34,11 @@ body {
 }
 
 .expanded {
-    animation: open 0.3s ease-in-out forwards;
+    animation: open 0.3s ease-out forwards;
 }
 
 .contracted {
-    animation: close 0.3s ease-in-out forwards;
+    animation: close 0.3s ease-in forwards;
 }
 
 @keyframes open {
