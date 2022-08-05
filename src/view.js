@@ -33,18 +33,14 @@ export default (function view() {
         const getExclusiveSiblingNodes = (node) => {
             let siblings = [];
 
-            if(!node.parentNode) {
-                return siblings;
-            }
+            const currentDataID = node.parentNode.dataset.itemId;
+            const otherTodoItems = document.querySelectorAll(`.todoItem[data-item-id]:not([data-item-id="${currentDataID}"])`);
+            
+            Array.from(otherTodoItems).forEach(item => {
+                const itemInfo = item.querySelector('.itemInfo');
+                siblings.push(itemInfo)
+            });
 
-            let sibling = node.parentNode.firstChild;
-
-            while (sibling) {
-                if(sibling.nodeType === 1 && sibling !== node) {
-                    siblings.push(sibling);
-                }
-                sibling = sibling.nextSibling;
-            }
             return siblings;
         }
 
@@ -61,14 +57,21 @@ export default (function view() {
         const createLabel = () => {
             // Create label (featuring item title)
             const label = document.createElement('label');
-           
-            // label.setAttribute('for', elementID); // link "id" and "for"
             label.textContent = item.title;
-           
+            // label.setAttribute('for', elementID); // link "id" and "for"
+            
+            // add callback to expand item on click
             label.addEventListener('click', (e) => {
+                // first hide other items
+                const otherItemInfo = getExclusiveSiblingNodes(e.target);
+                otherItemInfo.forEach(infoDiv => {
+                    infoDiv.classList.remove('expanded');
+                    infoDiv.classList.add('contracted');
+                });
+                
+                // then make current item expand
                 makeTodoItemExpand(e);
-                const sibs = getExclusiveSiblingNodes(e.target);
-                console.log(sibs);
+
             })
 
             return label;
@@ -122,13 +125,14 @@ export default (function view() {
             return expandable;
         }
 
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('todoItem');
+        itemDiv.dataset.itemId = item.uuid;
+
         const checkbox = createCheckbox();
         const itemLabel = createLabel();
 
         const targetDiv = document.querySelector(query);
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('todoItem');
-        itemDiv.dataset.itemId = item.uuid;
         
         itemDiv.append(checkbox, itemLabel, createItemInfoExpandable());
         targetDiv.appendChild(itemDiv);
