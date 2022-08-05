@@ -17,3 +17,11 @@ body {
     padding: 10px;
     row-gap: 5px;
 }
+
+.expanded {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}

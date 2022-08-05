@@ -40,7 +40,7 @@ export default (function view() {
                 // hide all
                 const itemInfoDiv = document.querySelectorAll('.itemInfo');
                 Array.from(itemInfoDiv).forEach(info => {
-                    info.classList.remove('active');
+                    info.classList.remove('expanded');
                     info.classList.add('hidden');
                 });
                 
@@ -118,5 +118,9 @@ export default (function view() {
         insertProjectHeading,
         insertProjectItem
     };
+
+    function displayProjects() {
+
+    }
     
 })();
