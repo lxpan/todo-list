@@ -3,6 +3,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 #content {
@@ -18,10 +20,45 @@ body {
     row-gap: 5px;
 }
 
+.itemInfo.contracted {
+    padding: 0;
+    row-gap: 0;
+}
+
 .expanded {
     display: flex;
 }
 
 .hidden {
     display: none;
+}
+
+.expanded {
+    animation: open 0.3s ease-in-out forwards;
+}
+
+.contracted {
+    animation: close 0.3s ease-in-out forwards;
+}
+
+@keyframes open {
+    0% {
+        transform: scaleY(0);
+        max-height: 0px;
+    }
+    100% {
+        transform: scaleY(1);
+        max-height: 500px;
+    }
+}
+
+@keyframes close {
+    0% {
+        transform: scaleY(1);
+        max-height: 500px;
+    }
+    100% {
+        transform: scaleY(0);
+        max-height: 0px;
+    }
 }

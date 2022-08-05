@@ -30,24 +30,25 @@ export default (function view() {
             return input
         }
 
+        const makeTodoItemExpand = (e) => {
+            const siblingInfoDiv = e.target.parentNode.querySelector('.itemInfo');
+
+            if(siblingInfoDiv.classList.contains('hidden')) {
+                siblingInfoDiv.classList.remove('hidden');
+            }
+            siblingInfoDiv.classList.toggle('contracted');
+            siblingInfoDiv.classList.toggle('expanded');
+        }
+
         const createLabel = () => {
             // Create label (featuring item title)
             const label = document.createElement('label');
+           
             // label.setAttribute('for', elementID); // link "id" and "for"
             label.textContent = item.title;
+           
             label.addEventListener('click', (e) => {
-                
-                // hide all
-                const itemInfoDiv = document.querySelectorAll('.itemInfo');
-                Array.from(itemInfoDiv).forEach(info => {
-                    info.classList.remove('expanded');
-                    info.classList.add('hidden');
-                });
-                
-                // set active
-                const siblingInfoDiv = e.target.parentNode.querySelector('.itemInfo');
-                siblingInfoDiv.classList.remove('hidden');
-                siblingInfoDiv.classList.add('active');
+                makeTodoItemExpand(e);
             })
             return label;
         }
@@ -94,7 +95,7 @@ export default (function view() {
 
             // content that will show (expand) when item title is clicked
             const expandable = document.createElement('div');
-            expandable.classList.add('itemInfo', 'hidden');
+            expandable.classList.add('itemInfo', 'contracted', 'hidden');
             expandable.append(notesDiv, itemTaskListDiv, datesDiv, tagsDiv);
             
             return expandable;
