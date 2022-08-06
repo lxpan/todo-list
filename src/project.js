@@ -57,7 +57,8 @@ export default function buildProject() {
     // itemValues[0].setCompleted();
     itemValues[1].appendTag('Errands');
     itemValues[2].appendTag('Fitness');
-    itemValues[3].appendTag('Fitness', 'Study', 123);
+    // itemValues[3].appendTag('Fitness', 'Study', 123);
+    itemValues[3].appendTag('Fitness', 'Study');
 
     // console.log(p.getUniqueTags());       
     // console.log(p.todoItems);
