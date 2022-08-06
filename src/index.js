@@ -15,10 +15,20 @@ const setupHeader = () => {
     return header;
 }
 
-
 const setupHTML  = () => {
     const gridContainer = view.createElement('div', 'gridContainer');
     const navbar = view.createElement('div', 'navbar');
+
+    const projects = ['Project 1', 'Project 2', 'Project 3'];
+    const projectList = document.createElement('ul');
+    
+    projects.forEach(project => {
+        const projectItem = document.createElement('li');
+        projectItem.textContent = project;
+        projectList.appendChild(projectItem);
+
+    });
+    navbar.appendChild(projectList);
 
     const content = document.createElement('div');
     content.id = 'content';
