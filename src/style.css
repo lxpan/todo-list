@@ -7,6 +7,21 @@ body {
     padding: 0;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    width: 100vw;
+
+}
+
 #content {
     /* font-size: 2rem; */
     font-family: arial;
