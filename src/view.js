@@ -137,8 +137,7 @@ export default (function view() {
             return expandable;
         }
 
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('todoItem');
+        const itemDiv = createElement('div', 'todoItem');
         itemDiv.dataset.itemId = item.uuid;
 
         const checkbox = createCheckbox();
