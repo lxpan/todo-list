@@ -11,6 +11,23 @@ const setupHeader = () => {
     const newItemBtn = view.createElement('button', 'newItemBtn');
     newItemBtn.textContent = '+';
 
+    newItemBtn.addEventListener('click', () => {
+        // add new item to project
+        defaultProject.addItem('Test Insert Item');
+        console.log(defaultProject.todoItems);
+
+        // clear current items and reset div
+        const content = document.querySelector('#content');
+        content.innerHTML = '';
+        view.insertProjectHeading('#content', defaultProject.name);
+
+        // repopulate list items from project
+        Object.values(defaultProject.todoItems).forEach(item => {
+            view.insertProjectItem('#content', item);
+        });
+    
+    })
+
     header.append(testHeading, newItemBtn);
     return header;
 }
