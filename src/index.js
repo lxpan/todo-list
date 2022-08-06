@@ -9,7 +9,14 @@ const setupHTML  = () => {
     content.id = 'content';
     testHeading.textContent = 'Todo List';
     
-    document.body.append(testHeading, content);
+    
+
+    // "Create New Item" button
+    const newItemBtn = document.createElement('button');
+    newItemBtn.className = 'newItemBtn';
+    newItemBtn.textContent = '+';
+
+    document.body.append(testHeading, newItemBtn, content);
 }
 
 const run = () => {
