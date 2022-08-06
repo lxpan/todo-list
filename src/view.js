@@ -1,6 +1,18 @@
 export default (function view() {
     let elementID = 0;
 
+    function createElement(elementName, className=null) {
+        const element = document.createElement(elementName);
+        
+        if(className) {    
+            element.className = className;
+            return element;
+        }
+        else {
+            return document.createElement(elementName);
+        }
+    }
+
     function insertProjectHeading(query, projectName) {
         const targetDiv = document.querySelector(query);
         const projectHeading = document.createElement('h2');
@@ -143,7 +155,8 @@ export default (function view() {
 
     return {
         insertProjectHeading,
-        insertProjectItem
+        insertProjectItem,
+        createElement
     };
 
     function displayProjects() {
