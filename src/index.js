@@ -8,8 +8,7 @@ const setupHeader = () => {
     testHeading.textContent = 'Todo List';
 
     // "Create New Item" button
-    const newItemBtn = document.createElement('button');
-    newItemBtn.className = 'newItemBtn';
+    const newItemBtn = view.createElement('button', 'newItmBtn');
     newItemBtn.textContent = '+';
 
     header.append(testHeading, newItemBtn);
@@ -18,15 +17,13 @@ const setupHeader = () => {
 
 
 const setupHTML  = () => {
-    const gridContainer = document.createElement('div');
-    gridContainer.className = 'gridContainer';
-    const navbar = document.createElement('div');
-    
+    const gridContainer = view.createElement('div', 'gridContainer');
+    const navbar = view.createElement('div', 'navbar');
+
     const content = document.createElement('div');
     content.id = 'content';
 
     gridContainer.append(navbar, content);
-
     document.body.append(setupHeader(), gridContainer);
 }
 
