@@ -8,7 +8,7 @@ const setupHeader = () => {
     testHeading.textContent = 'Todo List';
 
     // "Create New Item" button
-    const newItemBtn = view.createElement('button', 'newItmBtn');
+    const newItemBtn = view.createElement('button', 'newItemBtn');
     newItemBtn.textContent = '+';
 
     header.append(testHeading, newItemBtn);
