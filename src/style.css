@@ -10,6 +10,8 @@ body {
 #content {
     /* font-size: 2rem; */
     font-family: arial;
+    position: relative;
+    width: 40%;
 }
 
 .itemInfo {
