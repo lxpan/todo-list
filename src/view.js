@@ -308,7 +308,7 @@ export default (function view() {
 
         const checkbox = createCheckbox();
 
-        let _titleType = 'label';
+        let _titleType = 'input';
         const itemLabel = createLabel(_titleType);
         itemDiv.setAttribute('titleType', _titleType);
         
