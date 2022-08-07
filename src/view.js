@@ -203,7 +203,7 @@ export default (function view() {
 
         const createItemTitle = (titleType) => {
             let titleElement;
-            if(titleType == 'text') {
+            if(titleType == 'input') {
                 const inputElement = document.createElement('input');
                 inputElement.type = 'text';
                 inputElement.defaultValue = item.title;
@@ -219,9 +219,10 @@ export default (function view() {
             return titleElement;
         }
 
-        const createLabel = () => {
+        const createLabel = (_titleType) => {
             // Create label (featuring item title)
-            const label = createItemTitle('text');
+            const label = createItemTitle(_titleType);
+            
             
             /* 
             NB: We don't link the 'id' and 'for' elements because users' clicking on the label shouldn't toggle the checkbox.
@@ -306,7 +307,11 @@ export default (function view() {
         itemDiv.dataset.itemId = item.uuid;
 
         const checkbox = createCheckbox();
-        const itemLabel = createLabel();
+
+        let _titleType = 'label';
+        const itemLabel = createLabel(_titleType);
+        itemDiv.setAttribute('titleType', _titleType);
+        
 
         const targetDiv = document.querySelector(query);
         
