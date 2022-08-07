@@ -7,6 +7,7 @@ const createNewItemBtn = () => {
     const newItemBtn = view.createElement('button', 'newItemBtn');
     newItemBtn.textContent = '+';
     
+    /* This code should be refactored and moved to the View module */
     newItemBtn.addEventListener('click', () => {
         // add new item to project
         defaultProject.addItem('Test Insert Item');
@@ -24,6 +25,7 @@ const createNewItemBtn = () => {
 
         const items = document.querySelectorAll('.todoItem');
         const last = items[items.length - 1];
+        console.log(last);
         
         const lastElementClickable =
             (last.getAttribute('titleType') == 'input')
