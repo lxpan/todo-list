@@ -25,8 +25,7 @@ header {
 #content {
     /* font-size: 2rem; */
     font-family: arial;
-    position: relative;
-    width: 40%;
+    width: 80%;
 }
 
 .newItemBtn {
