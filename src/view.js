@@ -194,8 +194,8 @@ export default (function view() {
             if(siblingInfoDiv.classList.contains('hidden')) {
                 siblingInfoDiv.classList.remove('hidden');
             }
-            siblingInfoDiv.classList.toggle('contracted');
-            siblingInfoDiv.classList.toggle('expanded');
+            siblingInfoDiv.classList.remove('contracted');
+            siblingInfoDiv.classList.add('expanded');
         }
 
         const createLabel = () => {
@@ -209,6 +209,8 @@ export default (function view() {
             
             // add callback to expand item on click
             label.addEventListener('click', (e) => {
+                // onclick, turn label into text input
+
                 // first hide other items
                 const otherItemInfo = getExclusiveSiblingNodes(e.target);
                 otherItemInfo.forEach(infoDiv => {
@@ -218,7 +220,10 @@ export default (function view() {
                 
                 // then make current item expand
                 makeTodoItemExpand(e);
-
+                // const textInput = document.createElement('input');
+                // input.type = 'text';
+                // input.textContent = e.target.textContent;
+                // e.target = textInput;
             })
 
             return label;
@@ -289,7 +294,8 @@ export default (function view() {
 
     return {
         insertProjectHeading,
-        insertProjectItem,
+        // insertProjectItem,
+        insertProjectItemForm,
         createElement
     };
 
