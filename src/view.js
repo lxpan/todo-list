@@ -124,9 +124,12 @@ export default (function view() {
         }
 
         const createItemInfoExpandable = () => {
-            const notesDiv = (() => {
-                const notes = document.createElement('div');
-                notes.textContent = `Notes: ${item.notes}`;
+            const notesInput = (() => {
+                const notes = document.createElement('input');
+                notes.type = 'text';
+                notes.name = 'notes';
+                notes.div = 'notes';
+                notes.defaultValue = `Notes: ${item.notes}`;
                 return notes;
             })();
 
@@ -166,7 +169,7 @@ export default (function view() {
             // content that will show (expand) when item title is clicked
             const expandable = document.createElement('div');
             expandable.classList.add('itemInfo', 'contracted', 'hidden');
-            expandable.append(notesDiv, itemTaskListDiv, datesDiv, tagsDiv);
+            expandable.append(notesInput, itemTaskListDiv, datesDiv, tagsDiv);
             
             return expandable;
         }
