@@ -22,7 +22,9 @@ const createNewItemBtn = () => {
             view.insertProjectItemForm('#content', item);
         });
 
-    
+        const items = document.querySelectorAll('.todoItem');
+        const last = items[items.length - 1].querySelector('label');
+        last.click();
     });
     return newItemBtn;
 }
