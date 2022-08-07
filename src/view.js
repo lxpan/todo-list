@@ -196,6 +196,9 @@ export default (function view() {
             }
             siblingInfoDiv.classList.remove('contracted');
             siblingInfoDiv.classList.add('expanded');
+
+            // make parent node active so that it can activate borders
+            e.target.parentNode.classList.add('active');
         }
 
         const createLabel = () => {
@@ -214,6 +217,7 @@ export default (function view() {
                 // first hide other items
                 const otherItemInfo = getExclusiveSiblingNodes(e.target);
                 otherItemInfo.forEach(infoDiv => {
+                    infoDiv.parentNode.classList.remove('active');
                     infoDiv.classList.remove('expanded');
                     infoDiv.classList.add('contracted');
                 });
