@@ -2,15 +2,11 @@ import buildProject from './project.js';
 import view from './view.js';
 import './style.css';
 
-const setupHeader = () => {
-    const header = document.createElement('header');
-    const testHeading = document.createElement('h1');
-    testHeading.textContent = 'Todo List';
-
+const createNewItemBtn = () => {
     // "Create New Item" button
     const newItemBtn = view.createElement('button', 'newItemBtn');
     newItemBtn.textContent = '+';
-
+    
     newItemBtn.addEventListener('click', () => {
         // add new item to project
         defaultProject.addItem('Test Insert Item');
@@ -25,10 +21,18 @@ const setupHeader = () => {
         Object.values(defaultProject.todoItems).forEach(item => {
             view.insertProjectItemForm('#content', item);
         });
-    
-    })
 
-    header.append(testHeading, newItemBtn);
+    
+    });
+    return newItemBtn;
+}
+
+const setupHeader = () => {
+    const header = document.createElement('header');
+    const testHeading = document.createElement('h1');
+    testHeading.textContent = 'Todo List';
+
+    header.append(testHeading, createNewItemBtn());
     return header;
 }
 
