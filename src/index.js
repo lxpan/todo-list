@@ -24,7 +24,12 @@ const createNewItemBtn = () => {
 
         const items = document.querySelectorAll('.todoItem');
         const last = items[items.length - 1];
-        const lastElementClickable = (last.getAttribute('titleType') == 'input') ? last.querySelector("input[type='text']") : last.querySelector('label');
+        
+        const lastElementClickable =
+            (last.getAttribute('titleType') == 'input')
+                ? last.querySelector("input[type='text']")
+                : last.querySelector('label');
+        
         lastElementClickable.click();
     });
     return newItemBtn;
