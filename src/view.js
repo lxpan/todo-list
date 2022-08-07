@@ -174,20 +174,20 @@ export default (function view() {
             return expandable;
         }
 
-        const itemDiv = createElement('div', 'todoItem');
-        itemDiv.dataset.itemId = item.uuid;
+        const itemInfoForm = createElement('form', 'todoItem');
+        itemInfoForm.dataset.itemId = item.uuid;
 
         const checkbox = createCheckbox();
 
         let _titleType = 'input';
         const itemLabel = createLabel(_titleType);
-        itemDiv.setAttribute('titleType', _titleType);
+        itemInfoForm.setAttribute('titleType', _titleType);
         
 
         const targetDiv = document.querySelector(query);
         
-        itemDiv.append(checkbox, itemLabel, createItemInfoExpandable());
-        targetDiv.appendChild(itemDiv);
+        itemInfoForm.append(checkbox, itemLabel, createItemInfoExpandable());
+        targetDiv.appendChild(itemInfoForm);
 
         // ensure each input-label pair has a unique integer identifier
         elementID++;
