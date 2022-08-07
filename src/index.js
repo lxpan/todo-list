@@ -23,7 +23,7 @@ const setupHeader = () => {
 
         // repopulate list items from project
         Object.values(defaultProject.todoItems).forEach(item => {
-            view.insertProjectItem('#content', item);
+            view.insertProjectItemForm('#content', item);
         });
     
     })
@@ -60,7 +60,7 @@ const run = () => {
 
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
-        view.insertProjectItem('#content', item);
+        view.insertProjectItemForm('#content', item);
     })
 
     // console.log(defaultProject.todoItems);
