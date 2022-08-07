@@ -45,8 +45,8 @@ export default (function view() {
         const getExclusiveSiblingNodes = (node) => {
             let siblings = [];
 
-            const currentDataID = node.parentNode.dataset.itemId;
-            const otherTodoItems = document.querySelectorAll(`.todoItem[data-item-id]:not([data-item-id="${currentDataID}"])`);
+            const currentID = node.parentNode.id;
+            const otherTodoItems = document.querySelectorAll(`.todoItem[id]:not([id="${currentID}"])`);
             
             Array.from(otherTodoItems).forEach(item => {
                 const itemInfo = item.querySelector('.itemInfo');
@@ -175,7 +175,8 @@ export default (function view() {
         }
 
         const itemInfoForm = createElement('form', 'todoItem');
-        itemInfoForm.dataset.itemId = item.uuid;
+        // itemInfoForm.dataset.itemId = item.uuid;
+        itemInfoForm.id = item.uuid;
 
         const checkbox = createCheckbox();
 
