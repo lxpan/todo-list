@@ -201,10 +201,28 @@ export default (function view() {
             e.target.parentNode.classList.add('active');
         }
 
+        const createItemTitle = (titleType) => {
+            let titleElement;
+            if(titleType == 'text') {
+                const inputElement = document.createElement('input');
+                inputElement.type = 'text';
+                inputElement.defaultValue = item.title;
+                inputElement.name = 'itemTitle';
+                inputElement.id = 'itemTitle';
+                titleElement = inputElement;
+            }
+            else if(titleType == 'label') {
+                const labelElement = document.createElement('label');
+                labelElement.textContent = item.title;
+                titleElement = labelElement;
+            }
+            return titleElement;
+        }
+
         const createLabel = () => {
             // Create label (featuring item title)
-            const label = document.createElement('label');
-            label.textContent = item.title;
+            const label = createItemTitle('text');
+            
             /* 
             NB: We don't link the 'id' and 'for' elements because users' clicking on the label shouldn't toggle the checkbox.
             // label.setAttribute('for', elementID);
@@ -224,10 +242,13 @@ export default (function view() {
                 
                 // then make current item expand
                 makeTodoItemExpand(e);
+
+                // convert to text input
                 // const textInput = document.createElement('input');
-                // input.type = 'text';
-                // input.textContent = e.target.textContent;
+                // textInput.type = 'text';
+                // textInput.textContent = e.target.textContent;
                 // e.target = textInput;
+                // console.log(e.target);
             })
 
             return label;
