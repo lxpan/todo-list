@@ -20,9 +20,9 @@ export default (function view() {
         const dateLabel = document.createElement('label');
         const dateInput = document.createElement('input');
         
-        let currentDate = new Date();
-        let maxDate = addYears(currentDate, 1);
-        let minDate = subYears(currentDate, 1);
+        const currentDate = new Date();
+        const maxDate = addYears(currentDate, 1);
+        const minDate = subYears(currentDate, 1);
         
         dateLabel.textContent = labelName;
         dateInput.type = 'date';
