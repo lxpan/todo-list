@@ -176,15 +176,29 @@ export default (function view() {
 
                     const formElement = e.target.parentNode.parentNode;
                     const formData = new FormData(formElement);
+                    let formObj = {}
 
-                    for (let pair of formData.entries()) {
-                        if (pair[0] == 'itemDueDate') {
-                            let dateFormatted = format(new Date(pair[1]), 'dd-MM-yyyy');
-                            console.log(`${pair[0]}: ${dateFormatted}`);
-                        } else {
-                            console.log(`${pair[0]}: ${pair[1]}`);
+                    for (let [key, value] of formData.entries()) {
+                        let dateFormatted;
+
+                        if(key.includes('Date') && value) {
+                            dateFormatted = format(new Date(value), 'dd-MM-yyyy');
+                        }
+                        
+                        // read formData (iterator) values into an object, formatting where necessary
+                        switch (key) {
+                            // format dates according to 'dd-MM-yyyy'
+                            case 'itemDate':
+                                formObj[key] = dateFormatted;
+                                break;
+                            case 'itemDueDate':
+                                formObj[key] = dateFormatted;
+                                break;
+                            default:
+                                formObj[key] = value;
                         }
                     }
+                    console.log(formObj);
                 }
 
                 const btn = document.createElement('button');
@@ -192,7 +206,7 @@ export default (function view() {
                 btn.value = 'Save Changes';
                 btn.textContent = 'Save Changes';
                 btn.addEventListener('click', onSubmit);
-                
+
                 return btn;
             })();
 
