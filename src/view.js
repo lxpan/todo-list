@@ -1,3 +1,5 @@
+import { differenceInCalendarQuarters } from "date-fns";
+
 export default (function view() {
     let elementID = 0;
 
@@ -11,6 +13,20 @@ export default (function view() {
         else {
             return document.createElement(elementName);
         }
+    }
+
+    function createDateInput(labelName, fieldName, defaultValue) {
+        const dateDiv = document.createElement('div');
+        const dateLabel = document.createElement('label');
+        const dateInput = document.createElement('input');
+        
+        dateLabel.textContent = labelName;
+        dateInput.type = 'date';
+        dateInput.name = fieldName;
+        dateInput.value = defaultValue;
+
+        dateDiv.append(dateLabel, dateInput)
+        return dateDiv;
     }
 
     function insertProjectHeading(query, projectName) {
@@ -155,7 +171,7 @@ export default (function view() {
             const saveBtn = (() => {
                 const onSubmit = (e) => {
                     e.preventDefault();
-                    
+
                     const formElement = e.target.parentNode.parentNode;
                     const formData = new FormData(formElement);
 
