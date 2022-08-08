@@ -155,15 +155,9 @@ export default (function view() {
             const saveBtn = (() => {
                 const onSubmit = (e) => {
                     e.preventDefault();
-                    console.log('Submitted!');
-
-                    const formElement = document.querySelector('form');
+                    
+                    const formElement = e.target.parentNode.parentNode;
                     const formData = new FormData(formElement);
-                    
-                    
-                    // for (let value of formData.values()) {
-                    //     console.log(value);
-                    // }
 
                     for (let pair of formData.entries()) {
                         console.log(`${pair[0]}: ${pair[1]}`);
