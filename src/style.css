@@ -66,11 +66,11 @@ header {
 }
 
 .expanded {
-    animation: open 0.3s ease-out forwards;
+    animation: open 0.2s ease-out forwards;
 }
 
 .contracted {
-    animation: close 0.3s ease-in forwards;
+    animation: close 0.2s ease-in forwards;
 }
 
 @keyframes open {
