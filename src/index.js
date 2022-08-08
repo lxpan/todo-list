@@ -11,7 +11,7 @@ const createNewItemBtn = () => {
     newItemBtn.addEventListener('click', () => {
         // add new item to project
         defaultProject.addItem('Test Insert Item');
-        console.log(defaultProject.todoItems);
+        // console.log(defaultProject.todoItems);
 
         // clear current items and reset div
         const content = document.querySelector('#content');
@@ -25,7 +25,7 @@ const createNewItemBtn = () => {
 
         const items = document.querySelectorAll('.todoItem');
         const last = items[items.length - 1];
-        console.log(last);
+        // console.log(last);
         
         const lastElementClickable =
             (last.getAttribute('titleType') == 'input')
