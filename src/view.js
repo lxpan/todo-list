@@ -1,4 +1,4 @@
-import { differenceInCalendarQuarters } from "date-fns";
+import { format, addYears, subYears } from 'date-fns';
 
 export default (function view() {
     let elementID = 0;
@@ -20,10 +20,16 @@ export default (function view() {
         const dateLabel = document.createElement('label');
         const dateInput = document.createElement('input');
         
+        let currentDate = new Date();
+        let maxDate = addYears(currentDate, 1);
+        let minDate = subYears(currentDate, 1);
+        
         dateLabel.textContent = labelName;
         dateInput.type = 'date';
         dateInput.name = fieldName;
         dateInput.value = defaultValue;
+        dateInput.min = format(minDate, 'yyyy-MM-dd');
+        dateInput.max = format(maxDate, 'yyyy-MM-dd');
 
         dateDiv.append(dateLabel, dateInput)
         return dateDiv;
@@ -172,7 +178,13 @@ export default (function view() {
                     const formData = new FormData(formElement);
 
                     for (let pair of formData.entries()) {
-                        console.log(`${pair[0]}: ${pair[1]}`);
+                        if (pair[0] == 'itemDueDate') {
+                            let dateFormatted = format(new Date(pair[1]), 'dd-MM-yyyy');
+                            console.log(`${pair[0]}: ${dateFormatted}`);
+                        } else {
+                            console.log(`${pair[0]}: ${pair[1]}`);
+                        }
+                        
                     }
                 }
 
