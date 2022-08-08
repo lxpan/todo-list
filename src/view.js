@@ -150,16 +150,11 @@ export default (function view() {
             })();
 
             const datesDiv = (() => {
-                // includes both 'date' and 'dueDate';
-                const dates = document.createElement('div');
-                const date = document.createElement('div');
-                const dueDate = document.createElement('div');
-                
-                date.textContent = `Date: ${item.date}`;
-                dueDate.textContent = `Due: ${item.dueDate}`;
-                dates.append(date, dueDate);
-                
-                return dates;
+                const dateElements = document.createElement('div');
+                const date = createDateInput('Date: ', 'itemDate', null);
+                const dueDate = createDateInput('Due:  ', 'itemDueDate', '2023-01-01');
+                dateElements.append(date, dueDate);
+                return dateElements;
             })();
 
             const tagsDiv = (() => {
