@@ -166,10 +166,18 @@ export default (function view() {
                 return tags;
             })();
 
+            const saveBtn = (() => {
+                const btn = document.createElement('button');
+                btn.type = 'submit';
+                btn.value = 'Save Changes';
+                btn.textContent = 'Save Changes';
+                return btn;
+            })();
+
             // content that will show (expand) when item title is clicked
             const expandable = document.createElement('div');
             expandable.classList.add('itemInfo', 'contracted', 'hidden');
-            expandable.append(notesInput, itemTaskListDiv, datesDiv, tagsDiv);
+            expandable.append(notesInput, itemTaskListDiv, datesDiv, tagsDiv, saveBtn);
             
             return expandable;
         }
