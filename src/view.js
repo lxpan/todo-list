@@ -88,19 +88,12 @@ export default (function view() {
         }
 
         const createLabel = (_titleType) => {
-            // Create label (featuring item title)
             const label = createItemTitle(_titleType);
-            
-            
-            /* 
-            NB: We don't link the 'id' and 'for' elements because users' clicking on the label shouldn't toggle the checkbox.
-            // label.setAttribute('for', elementID);
-            */
+            /* NB: We don't link the 'id' and 'for' elements because users' clicking on the label shouldn't toggle the checkbox.
+            // label.setAttribute('for', elementID); */
             
             // add callback to expand item on click
             label.addEventListener('click', (e) => {
-                // onclick, turn label into text input
-
                 // first hide other items
                 const otherItemInfo = getExclusiveSiblingNodes(e.target);
                 otherItemInfo.forEach(infoDiv => {
@@ -111,13 +104,6 @@ export default (function view() {
                 
                 // then make current item expand
                 makeTodoItemExpand(e);
-
-                // convert to text input
-                // const textInput = document.createElement('input');
-                // textInput.type = 'text';
-                // textInput.textContent = e.target.textContent;
-                // e.target = textInput;
-                // console.log(e.target);
             })
 
             return label;
