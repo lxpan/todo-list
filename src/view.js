@@ -153,10 +153,30 @@ export default (function view() {
             })();
 
             const saveBtn = (() => {
+                const onSubmit = (e) => {
+                    e.preventDefault();
+                    console.log('Submitted!');
+
+                    const formElement = document.querySelector('form');
+                    const formData = new FormData(formElement);
+                    
+                    
+                    // for (let value of formData.values()) {
+                    //     console.log(value);
+                    // }
+
+                    for (let pair of formData.entries()) {
+                        console.log(`${pair[0]}: ${pair[1]}`);
+                    }
+                }
+
+
                 const btn = document.createElement('button');
                 btn.type = 'submit';
                 btn.value = 'Save Changes';
                 btn.textContent = 'Save Changes';
+
+                btn.addEventListener('click', onSubmit);
                 return btn;
             })();
 
