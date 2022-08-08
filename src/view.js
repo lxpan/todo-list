@@ -184,17 +184,15 @@ export default (function view() {
                         } else {
                             console.log(`${pair[0]}: ${pair[1]}`);
                         }
-                        
                     }
                 }
-
 
                 const btn = document.createElement('button');
                 btn.type = 'submit';
                 btn.value = 'Save Changes';
                 btn.textContent = 'Save Changes';
-
                 btn.addEventListener('click', onSubmit);
+                
                 return btn;
             })();
 
