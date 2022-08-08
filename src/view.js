@@ -131,7 +131,7 @@ export default (function view() {
                 notes.type = 'text';
                 notes.name = 'notes';
                 notes.div = 'notes';
-                notes.defaultValue = `Notes: ${item.notes}`;
+                notes.defaultValue = (item.notes) ? item.notes : 'Notes';
                 return notes;
             })();
 
