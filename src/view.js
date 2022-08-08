@@ -152,7 +152,7 @@ export default (function view() {
             const datesDiv = (() => {
                 const dateElements = document.createElement('div');
                 const date = createDateInput('Date: ', 'itemDate', null);
-                const dueDate = createDateInput('Due: ', 'itemDueDate', '2023-01-01');
+                const dueDate = createDateInput('Due: ', 'itemDueDate', '2023-01-01');
                 dateElements.append(date, dueDate);
                 return dateElements;
             })();
