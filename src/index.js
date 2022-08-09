@@ -37,12 +37,28 @@ const createNewItemBtn = () => {
     return newItemBtn;
 }
 
+function debugCallback() {
+    for (const item of Object.values(defaultProject.todoItems)) {
+        console.log(item.printSummary());
+    }
+}
+
+const createDebugBtn = () => {
+        // "Create New Item" button
+        const debugBtn = view.createElement('button', 'debugBtn');
+        debugBtn.textContent = '*';
+
+        debugBtn.addEventListener('click', debugCallback);
+
+        return debugBtn;
+}
+
 const setupHeader = () => {
     const header = document.createElement('header');
     const testHeading = document.createElement('h1');
     testHeading.textContent = 'Todo List';
 
-    header.append(testHeading, createNewItemBtn());
+    header.append(testHeading, createNewItemBtn(), createDebugBtn());
     return header;
 }
 
@@ -75,7 +91,7 @@ const run = () => {
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
         view.insertProjectItemForm('#content', item);
-    })
+    });
 
     // console.log(defaultProject.todoItems);
 }
