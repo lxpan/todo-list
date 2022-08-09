@@ -176,7 +176,7 @@ export default (function view() {
 
                     const formElement = e.target.parentNode.parentNode;
                     const formData = new FormData(formElement);
-                    let formObj = {}
+                    const formObj = {}
 
                     for (let [key, value] of formData.entries()) {
                         let dateFormatted;
