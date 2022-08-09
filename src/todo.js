@@ -39,6 +39,13 @@ const checklistMixin = {
     }
 }
 
+const setterMixin = {
+    setTitle (title) {
+        this.title = title;
+        console.log(this.title);
+    }
+}
+
 // using a closure to ensure a new itemTags Array is created every time this is called
 const getDefaultArgs = function() {
     return {
@@ -90,7 +97,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     }
 
     // copies "tag" properties into "item" properties
-    let proto = Object.assign(tagMixin, checklistMixin);  // (targetObj, sourceObj)
+    let proto = Object.assign(tagMixin, checklistMixin, setterMixin);  // (targetObj, sourceObj)
     
     // creates a new object, using an existing object as its prototype of newly created object
     let todoItemObj = Object.create(proto);
