@@ -39,7 +39,7 @@ const createNewItemBtn = () => {
 
 function debugCallback() {
     for (const item of Object.values(defaultProject.todoItems)) {
-        console.log(item.printSummary());
+        console.log(item.printSummaryInObject());
     }
 }
 
