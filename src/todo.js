@@ -43,6 +43,19 @@ const setterMixin = {
     setTitle (title) {
         this.title = title;
         console.log(this.title);
+    },
+
+    printSummaryInObject () {
+        return `
+            Title: ${this.title},
+            Date: ${this.date},
+            Due Date: ${this.dueDate},
+            Tags: ${this.tags},
+            Notes: ${this.notes},
+            Checklist: ${this._checklist},
+            Completion: ${this.completion},
+            UUID: ${this.uuid}
+        `;
     }
 }
 
