@@ -199,6 +199,7 @@ export default (function view() {
                         }
                     }
                     console.log(formObj);
+                    item.setTitle(formObj['itemTitle']);
                 }
 
                 const btn = document.createElement('button');
