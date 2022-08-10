@@ -34,21 +34,13 @@ const setNewItemBtn = () => {
     return newItemBtn;
 }
 
-function debugCallback() {
-    console.log(defaultProject.todoItems);
-    for (const item of Object.values(defaultProject.todoItems)) {
-        console.log(item.printSummaryInObject());
+const setupDebugBtn = () => {
+    const logItemsInObject = () => {
+        console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', 'tags', 'completion']);
     }
-}
 
-const createDebugBtn = () => {
-        // "Create New Item" button
-        const debugBtn = view.createElement('button', 'debugBtn');
-        debugBtn.textContent = '*';
-
-        debugBtn.addEventListener('click', debugCallback);
-
-        return debugBtn;
+    const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
+    return debugBtn;
 }
 
 const setupHeader = () => {
@@ -56,7 +48,7 @@ const setupHeader = () => {
     const testHeading = document.createElement('h1');
     testHeading.textContent = 'Todo List';
 
-    header.append(testHeading, setNewItemBtn(), createDebugBtn());
+    header.append(testHeading, setNewItemBtn(), setupDebugBtn());
     return header;
 }
 
