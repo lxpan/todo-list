@@ -94,3 +94,9 @@ header {
         max-height: 0px;
     }
 }
+
+/* Styling Form Inputs */
+input[name='itemNotes']::placeholder {
+    color: grey;
+    opacity: 0.5;
+}

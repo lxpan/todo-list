@@ -134,7 +134,8 @@ export default (function view() {
                 const notes = document.createElement('input');
                 notes.type = 'text';
                 notes.name = 'itemNotes';
-                notes.defaultValue = (item.notes) ? item.notes : 'Notes';
+                notes.placeholder = 'Notes';
+                notes.defaultValue = (item.notes) ? item.notes : '';
                 return notes;
             })();
 
