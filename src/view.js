@@ -97,6 +97,7 @@ export default (function view() {
                 inputElement.defaultValue = item.title;
                 inputElement.name = 'itemTitle';
                 inputElement.id = 'itemTitle';
+                inputElement.placeholder = 'Todo Item';
                 titleElement = inputElement;
             }
             else if(titleType == 'label') {

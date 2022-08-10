@@ -10,7 +10,7 @@ const createNewItemBtn = () => {
     /* This code should be refactored and moved to the View module */
     newItemBtn.addEventListener('click', () => {
         // add new item to project
-        defaultProject.addItem('Test Insert Item');
+        defaultProject.addItem('');
         // console.log(defaultProject.todoItems);
 
         // clear current items and reset div
@@ -38,6 +38,7 @@ const createNewItemBtn = () => {
 }
 
 function debugCallback() {
+    console.log(defaultProject.todoItems);
     for (const item of Object.values(defaultProject.todoItems)) {
         console.log(item.printSummaryInObject());
     }
