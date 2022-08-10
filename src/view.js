@@ -46,13 +46,11 @@ export default (function view() {
         // callback function for the 'todo' checkbox
         const toggleItemCompletionOnClick = (e) => {
             if(e.target.checked) {
-                // alert('Checked!');    
                 item.toggleCompletion();
-                console.log(item);
+                // console.log(item);
             } else {
-                // alert('Not checked!');
                 item.toggleCompletion();
-                console.log(item);
+                // console.log(item);
             }
         }
 
