@@ -45,6 +45,18 @@ const setterMixin = {
         console.log(this.title);
     },
 
+    setNotes (notes) {
+        this.notes = notes;
+    },
+
+    setDate (date) {
+        this.date = date;
+    },
+
+    setDueDate (dueDate) {
+        this.dueDate = dueDate;
+    },
+
     printSummaryInObject () {
         return `
             Title: ${this.title},
