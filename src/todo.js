@@ -55,8 +55,11 @@ const setterMixin = {
 
     setDueDate (dueDate) {
         this.dueDate = dueDate;
-    },
+    }
+}
 
+// functions used to logging and debugging purposes
+const debugMixin = {
     printSummaryInObject () {
         return `
             Title: ${this.title},
@@ -122,7 +125,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     }
 
     // copies "tag" properties into "item" properties
-    let proto = Object.assign(tagMixin, checklistMixin, setterMixin);  // (targetObj, sourceObj)
+    let proto = Object.assign(tagMixin, checklistMixin, setterMixin, debugMixin);  // (targetObj, sourceObj)
     
     // creates a new object, using an existing object as its prototype of newly created object
     let todoItemObj = Object.create(proto);
