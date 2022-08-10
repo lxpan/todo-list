@@ -133,7 +133,7 @@ export default (function view() {
             const notesInput = (() => {
                 const notes = document.createElement('input');
                 notes.type = 'text';
-                notes.name = 'notes';
+                notes.name = 'itemNotes';
                 notes.div = 'notes';
                 notes.defaultValue = (item.notes) ? item.notes : 'Notes';
                 return notes;
