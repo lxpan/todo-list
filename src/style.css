@@ -96,7 +96,7 @@ header {
 }
 
 /* Styling Form Inputs */
-input[name='itemNotes']::placeholder {
+input[type='text']::placeholder {
     color: grey;
     opacity: 0.5;
 }
