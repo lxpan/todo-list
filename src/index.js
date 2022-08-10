@@ -2,13 +2,8 @@ import buildProject from './project.js';
 import view from './view.js';
 import './style.css';
 
-const createNewItemBtn = () => {
-    // "Create New Item" button
-    const newItemBtn = view.createElement('button', 'newItemBtn');
-    newItemBtn.textContent = '+';
-    
-    /* This code should be refactored and moved to the View module */
-    newItemBtn.addEventListener('click', () => {
+const setNewItemBtn = () => {
+    const addNewItem = () => {
         // add new item to project
         defaultProject.addItem('');
         // console.log(defaultProject.todoItems);
@@ -33,7 +28,9 @@ const createNewItemBtn = () => {
                 : last.querySelector('label');
         
         lastElementClickable.click();
-    });
+    }
+
+    const newItemBtn = view.createButton('+', 'newItemBtn', addNewItem)
     return newItemBtn;
 }
 
@@ -59,7 +56,7 @@ const setupHeader = () => {
     const testHeading = document.createElement('h1');
     testHeading.textContent = 'Todo List';
 
-    header.append(testHeading, createNewItemBtn(), createDebugBtn());
+    header.append(testHeading, setNewItemBtn(), createDebugBtn());
     return header;
 }
 

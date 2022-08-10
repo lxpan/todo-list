@@ -241,10 +241,21 @@ export default (function view() {
         elementID++;
     }
 
+    const createButton = (buttonText, buttonClass, eventCallback) => {
+        // "Create New Item" button
+        const newBtn = createElement('button', buttonClass);
+        newBtn.textContent = buttonText;
+        
+        /* This code should be refactored and moved to the View module */
+        newBtn.addEventListener('click', eventCallback);
+        return newBtn;
+    }
+
     return {
         insertProjectHeading,
         insertProjectItemForm,
-        createElement
+        createElement,
+        createButton
     };
 
     function displayProjects() {}
