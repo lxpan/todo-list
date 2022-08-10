@@ -198,8 +198,11 @@ export default (function view() {
                                 formObj[key] = value;
                         }
                     }
+                    item.setTitle(formObj.itemTitle);
+                    item.setNotes(formObj.notes)
+                    item.setDate(formObj.itemDate);
+                    item.setDueDate(formObj.itemDueDate);
                     console.log(formObj);
-                    item.setTitle(formObj['itemTitle']);
                 }
 
                 const btn = document.createElement('button');
