@@ -198,7 +198,7 @@ export default (function view() {
                         }
                     }
                     item.setTitle(formObj.itemTitle);
-                    item.setNotes(formObj.notes)
+                    item.setNotes(formObj.itemNotes)
                     item.setDate(formObj.itemDate);
                     item.setDueDate(formObj.itemDueDate);
                     console.log(formObj);
