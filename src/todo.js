@@ -80,7 +80,8 @@ const getDefaultArgs = function() {
     return {
         itemDate: 'Today', 
         itemDueDate: null, 
-        itemTags: new Array(), 
+        itemTags: new Array(),
+        itemTagify: null,
         itemNotes: null, 
         itemChecklist: new Array(),
         itemCompletion: false,
@@ -93,6 +94,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     const date = def.itemDate;
     const dueDate = def.itemDueDate;
     const tags = def.itemTags;
+    const tagify = def.itemTagify;
     const notes = def.itemNotes;
     const _checklist = def.itemChecklist;
     let completion = def.itemCompletion;
@@ -138,6 +140,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     todoItemObj.date = date;
     todoItemObj.dueDate = dueDate;
     todoItemObj.tags = tags;
+    todoItemObj.tagify = tagify;
     todoItemObj.checklist = _checklist;
     todoItemObj.completion = completion;
     todoItemObj.uuid = uuid;
