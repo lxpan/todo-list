@@ -3,23 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 const tagMixin = {
     getTags () {
         return this.tags;
-        // let tagString = 'Tags: ';
-        // let isFirstTag = false;
-
-        // this.tags.forEach(tag => {
-        //     if(!isFirstTag) {
-        //         tagString += `${tag}`;
-        //         isFirstTag = true;
-        //     } else {
-        //         tagString += `, ${tag}`;
-        //     }
-            
-        // })
-
-        // return tagString;
     },
 
-    appendTag () {
+    // Used only to load tags for mock todoItems in project.js
+    _appendTag () {
         for (const [_, val] of Object.entries(arguments)) {
             if(typeof(val) == 'string') {
                 this.tags.push(val);

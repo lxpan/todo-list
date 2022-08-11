@@ -47,7 +47,7 @@ export default function buildProject() {
     let itemValues = Object.values(p.todoItems);
     // console.log(itemValues);
     
-    itemValues[0].appendTag('Errands');
+    itemValues[0]._appendTag('Errands');
     itemValues[0].notes = 'Needs to be done at the post office.'
     itemValues[0].addTask('Find item.');
     itemValues[0].addTask('Pack parcel.');
@@ -55,10 +55,10 @@ export default function buildProject() {
 
 
     // itemValues[0].setCompleted();
-    itemValues[1].appendTag('Errands');
-    itemValues[2].appendTag('Fitness');
+    itemValues[1]._appendTag('Errands');
+    itemValues[2]._appendTag('Fitness');
     // itemValues[3].appendTag('Fitness', 'Study', 123);
-    itemValues[3].appendTag('Fitness', 'Study');
+    itemValues[3]._appendTag('Fitness', 'Study');
 
     // console.log(p.getUniqueTags());       
     // console.log(p.todoItems);
