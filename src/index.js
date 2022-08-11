@@ -83,7 +83,7 @@ const run = () => {
         view.insertProjectItemForm('#content', item);
     });
 
-    view.tagifyAll();
+    view.tagifyAll(defaultProject);
 
     // console.log(defaultProject.todoItems);
 }

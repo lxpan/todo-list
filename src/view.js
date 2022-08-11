@@ -257,11 +257,20 @@ export default (function view() {
         return newBtn;
     }
 
-    const tagifyAll = () => {
-        const thingToTagify = document.querySelectorAll('.tagsInput');
-        let tagifyArr = [];
-        Array.from(thingToTagify).forEach(input => {
-            tagifyArr.push(new Tagify(input));
+    const tagifyAll = (project) => {
+        const input = document.querySelectorAll('.tagsInput');
+        const tagifyArr = [];
+
+        // for each tags input, get the item id, retrieve the tags, and create a tagify object with the stored tags
+        Array.from(input).forEach(input => {
+            const itemIdOfInput = input.parentNode.parentNode.id;
+            const items = project.todoItems;
+            const itemTags = items[itemIdOfInput].getTags();
+            // create Tagify object and load stored tags
+            let tagify = new Tagify(input)
+            tagify.addTags(itemTags);
+            // tagify object requires a place to live
+            tagifyArr.push(tagify);
         });
     }
 
