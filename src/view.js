@@ -269,10 +269,16 @@ export default (function view() {
             // create Tagify object and load stored tags
             const tagifyInstance = new Tagify(input)
             tagifyInstance.addTags(itemTags);
+
+            input.addEventListener('change', tagifyEventListener)
             
             // Assign Tagify object as a todoItem property
             items[itemIdOfInput].tagify = tagifyInstance;
         });
+
+        function tagifyEventListener (e) {
+            console.log(e.target.value);
+        }
     }
 
     return {
