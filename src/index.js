@@ -2,6 +2,19 @@ import buildProject from './project.js';
 import view from './view.js';
 import './style.css';
 
+
+const clickLastTodoItem = () => {
+    const items = document.querySelectorAll('.todoItem');
+    const last = items[items.length - 1];
+    
+    const lastElementClickable =
+        (last.getAttribute('titleType') == 'input')
+            ? last.querySelector("input[type='text']")
+            : last.querySelector('label');
+    
+    lastElementClickable.click();
+}
+
 const setNewItemBtn = () => {
     const addNewItem = () => {
         // add new item to project
@@ -18,16 +31,7 @@ const setNewItemBtn = () => {
             view.insertProjectItemForm('#content', item);
         });
 
-        const items = document.querySelectorAll('.todoItem');
-        const last = items[items.length - 1];
-        // console.log(last);
-        
-        const lastElementClickable =
-            (last.getAttribute('titleType') == 'input')
-                ? last.querySelector("input[type='text']")
-                : last.querySelector('label');
-        
-        lastElementClickable.click();
+        clickLastTodoItem();
     }
 
     const newItemBtn = view.createButton('+', 'newItemBtn', addNewItem)
