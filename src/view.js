@@ -1,4 +1,7 @@
 import { format, addYears, subYears } from 'date-fns';
+// Import Tagify
+import Tagify from '@yaireo/tagify';
+import '@yaireo/tagify/dist/tagify.css';
 
 export default (function view() {
     let elementID = 0;
@@ -164,9 +167,12 @@ export default (function view() {
             })();
 
             const tagsDiv = (() => {
-                const tags = document.createElement('div');
-                tags.textContent = item.getTags();
-                return tags;
+                // const tags = document.createElement('div');
+                // tags.textContent = item.getTags();
+                // return tags;
+                const inputElement = createElement('input', 'tagsInput');
+                return inputElement;
+
             })();
 
             const saveBtn = (() => {
@@ -251,11 +257,20 @@ export default (function view() {
         return newBtn;
     }
 
+    const tagifyAll = () => {
+        const thingToTagify = document.querySelectorAll('.tagsInput');
+        let tagifyArr = [];
+        Array.from(thingToTagify).forEach(input => {
+            tagifyArr.push(new Tagify(input));
+        });
+    }
+
     return {
         insertProjectHeading,
         insertProjectItemForm,
         createElement,
-        createButton
+        createButton,
+        tagifyAll
     };
 
     function displayProjects() {}
