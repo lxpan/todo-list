@@ -2,20 +2,21 @@ import { v4 as uuidv4 } from 'uuid';
 
 const tagMixin = {
     getTags () {
-        let tagString = 'Tags: ';
-        let isFirstTag = false;
+        return this.tags;
+        // let tagString = 'Tags: ';
+        // let isFirstTag = false;
 
-        this.tags.forEach(tag => {
-            if(!isFirstTag) {
-                tagString += `${tag}`;
-                isFirstTag = true;
-            } else {
-                tagString += `, ${tag}`;
-            }
+        // this.tags.forEach(tag => {
+        //     if(!isFirstTag) {
+        //         tagString += `${tag}`;
+        //         isFirstTag = true;
+        //     } else {
+        //         tagString += `, ${tag}`;
+        //     }
             
-        })
+        // })
 
-        return tagString;
+        // return tagString;
     },
 
     appendTag () {
