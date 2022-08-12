@@ -82,9 +82,9 @@ const setupHTML  = () => {
 
 function addMockTags(items) {
     const todoItems = Object.values(items);
-    todoItems[0]._appendTag('Errands');
-    todoItems[1]._appendTag('Errands');
-    todoItems[2]._appendTag('Fitness');
+    todoItems[0].addTagifyTag('Errands');
+    todoItems[1].addTagifyTag('Errands');
+    todoItems[2].addTagifyTag('Fitness');
     todoItems[3].addTagifyTag(['Fitness', 'Study']);
 }
 
