@@ -40,7 +40,7 @@ const setNewItemBtn = () => {
 
 const setupDebugBtn = () => {
     const logItemsInObject = () => {
-        console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', 'tags', 'completion']);
+        console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', 'tags', 'completion', 'tagify']);
     }
 
     const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
@@ -78,6 +78,35 @@ const setupHTML  = () => {
     document.body.append(setupHeader(), gridContainer);
 }
 
+function setupMockProject() {
+    defaultProject.notes = 'My food journal';
+
+    defaultProject.addItem('Mail parcel to Mum');
+    defaultProject.addItem('Pay the bills');
+    defaultProject.addItem('Run for 10 minutes');
+    defaultProject.addItem('Study on the exercise bike');
+
+    const itemValues = Object.values(defaultProject.todoItems);
+
+    console.log(itemValues);
+    
+    itemValues[0]._appendTag('Errands');
+    itemValues[0].notes = 'Needs to be done at the post office.'
+    itemValues[0].addTask('Find item.');
+    itemValues[0].addTask('Pack parcel.');
+    itemValues[0].addTask('Mail parcel.');
+
+
+    // itemValues[0].setCompleted();
+    itemValues[1]._appendTag('Errands');
+    itemValues[2]._appendTag('Fitness');
+    // itemValues[3].appendTag('Fitness', 'Study', 123);
+    itemValues[3]._appendTag('Fitness', 'Study');
+
+    // console.log(defaultProject.getUniqueTags());       
+    // console.log(defaultProject.todoItems);
+}
+
 const run = () => {
     view.insertProjectHeading('#content', defaultProject.name);
 
@@ -86,10 +115,12 @@ const run = () => {
         view.insertProjectItemForm('#content', item);
     });
 
-    view.tagifyAll(defaultProject);
+    // view.tagifyAll(defaultProject);
 }
 
 const defaultProject = buildProject();
 
+
+setupMockProject();
 setupHTML();
 run();
