@@ -76,6 +76,8 @@ const setupHTML  = () => {
 
     gridContainer.append(navbar, content);
     document.body.append(setupHeader(), gridContainer);
+    
+    view.insertProjectHeading('#content', defaultProject.name);
 }
 
 function addMockTags(items) {
@@ -107,8 +109,6 @@ function setupMockProject() {
 }
 
 const run = () => {
-    view.insertProjectHeading('#content', defaultProject.name);
-
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
         view.insertProjectItemForm('#content', item);
