@@ -80,7 +80,6 @@ const setupHTML  = () => {
 
 const run = () => {
     view.insertProjectHeading('#content', defaultProject.name);
-    // console.log(defaultProject.getUniqueTags());
 
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
@@ -88,8 +87,6 @@ const run = () => {
     });
 
     view.tagifyAll(defaultProject);
-
-    // console.log(defaultProject.todoItems);
 }
 
 const defaultProject = buildProject();
