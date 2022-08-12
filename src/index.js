@@ -56,7 +56,7 @@ const setupHeader = () => {
     return header;
 }
 
-const setupHTML  = () => {
+function setupHTML() {
     const gridContainer = view.createElement('div', 'gridContainer');
     const navbar = view.createElement('div', 'navbar');
 
