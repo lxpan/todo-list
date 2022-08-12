@@ -176,6 +176,19 @@ export default (function view() {
 
             })();
 
+            const tagifyInput = (input) => {
+                const tagifyInstance = new Tagify(input);
+                input.addEventListener('change', tagifyEventListener)
+                
+                // Assign Tagify object as a todoItem property
+                item.tagify = tagifyInstance;
+        
+                function tagifyEventListener (e) {
+                    console.log(e.target.value);
+                    // item.updateTags();
+                }
+            }
+
             const saveBtn = (() => {
                 const onSubmit = (e) => {
                     e.preventDefault();
@@ -224,6 +237,9 @@ export default (function view() {
             const expandable = document.createElement('div');
             expandable.classList.add('itemInfo', 'contracted', 'hidden');
             expandable.append(notesInput, itemTaskListDiv, datesDiv, tagsDiv, saveBtn);
+
+            const tagInput = expandable.querySelector('.tagsInput');
+            tagifyInput(tagInput);
             
             return expandable;
         }
