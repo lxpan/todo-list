@@ -171,6 +171,7 @@ export default (function view() {
                 // tags.textContent = item.getTags();
                 // return tags;
                 const inputElement = createElement('input', 'tagsInput');
+                inputElement.placeholder = 'Tags';
                 return inputElement;
 
             })();
