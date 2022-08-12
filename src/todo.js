@@ -5,6 +5,12 @@ const tagMixin = {
         return this.tags;
     },
 
+    updateTags () {
+        if(this.tagify.value) {
+            this.tags = this.tagify.value.map(x => x.value);
+        }
+    },
+
     // Used only to load tags for mock todoItems in project.js
     _appendTag () {
         for (const [_, val] of Object.entries(arguments)) {

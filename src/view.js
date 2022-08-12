@@ -274,11 +274,12 @@ export default (function view() {
             
             // Assign Tagify object as a todoItem property
             items[itemIdOfInput].tagify = tagifyInstance;
-        });
 
-        function tagifyEventListener (e) {
-            console.log(e.target.value);
-        }
+            function tagifyEventListener (e) {
+                console.log(e.target.value);
+                items[itemIdOfInput].updateTags();
+            }
+        });
     }
 
     return {
