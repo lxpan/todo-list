@@ -42,7 +42,7 @@ const setNewItemBtn = () => {
 
 const setupDebugBtn = () => {
     const logItemsInObject = () => {
-        console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', 'tags', 'completion', 'tagify']);
+        console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
     }
 
     const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
