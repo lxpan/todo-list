@@ -185,7 +185,8 @@ export default (function view() {
         
                 function tagifyEventListener (e) {
                     console.log(e.target.value);
-                    // item.updateTags();
+                    item.updateTags();
+                    console.log(item._tags);
                 }
             }
 
