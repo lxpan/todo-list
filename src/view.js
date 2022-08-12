@@ -274,37 +274,11 @@ export default (function view() {
         return newBtn;
     }
 
-    const tagifyAll = (project) => {
-        const input = document.querySelectorAll('.tagsInput');
-
-        // for each tags input, get the item id, retrieve the tags, and create a tagify object with the stored tags
-        Array.from(input).forEach(input => {
-            const itemIdOfInput = input.parentNode.parentNode.id;
-            const items = project.todoItems;
-            const itemTags = items[itemIdOfInput].getTags();
-            
-            // create Tagify object and load stored tags
-            const tagifyInstance = new Tagify(input)
-            tagifyInstance.addTags(itemTags);
-
-            input.addEventListener('change', tagifyEventListener)
-            
-            // Assign Tagify object as a todoItem property
-            items[itemIdOfInput].tagify = tagifyInstance;
-
-            function tagifyEventListener (e) {
-                console.log(e.target.value);
-                items[itemIdOfInput].updateTags();
-            }
-        });
-    }
-
     return {
         insertProjectHeading,
         insertProjectItemForm,
         createElement,
-        createButton,
-        tagifyAll
+        createButton
     };
 
     function displayProjects() {}
