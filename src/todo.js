@@ -2,12 +2,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 const tagMixin = {
     getTags () {
-        return this.tags;
+        return this._tags;
     },
 
     updateTags () {
         if(this.tagify.value) {
-            this.tags = this.tagify.value.map(x => x.value);
+            this._tags = this.tagify.value.map(x => x.value);
         }
     },
 
@@ -19,7 +19,7 @@ const tagMixin = {
     _appendTag () {
         for (const [_, val] of Object.entries(arguments)) {
             if(typeof(val) == 'string') {
-                this.tags.push(val);
+                this._tags.push(val);
             }
             else {
                 console.log(`Non-string argument detected: ${val}`);
@@ -63,7 +63,7 @@ const debugMixin = {
             Title: ${this.title},
             Date: ${this.date},
             Due Date: ${this.dueDate},
-            Tags: ${this.tags},
+            Tags: ${this._tags},
             Notes: ${this.notes},
             Checklist: ${this._checklist},
             Completion: ${this.completion},
@@ -136,7 +136,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     todoItemObj.title = title;
     todoItemObj.date = date;
     todoItemObj.dueDate = dueDate;
-    todoItemObj.tags = tags;
+    todoItemObj._tags = tags;
     todoItemObj.tagify = tagify;
     todoItemObj.checklist = _checklist;
     todoItemObj.completion = completion;
