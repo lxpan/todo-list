@@ -108,7 +108,7 @@ function setupMockProject() {
     // console.log(defaultProject.todoItems);
 }
 
-const loadMockItems = () => {
+const loadMockItemsIntoDOM = () => {
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
         view.insertProjectItemForm('#content', item);
@@ -123,4 +123,4 @@ const defaultProject = buildProject();
 
 setupMockProject();
 setupHTML();
-loadMockItems();
+loadMockItemsIntoDOM();
