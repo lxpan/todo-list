@@ -167,9 +167,6 @@ export default (function view() {
             })();
 
             const tagsDiv = (() => {
-                // const tags = document.createElement('div');
-                // tags.textContent = item.getTags();
-                // return tags;
                 const inputElement = createElement('input', 'tagsInput');
                 inputElement.placeholder = 'Tags';
                 return inputElement;
@@ -246,7 +243,6 @@ export default (function view() {
         }
 
         const itemInfoForm = createElement('form', 'todoItem');
-        // itemInfoForm.dataset.itemId = item.uuid;
         itemInfoForm.id = item.uuid;
 
         const checkbox = createCheckbox();
@@ -269,9 +265,8 @@ export default (function view() {
         // "Create New Item" button
         const newBtn = createElement('button', buttonClass);
         newBtn.textContent = buttonText;
-        
-        /* This code should be refactored and moved to the View module */
         newBtn.addEventListener('click', eventCallback);
+        
         return newBtn;
     }
 
