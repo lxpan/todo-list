@@ -71,7 +71,7 @@ const debugMixin = {
 // using a closure to ensure a new itemTags Array is created every time this is called
 const getDefaultArgs = function() {
     return {
-        itemDate: 'Today', 
+        itemDate: null, 
         itemDueDate: null, 
         itemTags: new Array(),
         itemTagify: null,
