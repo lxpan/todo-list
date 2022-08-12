@@ -78,6 +78,14 @@ const setupHTML  = () => {
     document.body.append(setupHeader(), gridContainer);
 }
 
+function addMockTags(items) {
+    const todoItems = Object.values(items);
+    todoItems[0]._appendTag('Errands');
+    todoItems[1]._appendTag('Errands');
+    todoItems[2]._appendTag('Fitness');
+    todoItems[3].addTagifyTag(['Fitness', 'Study']);
+}
+
 function setupMockProject() {
     defaultProject.notes = 'My food journal';
 
@@ -88,21 +96,12 @@ function setupMockProject() {
 
     const itemValues = Object.values(defaultProject.todoItems);
 
-    console.log(itemValues);
-    
-    itemValues[0]._appendTag('Errands');
     itemValues[0].notes = 'Needs to be done at the post office.'
     itemValues[0].addTask('Find item.');
     itemValues[0].addTask('Pack parcel.');
     itemValues[0].addTask('Mail parcel.');
-
-
     // itemValues[0].setCompleted();
-    itemValues[1]._appendTag('Errands');
-    itemValues[2]._appendTag('Fitness');
     // itemValues[3].appendTag('Fitness', 'Study', 123);
-    itemValues[3]._appendTag('Fitness', 'Study');
-
     // console.log(defaultProject.getUniqueTags());       
     // console.log(defaultProject.todoItems);
 }
@@ -115,11 +114,12 @@ const run = () => {
         view.insertProjectItemForm('#content', item);
     });
 
+    addMockTags(defaultProject.todoItems);
+
     // view.tagifyAll(defaultProject);
 }
 
 const defaultProject = buildProject();
-
 
 setupMockProject();
 setupHTML();
