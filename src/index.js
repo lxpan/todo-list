@@ -3,6 +3,8 @@ import view from './view.js';
 import './style.css';
 
 
+const CONTENT_DIV_ID = 'content';
+
 const clickLastTodoItem = () => {
     const items = document.querySelectorAll('.todoItem');
     const last = items[items.length - 1];
@@ -22,13 +24,13 @@ const setNewItemBtn = () => {
         // console.log(defaultProject.todoItems);
 
         // clear current items and reset div
-        const content = document.querySelector('#content');
+        const content = document.querySelector(CONTENT_DIV_ID);
         content.innerHTML = '';
-        view.insertProjectHeading('#content', defaultProject.name);
+        view.insertProjectHeading(CONTENT_DIV_ID, defaultProject.name);
 
         // repopulate list items from project
         Object.values(defaultProject.todoItems).forEach(item => {
-            view.insertProjectItemForm('#content', item);
+            view.insertProjectItemForm(CONTENT_DIV_ID, item);
         });
 
         clickLastTodoItem();
@@ -72,12 +74,12 @@ function setupHTML() {
     navbar.appendChild(projectList);
 
     const content = document.createElement('div');
-    content.id = 'content';
+    content.id = CONTENT_DIV_ID;
 
     gridContainer.append(navbar, content);
     document.body.append(setupHeader(), gridContainer);
     
-    view.insertProjectHeading('#content', defaultProject.name);
+    view.insertProjectHeading(`#${CONTENT_DIV_ID}`, defaultProject.name);
 }
 
 function addMockTags(items) {
@@ -111,7 +113,7 @@ function setupMockProject() {
 const loadMockItemsIntoDOM = () => {
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
-        view.insertProjectItemForm('#content', item);
+        view.insertProjectItemForm(`#${CONTENT_DIV_ID}`, item);
     });
 
     addMockTags(defaultProject.todoItems);
