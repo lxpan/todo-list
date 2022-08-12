@@ -11,6 +11,10 @@ const tagMixin = {
         }
     },
 
+    addTagifyTag (t) {
+        this.tagify.addTags(t);
+    },
+
     // Used only to load tags for mock todoItems in project.js
     _appendTag () {
         for (const [_, val] of Object.entries(arguments)) {
