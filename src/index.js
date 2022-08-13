@@ -4,6 +4,7 @@ import './style.css';
 
 
 const CONTENT_DIV_ID = 'content';
+const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 
 const clickLastTodoItem = () => {
     const items = document.querySelectorAll('.todoItem');
@@ -24,13 +25,13 @@ const setNewItemBtn = () => {
         // console.log(defaultProject.todoItems);
 
         // clear current items and reset div
-        const content = document.querySelector(CONTENT_DIV_ID);
+        const content = document.querySelector(CONTENT_DIV_SELECTOR);
         content.innerHTML = '';
-        view.insertProjectHeading(CONTENT_DIV_ID, defaultProject.name);
+        view.insertProjectHeading(CONTENT_DIV_SELECTOR, defaultProject.name);
 
         // repopulate list items from project
         Object.values(defaultProject.todoItems).forEach(item => {
-            view.insertProjectItemForm(CONTENT_DIV_ID, item);
+            view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
         });
 
         clickLastTodoItem();
