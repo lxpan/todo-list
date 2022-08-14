@@ -12,8 +12,8 @@ class Project {
     selectItemProperties() {
         const stringObjects = Object.values(this.todoItems).map(item => {
             const selectedProperties = (
-                ({ title, notes, checklist, date, dueDate, _tags, completion}) =>
-                ({ title, notes, checklist, date, dueDate, _tags, completion})
+                ({ title, notes, checklist, date, dueDate, _tags, completion }) =>
+                    ({ title, notes, checklist, date, dueDate, _tags, completion })
             )(item);
 
             const finalObj = {};
@@ -28,19 +28,19 @@ class Project {
         Keys: this.name
         Values: todoItems object
         */
-       const objectMerge = {}
-       const arrayOfObjects = this.selectItemProperties();
-       
-       for (const o of arrayOfObjects) {
-        Object.assign(objectMerge, o);
-       }
+        const objectMerge = {}
+        const arrayOfObjects = this.selectItemProperties();
 
-       console.log(objectMerge);
+        for (const o of arrayOfObjects) {
+            Object.assign(objectMerge, o);
+        }
 
-       localStorage.setItem(this.name, JSON.stringify(objectMerge));
-       
-    //    console.log(this.todoItems)
-    //    console.log(objectStrings);
+        console.log(objectMerge);
+
+        localStorage.setItem(this.name, JSON.stringify(objectMerge));
+
+        //    console.log(this.todoItems)
+        //    console.log(objectStrings);
     }
 
     retrieveLocalStorage() {
@@ -67,7 +67,7 @@ class Project {
 
     getUniqueTags() {
         const tags = Object.values(this.todoItems)
-            .map(item => item.tags )
+            .map(item => item.tags)
             .flat();
 
         const uniqueArray = Array.from(new Set(tags));
