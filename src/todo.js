@@ -40,7 +40,6 @@ const checklistMixin = {
 const setterMixin = {
     setTitle (title) {
         this.title = title;
-        console.log(this.title);
     },
 
     setNotes (notes) {
