@@ -9,13 +9,16 @@ class Project {
     }
 
     // Convert todoItem Objects to JSON
-    stringifyItems() {
+    selectItemProperties() {
         const stringObjects = Object.values(this.todoItems).map(item => {
             const selectedProperties = (
-                ({ title, notes, checklist, date, dueDate, _tags, completion, uuid}) =>
-                ({ title, notes, checklist, date, dueDate, _tags, completion, uuid})
+                ({ title, notes, checklist, date, dueDate, _tags, completion}) =>
+                ({ title, notes, checklist, date, dueDate, _tags, completion})
             )(item);
-            return JSON.stringify(selectedProperties);
+
+            const finalObj = {};
+            finalObj[item.uuid] = selectedProperties;
+            return finalObj;
         });
         return stringObjects;
     }
@@ -25,16 +28,25 @@ class Project {
         Keys: this.name
         Values: todoItems object
         */
+       const objectMerge = {}
+       const arrayOfObjects = this.selectItemProperties();
        
-       ;
-       const objectStrings = this.stringifyItems();
-       localStorage.setItem(this.name, objectStrings);
+       for (const o of arrayOfObjects) {
+        Object.assign(objectMerge, o);
+       }
+
+       console.log(objectMerge);
+
+       localStorage.setItem(this.name, JSON.stringify(objectMerge));
        
-       console.log(this.todoItems)
-       console.log(objectStrings);
+    //    console.log(this.todoItems)
+    //    console.log(objectStrings);
     }
 
-    retrieveLocalStorage() {}
+    retrieveLocalStorage() {
+        const parse = JSON.parse(localStorage.getItem(this.name));
+        console.log(parse);
+    }
 
     addItem(title) {
         const item = todoItemFactory(title);
