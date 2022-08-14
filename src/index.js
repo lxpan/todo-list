@@ -32,6 +32,7 @@ const setNewItemBtn = () => {
         // repopulate list items from project
         Object.values(defaultProject.todoItems).forEach(item => {
             view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
+            view.insertItemChangeListener(item.uuid, defaultProject);
         });
 
         clickLastTodoItem();
