@@ -11,12 +11,13 @@ class Project {
     // Convert todoItem Objects to JSON
     selectItemProperties() {
         const stringObjects = Object.values(this.todoItems).map(item => {
+            const finalObj = {};
+            
             const selectedProperties = (
                 ({ title, notes, checklist, date, dueDate, _tags, completion }) =>
-                    ({ title, notes, checklist, date, dueDate, _tags, completion })
+                ({ title, notes, checklist, date, dueDate, _tags, completion })
             )(item);
 
-            const finalObj = {};
             finalObj[item.uuid] = selectedProperties;
             return finalObj;
         });
