@@ -8,6 +8,34 @@ class Project {
         this.name = name;
     }
 
+    // Convert todoItem Objects to JSON
+    stringifyItems() {
+        const stringObjects = Object.values(this.todoItems).map(item => {
+            const selectedProperties = (
+                ({ title, notes, checklist, date, dueDate, _tags, completion, uuid}) =>
+                ({ title, notes, checklist, date, dueDate, _tags, completion, uuid})
+            )(item);
+            return JSON.stringify(selectedProperties);
+        });
+        return stringObjects;
+    }
+
+    populateLocalStorage() {
+        /* 
+        Keys: this.name
+        Values: todoItems object
+        */
+       
+       ;
+       const objectStrings = this.stringifyItems();
+       localStorage.setItem(this.name, objectStrings);
+       
+       console.log(this.todoItems)
+       console.log(objectStrings);
+    }
+
+    retrieveLocalStorage() {}
+
     addItem(title) {
         const item = todoItemFactory(title);
         // this.todoItems.push(item);
