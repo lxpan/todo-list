@@ -115,6 +115,7 @@ const loadMockItemsIntoDOM = () => {
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
         view.insertProjectItemForm(`#${CONTENT_DIV_ID}`, item);
+        view.insertItemChangeListener(item.uuid, defaultProject);
     });
 
     addMockTags(defaultProject.todoItems);
@@ -122,7 +123,7 @@ const loadMockItemsIntoDOM = () => {
     // view.tagifyAll(defaultProject);
 }
 
-const defaultProject = buildProject();
+const defaultProject = buildProject('DailyTasks');
 
 setupMockProject();
 setupHTML();

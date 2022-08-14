@@ -181,9 +181,9 @@ export default (function view() {
                 item.tagify = tagifyInstance;
         
                 function tagifyEventListener (e) {
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     item.updateTags();
-                    console.log(item._tags);
+                    // console.log(item._tags);
                 }
             }
 
@@ -223,6 +223,7 @@ export default (function view() {
                 }
 
                 const btn = document.createElement('button');
+                btn.className = 'saveItemBtn';
                 btn.type = 'submit';
                 btn.value = 'Save Changes';
                 btn.textContent = 'Save Changes';
@@ -261,6 +262,16 @@ export default (function view() {
         elementID++;
     }
 
+    function insertItemChangeListener(id, project) {
+        const onItemSave = () => {
+            project.populateLocalStorage();
+        }
+
+        const form = document.getElementById(id);
+        const saveBtn = form.querySelector('.saveItemBtn');
+        saveBtn.addEventListener('click', onItemSave);
+    }
+
     const createButton = (buttonText, buttonClass, eventCallback) => {
         // "Create New Item" button
         const newBtn = createElement('button', buttonClass);
@@ -274,7 +285,8 @@ export default (function view() {
         insertProjectHeading,
         insertProjectItemForm,
         createElement,
-        createButton
+        createButton,
+        insertItemChangeListener
     };
 
     function displayProjects() {}
