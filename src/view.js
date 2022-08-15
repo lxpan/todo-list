@@ -159,11 +159,10 @@ export default (function view() {
 
             const datesDiv = (() => {
                 const dateElements = document.createElement('div');
-                // const date = createDateInput('Date: ', 'itemDate', (item.date) ? item.date : null);
-                console.log(item.date);
                 const date = createDateInput('Date: ', 'itemDate', (item.date) ? item.date : null);
                 // 'Figure Space' used in dueDate label to align the date pickers (see: https://qwerty.dev/whitespace/)
                 const dueDate = createDateInput('Due: ', 'itemDueDate', (item.dueDate) ? item.dueDate : null);
+                
                 dateElements.append(date, dueDate);
                 return dateElements;
             })();
