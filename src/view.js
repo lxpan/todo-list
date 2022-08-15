@@ -1,4 +1,4 @@
-import { format, addYears, subYears } from 'date-fns';
+import { format, addYears, subYears, parseISO } from 'date-fns';
 // Import Tagify
 import Tagify from '@yaireo/tagify';
 import '@yaireo/tagify/dist/tagify.css';
@@ -159,9 +159,11 @@ export default (function view() {
 
             const datesDiv = (() => {
                 const dateElements = document.createElement('div');
-                const date = createDateInput('Date: ', 'itemDate', null);
+                // const date = createDateInput('Date: ', 'itemDate', (item.date) ? item.date : null);
+                console.log(item.date);
+                const date = createDateInput('Date: ', 'itemDate', (item.date) ? item.date : null);
                 // 'Figure Space' used in dueDate label to align the date pickers (see: https://qwerty.dev/whitespace/)
-                const dueDate = createDateInput('Due: ', 'itemDueDate', null);
+                const dueDate = createDateInput('Due: ', 'itemDueDate', (item.dueDate) ? item.dueDate : null);
                 dateElements.append(date, dueDate);
                 return dateElements;
             })();
@@ -199,12 +201,12 @@ export default (function view() {
                         let dateFormatted;
 
                         if(key.includes('Date') && value) {
-                            dateFormatted = format(new Date(value), 'dd-MM-yyyy');
+                            dateFormatted = format(new Date(value), 'yyyy-MM-dd');
                         }
                         
                         // read formData (iterator) values into an object, formatting where necessary
                         switch (key) {
-                            // format dates according to 'dd-MM-yyyy'
+                            // convert from ISO to 'yyyy-MM-dd' format
                             case 'itemDate':
                                 formObj[key] = dateFormatted;
                                 break;
