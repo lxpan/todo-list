@@ -46,12 +46,24 @@ const setterMixin = {
         this.notes = notes;
     },
 
+    setChecklist (checklist) {
+        this.checklist = checklist;
+    },
+
     setDate (date) {
         this.date = date;
     },
 
     setDueDate (dueDate) {
         this.dueDate = dueDate;
+    },
+
+    setTags (tags) {
+        this._tags = tags;
+    },
+
+    setCompletion (completion) {
+        this.completion = completion;
     }
 }
 
