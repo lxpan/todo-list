@@ -44,9 +44,29 @@ class Project {
         //    console.log(objectStrings);
     }
 
+    _reconstructTodoItemObjects(_parse) {
+        // clear current todo items in project
+        this.todoItems = {};
+        for (const [key, value] of Object.entries(_parse)) {
+            const item = todoItemFactory(value.title);
+
+            // update remaining fields using setters
+            item.setNotes(value.notes);
+            item.setChecklist(value.checklist);
+            item.setDate(value.date);
+            item.setDueDate(value.dueDate);
+            item.setTags(value._tags);
+            item.setCompletion(value.completion);
+            // assign reconstructed object back to instance property
+            this.todoItems[key] = item;
+        }
+        console.log(this.todoItems);
+    }
+
     retrieveLocalStorage() {
         const parse = JSON.parse(localStorage.getItem(this.name));
         console.log(parse);
+        this._reconstructTodoItemObjects(parse);
     }
 
     addItem(title) {
