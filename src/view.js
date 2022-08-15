@@ -175,6 +175,7 @@ export default (function view() {
 
             })();
 
+            // Turns text input into a Tagify input, enabling tag addon
             const tagifyInput = (input) => {
                 const tagifyInstance = new Tagify(input);
                 input.addEventListener('change', tagifyEventListener)
@@ -239,8 +240,12 @@ export default (function view() {
             expandable.classList.add('itemInfo', 'contracted', 'hidden');
             expandable.append(notesInput, itemTaskListDiv, datesDiv, tagsDiv, saveBtn);
 
-            const tagInput = expandable.querySelector('.tagsInput');
-            tagifyInput(tagInput);
+            tagifyInput(expandable.querySelector('.tagsInput'));
+            
+            // Load saved tags if they exist
+            if (item._tags && item.tagify) {
+                item.tagify.addTags(item._tags);
+            }
             
             return expandable;
         }
