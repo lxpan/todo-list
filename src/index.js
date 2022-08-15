@@ -113,6 +113,11 @@ function setupMockProject() {
 }
 
 const loadMockItemsIntoDOM = () => {
+    // only load from storage if key exists
+    if(localStorage.getItem(defaultProject.name)) {
+        defaultProject.retrieveLocalStorage();
+    }
+    
     // enumerate items in default project
     Object.values(defaultProject.todoItems).forEach(item => {
         view.insertProjectItemForm(`#${CONTENT_DIV_ID}`, item);
