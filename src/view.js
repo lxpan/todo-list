@@ -273,14 +273,14 @@ export default (function view() {
 
     function insertItemChangeListener(id, project) {
         const onItemSave = (e) => {
-            const createSaveSpan = () => {
+            const createSaveSpan = (msg) => {
                 const messageContainer = document.createElement('div');
                 const messageSpan = document.createElement('span');
                 
                 messageContainer.className = 'messageContainer';
                 messageContainer.appendChild(messageSpan);
     
-                messageSpan.textContent = 'Changes Saved';
+                messageSpan.textContent = msg;
                 messageSpan.className = 'saveMessage';
 
                 return messageContainer;
@@ -291,9 +291,25 @@ export default (function view() {
             // check if form has been modified
 
             // insert message after 'Save Changes' button
+            const todoParent = e.target.closest('.todoItem');
+            const existingSaveMsg = todoParent.querySelector('.saveMessage');
+            
             if(formChanged) {
-                e.target.closest('.todoItem').appendChild(createSaveSpan());
+                console.log(existingSaveMsg);
+                
+                if(existingSaveMsg) {
+                    existingSaveMsg.parentNode.replaceChild(createSaveSpan('Changes Saved'), existingSaveMsg);
+                } 
+                else {
+                    todoParent.appendChild(createSaveSpan('Changes Saved'));
+                }
                 formChanged = false;
+            } else {
+                if(existingSaveMsg) {
+                    existingSaveMsg.parentNode.replaceChild(createSaveSpan('No Changes Detected'), existingSaveMsg);
+                } else {
+                    e.target.closest('.todoItem').appendChild(createSaveSpan('No Changes Detected'));
+                }
             }
         }
 
