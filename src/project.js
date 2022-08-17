@@ -36,7 +36,7 @@ class Project {
             Object.assign(objectMerge, o);
         }
 
-        console.log(objectMerge);
+        // console.log(objectMerge);
 
         localStorage.setItem(this.name, JSON.stringify(objectMerge));
 
@@ -60,12 +60,12 @@ class Project {
             // assign reconstructed object back to instance property
             this.todoItems[key] = item;
         }
-        console.log(this.todoItems);
+        // console.log(this.todoItems);
     }
 
     retrieveLocalStorage() {
         const parse = JSON.parse(localStorage.getItem(this.name));
-        console.log(parse);
+        // console.log(parse);
         this._reconstructTodoItemObjects(parse);
     }
 
