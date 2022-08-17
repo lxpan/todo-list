@@ -290,25 +290,24 @@ export default (function view() {
 
             // insert message after 'Save Changes' button
             const infoParent = e.target.closest('.itemInfo');
-            console.log(infoParent);
             const existingSaveMsg = infoParent.querySelector('.saveMessage');
-            
-            if(formChanged) {
+
+            // Appends if msg element does not exist, otherwise replaces the element
+            const smartAppendMessage = (msg) => {
                 if(existingSaveMsg) {
                     // replace child of .messageContainer
-                    existingSaveMsg.parentNode.replaceChild(createSaveSpan('Changes Saved'), existingSaveMsg);
+                    existingSaveMsg.parentNode.replaceChild(createSaveSpan(msg), existingSaveMsg);
                 } 
                 else {
-                    infoParent.appendChild(createSaveSpan('Changes Saved'));
+                    infoParent.appendChild(createSaveSpan(msg));
                 }
+            }
+            
+            if(formChanged) {
+                smartAppendMessage('Changes Saved');
                 formChanged = false;
             } else {
-                if(existingSaveMsg) {
-                    // replace child of .messageContainer
-                    existingSaveMsg.parentNode.replaceChild(createSaveSpan('No Changes Detected'), existingSaveMsg);
-                } else {
-                    infoParent.appendChild(createSaveSpan('No Changes Detected'));
-                }
+                smartAppendMessage('No Changed Detected');
             }
         }
 
