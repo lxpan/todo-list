@@ -286,12 +286,6 @@ export default (function view() {
                 return messageContainer;
             }
 
-            project.populateLocalStorage();
-
-            // insert message after 'Save Changes' button
-            const infoParent = e.target.closest('.itemInfo');
-            const existingSaveMsg = infoParent.querySelector('.saveMessage');
-
             // Appends if msg element does not exist, otherwise replaces the element
             const smartAppendMessage = (msg) => {
                 if(existingSaveMsg) {
@@ -302,6 +296,11 @@ export default (function view() {
                     infoParent.appendChild(createSaveSpan(msg));
                 }
             }
+
+            project.populateLocalStorage();
+
+            const infoParent = e.target.closest('.itemInfo');
+            const existingSaveMsg = infoParent.querySelector('.saveMessage');            
             
             if(formChanged) {
                 smartAppendMessage('Changes Saved');
@@ -310,16 +309,15 @@ export default (function view() {
                 smartAppendMessage('No Changed Detected');
             }
         }
-
-        let formChanged = false;
         
+        let formChanged = false;
         const itemForm = document.getElementById(id);
+        const saveBtn = itemForm.querySelector('.saveItemBtn');
+        
         itemForm.addEventListener('change', () => {
-            console.log('Form changed!');
             formChanged = true;
         });
-
-        const saveBtn = itemForm.querySelector('.saveItemBtn');
+        
         saveBtn.addEventListener('click', onItemSave);
     }
 
