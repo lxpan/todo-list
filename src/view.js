@@ -269,8 +269,21 @@ export default (function view() {
     }
 
     function insertItemChangeListener(id, project) {
-        const onItemSave = () => {
+        const onItemSave = (e) => {
             project.populateLocalStorage();
+
+            const messageContainer = document.createElement('div');
+            const messageSpan = document.createElement('span');
+            
+            messageContainer.className = 'messageContainer';
+            messageContainer.appendChild(messageSpan);
+
+            messageSpan.textContent = 'Changes Saved';
+            messageSpan.style.color = 'green';
+            messageSpan.className = 'saveMessage';
+            // insert message after 'Save Changes' button
+            // e.target.parentNode.insertBefore(messageContainer, e.target.nextSibling);
+            e.target.parentNode.parentNode.appendChild(messageContainer);
         }
 
         const form = document.getElementById(id);
