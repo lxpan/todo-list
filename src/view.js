@@ -273,20 +273,23 @@ export default (function view() {
 
     function insertItemChangeListener(id, project) {
         const onItemSave = (e) => {
+            const createSaveSpan = () => {
+                const messageContainer = document.createElement('div');
+                const messageSpan = document.createElement('span');
+                
+                messageContainer.className = 'messageContainer';
+                messageContainer.appendChild(messageSpan);
+    
+                messageSpan.textContent = 'Changes Saved';
+                messageSpan.style.color = 'green';
+                messageSpan.className = 'saveMessage';
+
+                return messageContainer;
+            }
+
             project.populateLocalStorage();
-
-            const messageContainer = document.createElement('div');
-            const messageSpan = document.createElement('span');
-            
-            messageContainer.className = 'messageContainer';
-            messageContainer.appendChild(messageSpan);
-
-            messageSpan.textContent = 'Changes Saved';
-            messageSpan.style.color = 'green';
-            messageSpan.className = 'saveMessage';
             // insert message after 'Save Changes' button
-            // e.target.parentNode.insertBefore(messageContainer, e.target.nextSibling);
-            e.target.parentNode.parentNode.appendChild(messageContainer);
+            e.target.parentNode.parentNode.appendChild(createSaveSpan());
         }
 
         const form = document.getElementById(id);
