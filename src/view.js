@@ -193,7 +193,7 @@ export default (function view() {
                 const onSubmit = (e) => {
                     e.preventDefault();
 
-                    const formElement = e.target.parentNode.parentNode;
+                    const formElement = e.target.parentNode.parentNode.parentNode;
                     const formData = new FormData(formElement);
                     const formObj = {}
 
@@ -288,12 +288,25 @@ export default (function view() {
             }
 
             project.populateLocalStorage();
+
+            // check if form has been modified
+
             // insert message after 'Save Changes' button
-            e.target.parentNode.parentNode.appendChild(createSaveSpan());
+            if(formChanged) {
+                e.target.parentNode.parentNode.appendChild(createSaveSpan());
+                formChanged = false;
+            }
         }
 
-        const form = document.getElementById(id);
-        const saveBtn = form.querySelector('.saveItemBtn');
+        let formChanged = false;
+        
+        const itemForm = document.getElementById(id);
+        itemForm.addEventListener('change', () => {
+            console.log('Form changed!');
+            formChanged = true;
+        });
+
+        const saveBtn = itemForm.querySelector('.saveItemBtn');
         saveBtn.addEventListener('click', onItemSave);
     }
 
