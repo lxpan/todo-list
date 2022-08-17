@@ -231,7 +231,10 @@ export default (function view() {
                 btn.textContent = 'Save Changes';
                 btn.addEventListener('click', onSubmit);
 
-                return btn;
+                const saveBtnContainer = createElement('div', 'saveBtnContainer');
+                saveBtnContainer.appendChild(btn);
+
+                return saveBtnContainer;
             })();
 
             // content that will show (expand) when item title is clicked
