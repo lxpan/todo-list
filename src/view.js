@@ -281,7 +281,6 @@ export default (function view() {
                 messageContainer.appendChild(messageSpan);
     
                 messageSpan.textContent = 'Changes Saved';
-                messageSpan.style.color = 'green';
                 messageSpan.className = 'saveMessage';
 
                 return messageContainer;
