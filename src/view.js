@@ -291,11 +291,12 @@ export default (function view() {
             // check if form has been modified
 
             // insert message after 'Save Changes' button
-            const todoParent = e.target.closest('.todoItem');
+            const todoParent = e.target.closest('.itemInfo');
+            console.log(todoParent);
             const existingSaveMsg = todoParent.querySelector('.saveMessage');
             
             if(formChanged) {
-                console.log(existingSaveMsg);
+                // console.log(existingSaveMsg);
                 
                 if(existingSaveMsg) {
                     existingSaveMsg.parentNode.replaceChild(createSaveSpan('Changes Saved'), existingSaveMsg);
@@ -308,7 +309,7 @@ export default (function view() {
                 if(existingSaveMsg) {
                     existingSaveMsg.parentNode.replaceChild(createSaveSpan('No Changes Detected'), existingSaveMsg);
                 } else {
-                    e.target.closest('.todoItem').appendChild(createSaveSpan('No Changes Detected'));
+                    todoParent.appendChild(createSaveSpan('No Changes Detected'));
                 }
             }
         }
