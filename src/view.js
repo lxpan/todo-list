@@ -193,7 +193,7 @@ export default (function view() {
                 const onSubmit = (e) => {
                     e.preventDefault();
 
-                    const formElement = e.target.parentNode.parentNode.parentNode;
+                    const formElement = e.target.closest('.todoItem');
                     const formData = new FormData(formElement);
                     const formObj = {}
 
@@ -293,7 +293,7 @@ export default (function view() {
 
             // insert message after 'Save Changes' button
             if(formChanged) {
-                e.target.parentNode.parentNode.appendChild(createSaveSpan());
+                e.target.closest('.todoItem').appendChild(createSaveSpan());
                 formChanged = false;
             }
         }
