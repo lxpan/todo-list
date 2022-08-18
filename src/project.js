@@ -96,7 +96,7 @@ class Project {
     }
 }
 
-export default function buildProject() {
-    const p = new Project('Daily Tasks');
+export default function buildProject(name) {
+    const p = new Project(name);
     return p;
 }
