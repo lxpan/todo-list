@@ -86,7 +86,8 @@ function setupHTML() {
 
 
 function projectRunner(projectName) {
-    const defaultProject = buildProject(projectName);
+    const name = projectName;
+    const defaultProject = buildProject(name);
 
     function addMockTags(items) {
         const todoItems = Object.values(items);
@@ -139,14 +140,22 @@ function projectRunner(projectName) {
     }
 
     return {
+        name,
         run,
         defaultProject
     }
 }
 
+function addNewProject(name) {
+    const newProject = projectRunner(name);
+    projects[newProject.name] = newProject;
+}
+
+let projects = {}
 
 setupHTML();
-const firstProject = projectRunner('Daily Tasks');
-const secondProject = projectRunner('Fresh Tasks');
-console.log(secondProject);
-firstProject.run();
+addNewProject('Daily Tasks');
+addNewProject('Fresh Tasks');
+projects['Fresh Tasks'].run();
+
+console.log(Object.keys(projects));
