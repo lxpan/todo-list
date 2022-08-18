@@ -6,61 +6,62 @@ import './style.css';
 const CONTENT_DIV_ID = 'content';
 const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 
-const clickLastTodoItem = () => {
-    const items = document.querySelectorAll('.todoItem');
-    const last = items[items.length - 1];
-    
-    const lastElementClickable =
-        (last.getAttribute('titleType') == 'input')
-            ? last.querySelector("input[type='text']")
-            : last.querySelector('label');
-    
-    lastElementClickable.click();
-}
-
-const setNewItemBtn = () => {
-    const addNewItem = () => {
-        // add new item to project
-        defaultProject.addItem('');
-        // console.log(defaultProject.todoItems);
-
-        // clear current items and reset div
-        const content = document.querySelector(CONTENT_DIV_SELECTOR);
-        content.innerHTML = '';
-        view.insertProjectHeading(CONTENT_DIV_SELECTOR, defaultProject.name);
-
-        // repopulate list items from project
-        Object.values(defaultProject.todoItems).forEach(item => {
-            view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
-            view.insertItemChangeListener(item.uuid, defaultProject);
-        });
-
-        clickLastTodoItem();
-    }
-
-    const newItemBtn = view.createButton('+', 'newItemBtn', addNewItem)
-    return newItemBtn;
-}
-
-const setupDebugBtn = () => {
-    const logItemsInObject = () => {
-        console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
-    }
-
-    const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
-    return debugBtn;
-}
-
-const setupHeader = () => {
-    const header = document.createElement('header');
-    const testHeading = document.createElement('h1');
-    testHeading.textContent = 'Todo List';
-
-    header.append(testHeading, setNewItemBtn(), setupDebugBtn());
-    return header;
-}
 
 function setupHTML() {
+    const clickLastTodoItem = () => {
+        const items = document.querySelectorAll('.todoItem');
+        const last = items[items.length - 1];
+        
+        const lastElementClickable =
+            (last.getAttribute('titleType') == 'input')
+                ? last.querySelector("input[type='text']")
+                : last.querySelector('label');
+        
+        lastElementClickable.click();
+    }
+    
+    const setNewItemBtn = () => {
+        const addNewItem = () => {
+            // add new item to project
+            defaultProject.addItem('');
+            // console.log(defaultProject.todoItems);
+    
+            // clear current items and reset div
+            const content = document.querySelector(CONTENT_DIV_SELECTOR);
+            content.innerHTML = '';
+            view.insertProjectHeading(CONTENT_DIV_SELECTOR, defaultProject.name);
+    
+            // repopulate list items from project
+            Object.values(defaultProject.todoItems).forEach(item => {
+                view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
+                view.insertItemChangeListener(item.uuid, defaultProject);
+            });
+    
+            clickLastTodoItem();
+        }
+    
+        const newItemBtn = view.createButton('+', 'newItemBtn', addNewItem)
+        return newItemBtn;
+    }
+    
+    const setupDebugBtn = () => {
+        const logItemsInObject = () => {
+            console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
+        }
+    
+        const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
+        return debugBtn;
+    }
+    
+    const setupHeader = () => {
+        const header = document.createElement('header');
+        const testHeading = document.createElement('h1');
+        testHeading.textContent = 'Todo List';
+    
+        header.append(testHeading, setNewItemBtn(), setupDebugBtn());
+        return header;
+    }
+    
     const gridContainer = view.createElement('div', 'gridContainer');
     const navbar = view.createElement('div', 'navbar');
 
