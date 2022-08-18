@@ -64,23 +64,19 @@ function setupHTML() {
     
     const gridContainer = view.createElement('div', 'gridContainer');
     const navbar = view.createElement('div', 'navbar');
-
-    // const projects = ['Project 1', 'Project 2', 'Project 3'];
     const projectList = document.createElement('ul');
-
-    console.log(projects);
+    const content = document.createElement('div');
     
+    content.id = CONTENT_DIV_ID;
+    
+    // Insert todo items into the DOM
     Object.keys(projects).forEach(project => {
         const projectItem = document.createElement('li');
         projectItem.textContent = project;
         projectList.appendChild(projectItem);
-
     });
+
     navbar.appendChild(projectList);
-
-    const content = document.createElement('div');
-    content.id = CONTENT_DIV_ID;
-
     gridContainer.append(navbar, content);
     document.body.append(setupHeader(), gridContainer);
     
@@ -155,6 +151,8 @@ function addNewProject(name) {
 }
 
 let projects = {}
+// the currently selected project
+let defaultProject = projects['Daily'];
 
 addNewProject('Daily');
 addNewProject('Empty');
