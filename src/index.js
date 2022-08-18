@@ -6,8 +6,10 @@ import './style.css';
 const CONTENT_DIV_ID = 'content';
 const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 
-
+// Refactor away "defaultProject" usage
 function setupHTML() {
+    let defaultProject = projects['Daily'].defaultProject;
+
     const clickLastTodoItem = () => {
         const items = document.querySelectorAll('.todoItem');
         const last = items[items.length - 1];
@@ -119,7 +121,8 @@ function projectRunner(projectName) {
         // console.log(defaultProject.getUniqueTags());       
         // console.log(defaultProject.todoItems);
     }
-    
+
+    // refactor away defaultProject
     const loadMockItemsIntoDOM = () => {
         // only load from storage if key exists
         if(localStorage.getItem(defaultProject.name)) {
@@ -155,8 +158,6 @@ function addNewProject(name) {
 }
 
 let projects = {}
-// the currently selected project
-let defaultProject = projects['Daily'];
 
 addNewProject('Daily');
 addNewProject('Empty');
