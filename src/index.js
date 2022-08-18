@@ -64,10 +64,12 @@ function setupHTML() {
     const gridContainer = view.createElement('div', 'gridContainer');
     const navbar = view.createElement('div', 'navbar');
 
-    const projects = ['Project 1', 'Project 2', 'Project 3'];
+    // const projects = ['Project 1', 'Project 2', 'Project 3'];
     const projectList = document.createElement('ul');
+
+    console.log(projects);
     
-    projects.forEach(project => {
+    Object.keys(projects).forEach(project => {
         const projectItem = document.createElement('li');
         projectItem.textContent = project;
         projectList.appendChild(projectItem);
@@ -153,9 +155,11 @@ function addNewProject(name) {
 
 let projects = {}
 
+addNewProject('Daily');
+addNewProject('Empty');
+addNewProject('Investigations');
+
 setupHTML();
-addNewProject('Daily Tasks');
-addNewProject('Fresh Tasks');
-projects['Fresh Tasks'].run();
+projects['Daily'].run();
 
 console.log(Object.keys(projects));
