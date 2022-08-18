@@ -6,88 +6,88 @@ import './style.css';
 const CONTENT_DIV_ID = 'content';
 const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 
+const clickLastTodoItem = () => {
+    const items = document.querySelectorAll('.todoItem');
+    const last = items[items.length - 1];
+    
+    const lastElementClickable =
+        (last.getAttribute('titleType') == 'input')
+            ? last.querySelector("input[type='text']")
+            : last.querySelector('label');
+    
+    lastElementClickable.click();
+}
+
+const setNewItemBtn = () => {
+    const addNewItem = () => {
+        // add new item to project
+        defaultProject.addItem('');
+        // console.log(defaultProject.todoItems);
+
+        // clear current items and reset div
+        const content = document.querySelector(CONTENT_DIV_SELECTOR);
+        content.innerHTML = '';
+        view.insertProjectHeading(CONTENT_DIV_SELECTOR, defaultProject.name);
+
+        // repopulate list items from project
+        Object.values(defaultProject.todoItems).forEach(item => {
+            view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
+            view.insertItemChangeListener(item.uuid, defaultProject);
+        });
+
+        clickLastTodoItem();
+    }
+
+    const newItemBtn = view.createButton('+', 'newItemBtn', addNewItem)
+    return newItemBtn;
+}
+
+const setupDebugBtn = () => {
+    const logItemsInObject = () => {
+        console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
+    }
+
+    const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
+    return debugBtn;
+}
+
+const setupHeader = () => {
+    const header = document.createElement('header');
+    const testHeading = document.createElement('h1');
+    testHeading.textContent = 'Todo List';
+
+    header.append(testHeading, setNewItemBtn(), setupDebugBtn());
+    return header;
+}
+
+function setupHTML() {
+    const gridContainer = view.createElement('div', 'gridContainer');
+    const navbar = view.createElement('div', 'navbar');
+
+    const projects = ['Project 1', 'Project 2', 'Project 3'];
+    const projectList = document.createElement('ul');
+    
+    projects.forEach(project => {
+        const projectItem = document.createElement('li');
+        projectItem.textContent = project;
+        projectList.appendChild(projectItem);
+
+    });
+    navbar.appendChild(projectList);
+
+    const content = document.createElement('div');
+    content.id = CONTENT_DIV_ID;
+
+    gridContainer.append(navbar, content);
+    document.body.append(setupHeader(), gridContainer);
+    
+    view.insertProjectHeading(`#${CONTENT_DIV_ID}`, 'Replace with Project Name');
+}
+
 
 function projectRunner(projectName) {
     const defaultProject = buildProject(projectName);
 
-    const clickLastTodoItem = () => {
-        const items = document.querySelectorAll('.todoItem');
-        const last = items[items.length - 1];
-        
-        const lastElementClickable =
-            (last.getAttribute('titleType') == 'input')
-                ? last.querySelector("input[type='text']")
-                : last.querySelector('label');
-        
-        lastElementClickable.click();
-    }
-    
-    const setNewItemBtn = () => {
-        const addNewItem = () => {
-            // add new item to project
-            defaultProject.addItem('');
-            // console.log(defaultProject.todoItems);
-    
-            // clear current items and reset div
-            const content = document.querySelector(CONTENT_DIV_SELECTOR);
-            content.innerHTML = '';
-            view.insertProjectHeading(CONTENT_DIV_SELECTOR, defaultProject.name);
-    
-            // repopulate list items from project
-            Object.values(defaultProject.todoItems).forEach(item => {
-                view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
-                view.insertItemChangeListener(item.uuid, defaultProject);
-            });
-    
-            clickLastTodoItem();
-        }
-    
-        const newItemBtn = view.createButton('+', 'newItemBtn', addNewItem)
-        return newItemBtn;
-    }
-    
-    const setupDebugBtn = () => {
-        const logItemsInObject = () => {
-            console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
-        }
-    
-        const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
-        return debugBtn;
-    }
-    
-    const setupHeader = () => {
-        const header = document.createElement('header');
-        const testHeading = document.createElement('h1');
-        testHeading.textContent = 'Todo List';
-    
-        header.append(testHeading, setNewItemBtn(), setupDebugBtn());
-        return header;
-    }
-    
-    function setupHTML() {
-        const gridContainer = view.createElement('div', 'gridContainer');
-        const navbar = view.createElement('div', 'navbar');
-    
-        const projects = ['Project 1', 'Project 2', 'Project 3'];
-        const projectList = document.createElement('ul');
-        
-        projects.forEach(project => {
-            const projectItem = document.createElement('li');
-            projectItem.textContent = project;
-            projectList.appendChild(projectItem);
-    
-        });
-        navbar.appendChild(projectList);
-    
-        const content = document.createElement('div');
-        content.id = CONTENT_DIV_ID;
-    
-        gridContainer.append(navbar, content);
-        document.body.append(setupHeader(), gridContainer);
-        
-        view.insertProjectHeading(`#${CONTENT_DIV_ID}`, defaultProject.name);
-    }
-    
     function addMockTags(items) {
         const todoItems = Object.values(items);
         todoItems[0].addTagifyTag('Errands');
@@ -135,7 +135,6 @@ function projectRunner(projectName) {
 
     const run = () => {
         setupMockProject();
-        setupHTML();
         loadMockItemsIntoDOM();
     }
 
@@ -145,5 +144,9 @@ function projectRunner(projectName) {
     }
 }
 
-const firstProject = projectRunner('Superboo');
+
+setupHTML();
+const firstProject = projectRunner('Daily Tasks');
+const secondProject = projectRunner('Fresh Tasks');
+console.log(secondProject);
 firstProject.run();
