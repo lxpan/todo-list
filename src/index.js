@@ -61,23 +61,27 @@ function setupHTML() {
         header.append(testHeading, setNewItemBtn(), setupDebugBtn());
         return header;
     }
+
+    const navbar = () => {
+        const projectList = document.createElement('ul');
+        const navElement = view.createElement('div', 'navbar');
+
+        // Insert todo items into the DOM
+        Object.keys(projects).forEach(project => {
+            const projectItem = document.createElement('li');
+            projectItem.textContent = project;
+            projectList.appendChild(projectItem);
+        });
+
+        navElement.appendChild(projectList);
+        return navElement;
+    }
     
     const gridContainer = view.createElement('div', 'gridContainer');
-    const navbar = view.createElement('div', 'navbar');
-    const projectList = document.createElement('ul');
     const content = document.createElement('div');
-    
     content.id = CONTENT_DIV_ID;
     
-    // Insert todo items into the DOM
-    Object.keys(projects).forEach(project => {
-        const projectItem = document.createElement('li');
-        projectItem.textContent = project;
-        projectList.appendChild(projectItem);
-    });
-
-    navbar.appendChild(projectList);
-    gridContainer.append(navbar, content);
+    gridContainer.append(navbar(), content);
     document.body.append(setupHeader(), gridContainer);
     
     view.insertProjectHeading(`#${CONTENT_DIV_ID}`, 'Replace with Project Name');
