@@ -192,3 +192,4 @@ projects['Daily'].run();
 console.log(Object.keys(projects));
 
 document.body.appendChild(view.createModal());
+view.assignModalListener();

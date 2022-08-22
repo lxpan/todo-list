@@ -341,6 +341,7 @@ export default (function view() {
         const modalParagraph = document.createElement('p');
         const closeModalBtn = document.createElement('button');
         
+        modalContainer.id = 'modalContainer';
         closeModalBtn.id = 'closeModal';
 
         modalHeading.textContent = 'This my modal and this my life';
@@ -354,13 +355,30 @@ export default (function view() {
         return modalContainer;
     }
 
+    const assignModalListener = () => {
+        const open = document.getElementById('openModal');
+        const close = document.getElementById('closeModal');
+        const modalContainer = document.getElementById('modalContainer');
+
+        open.addEventListener('click', () => {
+            modalContainer.classList.add('showModal');
+        });
+
+        close.addEventListener('click', () => {
+            modalContainer.classList.remove('showModal');
+        })
+
+        console.log([open, close, modalContainer]);
+    }
+
     return {
         insertProjectHeading,
         insertProjectItemForm,
         createElement,
         createButton,
         insertItemChangeListener,
-        createModal
+        createModal,
+        assignModalListener
     };
 
     function displayProjects() {}

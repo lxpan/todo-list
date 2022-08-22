@@ -117,3 +117,42 @@ input[type='text']::placeholder {
     color: green;
     font-size: .8rem;
 }
+
+/* New Project Modal Form */
+.modalContainer {
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 0.3s ease;
+}
+
+.modal {
+    background-color: #fff;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    max-width: 100%;
+    text-align: center;
+}
+
+.modal h1 {
+    margin: 0;
+}
+
+.modal p {
+    opacity: 0.7;
+}
+
+.modalContainer.showModal {
+    opacity: 1;
+    pointer-events: auto;
+}
