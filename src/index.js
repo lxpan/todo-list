@@ -65,8 +65,13 @@ function setupHTML() {
     }
 
     const navbar = () => {
+        const addProject = () => {
+            addNewProject('')
+        }
+
         const projectList = document.createElement('ul');
         const navElement = view.createElement('div', 'navbar');
+        const newProjectBtn = view.createButton('New Project', 'newProjectBtn', addProject);
 
         // Insert todo items into the DOM
         Object.keys(projects).forEach(project => {
@@ -75,7 +80,8 @@ function setupHTML() {
             projectList.appendChild(projectItem);
         });
 
-        navElement.appendChild(projectList);
+        // todo: style and position new project button
+        navElement.append(newProjectBtn, projectList);
         return navElement;
     }
     
