@@ -69,15 +69,21 @@ function setupHTML() {
     const navbar = () => {
         const addProject = () => {
             addNewProject('Foobar123');
+            const nav = document.querySelector('.navbar');
+            const currentList = document.querySelector('.projectList');
+
+            nav.replaceChild(listProjects(), currentList);
             console.log(projects);
+
         }
 
         const listProjects = () => {
-            const listOfProjects = document.createElement('ul');
+            const listOfProjects = view.createElement('ul', 'projectList');
             
             // Insert list of projects into DOM
             Object.keys(projects).forEach(project => {
                 const projectItem = document.createElement('li');
+                projectItem.id = project;
                 projectItem.textContent = project;
                 listOfProjects.appendChild(projectItem);
             });
