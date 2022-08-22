@@ -160,7 +160,13 @@ function projectRunner(projectName) {
 
 function addNewProject(name) {
     const newProject = projectRunner(name);
-    projects[newProject.name] = newProject;
+    
+    if(!projects[name]) {
+        projects[newProject.name] = newProject;
+    }
+    else {
+        console.log(`A project named "${name}" already exists. Please try another name.`);
+    }
 }
 
 let projects = {}
