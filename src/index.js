@@ -68,19 +68,27 @@ function setupHTML() {
 
     const navbar = () => {
         const addProject = () => {
-            addNewProject('')
+            addNewProject('Foobar123');
+            console.log(projects);
         }
 
-        const projectList = document.createElement('ul');
-        const navElement = view.createElement('div', 'navbar');
-        const newProjectBtn = view.createButton('New Project', 'newProjectBtn', addProject);
+        const listProjects = () => {
+            const listOfProjects = document.createElement('ul');
+            
+            // Insert list of projects into DOM
+            Object.keys(projects).forEach(project => {
+                const projectItem = document.createElement('li');
+                projectItem.textContent = project;
+                listOfProjects.appendChild(projectItem);
+            });
 
-        // Insert todo items into the DOM
-        Object.keys(projects).forEach(project => {
-            const projectItem = document.createElement('li');
-            projectItem.textContent = project;
-            projectList.appendChild(projectItem);
-        });
+            return listOfProjects;
+        }
+
+        let projectList = listProjects();
+        
+        const navElement = view.createElement('div', 'navbar');
+        const newProjectBtn = view.createButton('New Project', 'newProjectBtn', addProject);        
 
         // todo: style and position new project button
         navElement.append(newProjectBtn, projectList);
