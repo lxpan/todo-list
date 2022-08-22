@@ -330,6 +330,10 @@ export default (function view() {
         return newBtn;
     }
 
+    const loremIpsum = (() => {
+        return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    })();
+
     const createModal = () => {
         const modalContainer = createElement('div', 'modalContainer');
         const modal = createElement('div', 'modal');
@@ -338,7 +342,7 @@ export default (function view() {
         const closeModalBtn = document.createElement('button');
 
         modalHeading.textContent = 'This my modal and this my life';
-        modalParagraph.textContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        modalParagraph.textContent = loremIpsum;
         closeModalBtn.textContent = 'Close Modal';
 
         modal.append(modalHeading, modalParagraph, closeModalBtn);
