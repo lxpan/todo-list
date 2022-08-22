@@ -29,7 +29,6 @@ function setupHTML() {
         const addNewItem = () => {
             // add new item to project
             defaultProject.addItem('');
-            // console.log(defaultProject.todoItems);
     
             // clear current items and reset div
             const content = document.querySelector(CONTENT_DIV_SELECTOR);
@@ -125,13 +124,8 @@ function projectRunner(projectName) {
         itemValues[0].addTask('Find item.');
         itemValues[0].addTask('Pack parcel.');
         itemValues[0].addTask('Mail parcel.');
-        // itemValues[0].setCompleted();
-        // itemValues[3].appendTag('Fitness', 'Study', 123);
-        // console.log(defaultProject.getUniqueTags());       
-        // console.log(defaultProject.todoItems);
     }
 
-    // refactor away defaultProject
     const loadMockItemsIntoDOM = () => {
         // only load from storage if key exists
         if(localStorage.getItem(newProject.name)) {
@@ -145,8 +139,6 @@ function projectRunner(projectName) {
         });
     
         addMockTags(newProject.todoItems);
-    
-        // view.tagifyAll(defaultProject);
     }
 
     const run = () => {
@@ -157,7 +149,7 @@ function projectRunner(projectName) {
     return {
         name,
         run,
-        defaultProject: newProject
+        newProject
     }
 }
 
