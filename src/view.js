@@ -368,7 +368,7 @@ export default (function view() {
             modalContainer.classList.remove('showModal');
         })
 
-        console.log([open, close, modalContainer]);
+        // console.log([open, close, modalContainer]);
     }
 
     return {
