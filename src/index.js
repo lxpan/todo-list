@@ -7,11 +7,11 @@ const CONTENT_DIV_ID = 'content';
 const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 
 // currently selected project
-let currentProject = null;
+// let currentProject = null;
 
 // Refactor away "defaultProject" usage
 function setupHTML() {
-    let defaultProject = projects['Daily'].defaultProject;
+    let currentProject = projects['Daily'].defaultProject;
 
     const clickLastTodoItem = () => {
         const items = document.querySelectorAll('.todoItem');
@@ -28,17 +28,17 @@ function setupHTML() {
     const setNewItemBtn = () => {
         const addNewItem = () => {
             // add new item to project
-            defaultProject.addItem('');
+            currentProject.addItem('');
     
             // clear current items and reset div
             const content = document.querySelector(CONTENT_DIV_SELECTOR);
             content.innerHTML = '';
-            view.insertProjectHeading(CONTENT_DIV_SELECTOR, defaultProject.name);
+            view.insertProjectHeading(CONTENT_DIV_SELECTOR, currentProject.name);
     
             // repopulate list items from project
-            Object.values(defaultProject.todoItems).forEach(item => {
+            Object.values(currentProject.todoItems).forEach(item => {
                 view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
-                view.insertItemChangeListener(item.uuid, defaultProject);
+                view.insertItemChangeListener(item.uuid, currentProject);
             });
     
             clickLastTodoItem();
@@ -50,7 +50,7 @@ function setupHTML() {
     
     const setupDebugBtn = () => {
         const logItemsInObject = () => {
-            console.table(defaultProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
+            console.table(currentProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
         }
     
         const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
