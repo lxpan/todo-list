@@ -6,6 +6,9 @@ import './style.css';
 const CONTENT_DIV_ID = 'content';
 const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 
+// currently selected project
+let currentProject = null;
+
 // Refactor away "defaultProject" usage
 function setupHTML() {
     let defaultProject = projects['Daily'].defaultProject;
@@ -95,10 +98,10 @@ function setupHTML() {
     view.insertProjectHeading(`#${CONTENT_DIV_ID}`, 'Replace with Project Name');
 }
 
-
+// instantiate project and load mock items
 function projectRunner(projectName) {
     const name = projectName;
-    const defaultProject = buildProject(name);
+    const newProject = buildProject(name);
 
     function addMockTags(items) {
         const todoItems = Object.values(items);
@@ -109,14 +112,14 @@ function projectRunner(projectName) {
     }
     
     function setupMockProject() {
-        defaultProject.notes = 'My food journal';
+        newProject.notes = 'My food journal';
     
-        defaultProject.addItem('Mail parcel to Mum');
-        defaultProject.addItem('Pay the bills');
-        defaultProject.addItem('Run for 10 minutes');
-        defaultProject.addItem('Study on the exercise bike');
+        newProject.addItem('Mail parcel to Mum');
+        newProject.addItem('Pay the bills');
+        newProject.addItem('Run for 10 minutes');
+        newProject.addItem('Study on the exercise bike');
     
-        const itemValues = Object.values(defaultProject.todoItems);
+        const itemValues = Object.values(newProject.todoItems);
     
         itemValues[0].notes = 'Needs to be done at the post office.'
         itemValues[0].addTask('Find item.');
@@ -131,17 +134,17 @@ function projectRunner(projectName) {
     // refactor away defaultProject
     const loadMockItemsIntoDOM = () => {
         // only load from storage if key exists
-        if(localStorage.getItem(defaultProject.name)) {
-            defaultProject.retrieveLocalStorage();
+        if(localStorage.getItem(newProject.name)) {
+            newProject.retrieveLocalStorage();
         }
         
         // enumerate items in default project
-        Object.values(defaultProject.todoItems).forEach(item => {
+        Object.values(newProject.todoItems).forEach(item => {
             view.insertProjectItemForm(`#${CONTENT_DIV_ID}`, item);
-            view.insertItemChangeListener(item.uuid, defaultProject);
+            view.insertItemChangeListener(item.uuid, newProject);
         });
     
-        addMockTags(defaultProject.todoItems);
+        addMockTags(newProject.todoItems);
     
         // view.tagifyAll(defaultProject);
     }
@@ -154,7 +157,7 @@ function projectRunner(projectName) {
     return {
         name,
         run,
-        defaultProject
+        defaultProject: newProject
     }
 }
 
