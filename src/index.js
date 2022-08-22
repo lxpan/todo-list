@@ -11,7 +11,7 @@ const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 
 // Refactor away "defaultProject" usage
 function setupHTML() {
-    let currentProject = projects['Daily'].defaultProject;
+    let currentProject = projects['Daily'].newProject;
 
     const clickLastTodoItem = () => {
         const items = document.querySelectorAll('.todoItem');
