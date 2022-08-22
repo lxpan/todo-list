@@ -68,12 +68,13 @@ function setupHTML() {
 
     const navbar = () => {
         const addProject = () => {
-            addNewProject('Foobar123');
-            const nav = document.querySelector('.navbar');
-            const currentList = document.querySelector('.projectList');
+            // addNewProject('Foobar123');
+            // const nav = document.querySelector('.navbar');
+            // const currentList = document.querySelector('.projectList');
 
-            nav.replaceChild(listProjects(), currentList);
-            console.log(projects);
+            // nav.replaceChild(listProjects(), currentList);
+            // console.log(projects);
+
 
         }
 
@@ -94,7 +95,8 @@ function setupHTML() {
         let projectList = listProjects();
         
         const navElement = view.createElement('div', 'navbar');
-        const newProjectBtn = view.createButton('New Project', 'newProjectBtn', addProject);        
+        const newProjectBtn = view.createButton('New Project', 'newProjectBtn', addProject);    
+        newProjectBtn.id = 'openModal';    
 
         // todo: style and position new project button
         navElement.append(newProjectBtn, projectList);
@@ -188,3 +190,5 @@ setupHTML();
 projects['Daily'].run();
 
 console.log(Object.keys(projects));
+
+document.body.appendChild(view.createModal());
