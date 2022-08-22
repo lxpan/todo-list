@@ -340,13 +340,17 @@ export default (function view() {
         const modalHeading = document.createElement('h1');
         const modalParagraph = document.createElement('p');
         const closeModalBtn = document.createElement('button');
+        
+        closeModalBtn.id = 'closeModal';
 
         modalHeading.textContent = 'This my modal and this my life';
         modalParagraph.textContent = loremIpsum;
         closeModalBtn.textContent = 'Close Modal';
+        
 
         modal.append(modalHeading, modalParagraph, closeModalBtn);
         modalContainer.appendChild(modal);
+        
         return modalContainer;
     }
 
