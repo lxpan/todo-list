@@ -498,7 +498,7 @@ export default (function view() {
             }
             
             const logProjects = () => {
-                console.log(projects);
+                console.log(config.projects);
             }
     
             const debugBtn = createButton('*', 'debugBtn', logProjects);
