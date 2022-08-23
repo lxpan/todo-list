@@ -242,7 +242,6 @@ export default (function view() {
                     e.preventDefault();
                     const itemId = e.target.closest('.todoItem').id;
                     this.config.currentProject.deleteItem(itemId);
-                    localStorage.get()
                 }
 
                 const deleteBtn = createButton('Delete Item', 'deleteItemBtn', deleteItem);
