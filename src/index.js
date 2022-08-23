@@ -52,8 +52,12 @@ function setupHTML() {
         const logItemsInObject = () => {
             console.table(currentProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
         }
+
+        const logProjects = () => {
+            console.log(projects);
+        }
     
-        const debugBtn = view.createButton('*', 'debugBtn', logItemsInObject);
+        const debugBtn = view.createButton('*', 'debugBtn', logProjects);
         return debugBtn;
     }
     
@@ -180,6 +184,10 @@ function addNewProject(name) {
     }
 }
 
+function createProjectFromForm(projectName) {
+    return addNewProject(projectName);
+} 
+
 let projects = {}
 
 addNewProject('Daily');
@@ -192,4 +200,7 @@ projects['Daily'].run();
 // console.log(Object.keys(projects));
 
 document.body.appendChild(view.createModal());
-view.assignModalListener();
+view.assignModalListener(createProjectFromForm);
+
+const projectBtn = document.querySelector('.newProjectBtn');
+projectBtn.click();
