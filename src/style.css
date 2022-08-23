@@ -155,7 +155,7 @@ input[type='text']::placeholder {
     margin-bottom: 15px;
 }
 
-.project-modal--form {
+.project-modal--details {
     display: flex;
     flex-direction: column;
     gap: 5px;

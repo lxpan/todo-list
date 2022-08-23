@@ -356,7 +356,7 @@ export default (function view() {
             notesLabel.name = 'projectNotes';
             notesInput.type = 'text';
 
-            fieldset.className = 'project-modal--form';
+            fieldset.className = 'project-modal--details';
             fieldset.append(legend, nameLabel, nameInput, notesLabel, notesInput);
             form.appendChild(fieldset);
         
@@ -375,6 +375,7 @@ export default (function view() {
         
         
         modalContainer.id = 'modalContainer';
+        modalForm.id = 'project-modal-form';
         submitModalBtn.id = 'submitModal';
         closeModalBtn.id = 'closeModal';
 
