@@ -391,7 +391,7 @@ export default (function view() {
         return modalContainer;
     }
 
-    const assignModalListener = () => {
+    function assignModalListener() {
         const open = document.getElementById('openModal');
         const submit = document.getElementById('submitModal');
         const close = document.getElementById('closeModal');
@@ -403,11 +403,11 @@ export default (function view() {
 
         submit.addEventListener('click', () => {
             modalContainer.classList.remove('showModal');
-        })
+        });
 
         close.addEventListener('click', () => {
             modalContainer.classList.remove('showModal');
-        })
+        });
 
         console.log([open, submit, close, modalContainer]);
     }
