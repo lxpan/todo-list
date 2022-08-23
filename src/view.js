@@ -429,6 +429,8 @@ export default (function view() {
 
         createProjectFunc(projectName, projectNotes);
         updateProjectList(currentProjects);
+
+        e.target.closest('#modalContainer').classList.remove('showModal');
     }
 
     function assignModalListener(addProjectCallback, projectsList) {
