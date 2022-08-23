@@ -451,7 +451,7 @@ export default (function view() {
             modalContainer.classList.remove('showModal');
         });
 
-        console.log([open, submit, close, modalContainer]);
+        // console.log([open, submit, close, modalContainer]);
     }
 
     return {
@@ -463,7 +463,4 @@ export default (function view() {
         createModal,
         assignModalListener
     };
-
-    function displayProjects() {}
-    
 })();
