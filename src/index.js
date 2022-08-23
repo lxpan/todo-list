@@ -49,13 +49,24 @@ function projectRunner(projectName) {
             view.insertProjectItemForm(`#${CONTENT_DIV_ID}`, item);
             view.insertItemChangeListener(item.uuid, newProject);
         });
-    
-        addMockTags(newProject.todoItems);
+
+        
+    }
+
+    const loadStoredItemsIntoDOM = () => {
+        
     }
 
     const run = () => {
-        setupMockProject();
-        loadMockItemsIntoDOM();
+        if(!localStorage.getItem(newProject.name)) {
+            console.log('No stored data detected!');
+            setupMockProject();
+            loadMockItemsIntoDOM();
+            addMockTags(newProject.todoItems);
+        } else {
+            console.log('Stored data detected!');
+            loadMockItemsIntoDOM();
+        }
     }
 
     return {
