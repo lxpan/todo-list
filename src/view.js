@@ -369,16 +369,22 @@ export default (function view() {
         const modal = createElement('div', 'modal');
         const modalHeading = createElement('div', 'project-modal--heading');
         const modalForm = createModalForm();
+        const buttonGroup = document.createElement('div');
+        const submitModalBtn = document.createElement('button');
         const closeModalBtn = document.createElement('button');
         
         
         modalContainer.id = 'modalContainer';
+        submitModalBtn.id = 'submitModal';
         closeModalBtn.id = 'closeModal';
 
         modalHeading.textContent = 'Add Project';
-        closeModalBtn.textContent = 'Close Modal';
 
-        modal.append(modalHeading, modalForm, closeModalBtn);
+        submitModalBtn.textContent = 'Submit Modal';
+        closeModalBtn.textContent = 'Close Modal';
+        buttonGroup.append(submitModalBtn, closeModalBtn);
+
+        modal.append(modalHeading, modalForm, buttonGroup);
         modalContainer.appendChild(modal);
         
         return modalContainer;
