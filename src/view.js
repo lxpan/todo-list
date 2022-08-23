@@ -62,6 +62,10 @@ export default (function view() {
             input.type = 'checkbox';
             input.name = 'itemCompletion';
             input.id = elementID; // link "id" and "for"
+
+            if(item.completion) {
+                input.checked = true;
+            }
             input.addEventListener('click', toggleItemCompletionOnClick);            
             return input
         }
