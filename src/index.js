@@ -173,11 +173,16 @@ function projectRunner(projectName) {
     }
 }
 
-function addNewProject(name) {
+function addNewProject(name, notes=null) {
     const newProject = projectRunner(name);
     
     if(!projects[name]) {
         projects[newProject.name] = newProject;
+
+        if(notes) {
+            projects[newProject.name].newProject.notes = notes;
+        }
+        
     }
     else {
         console.log(`A project named "${name}" already exists. Please try another name.`);
@@ -200,7 +205,7 @@ projects['Daily'].run();
 // console.log(Object.keys(projects));
 
 document.body.appendChild(view.createModal());
-view.assignModalListener(createProjectFromForm);
+view.assignModalListener(addNewProject);
 
 const projectBtn = document.querySelector('.newProjectBtn');
 projectBtn.click();
