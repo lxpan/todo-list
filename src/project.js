@@ -57,6 +57,7 @@ class Project {
             item.setDueDate(value.dueDate);
             item.setTags(value._tags);
             item.setCompletion(value.completion);
+            item.setUUID(key);
             // assign reconstructed object back to instance property
             this.todoItems[key] = item;
         }
@@ -65,7 +66,7 @@ class Project {
 
     retrieveLocalStorage() {
         const parse = JSON.parse(localStorage.getItem(this.name));
-        // console.log(parse);
+        console.log(parse);
         this._reconstructTodoItemObjects(parse);
     }
 
@@ -73,6 +74,18 @@ class Project {
         const item = todoItemFactory(title);
         // this.todoItems.push(item);
         this.todoItems[item.uuid] = item;
+    }
+
+    deleteItem(uuid) {
+        if(this.todoItems[uuid]) {
+            delete this.todoItems[uuid];
+
+            let storedItems = JSON.parse(localStorage.getItem(this.name));
+            delete storedItems[uuid];
+            localStorage.setItem(this.name, JSON.stringify(storedItems));
+        } else {
+            console.log(`Item: ${uuid} does not exist!`);
+        }
     }
 
     get todoItems() {
