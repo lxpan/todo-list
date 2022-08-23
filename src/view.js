@@ -349,11 +349,11 @@ export default (function view() {
             legend.textContent = 'Project Details';
 
             nameLabel.textContent = 'Name';
-            nameLabel.name = 'projectName';
+            nameInput.name = 'projectName';
             nameInput.type = 'text';
 
             notesLabel.textContent = 'Notes';
-            notesLabel.name = 'projectNotes';
+            notesInput.name = 'projectNotes';
             notesInput.type = 'text';
 
             fieldset.className = 'project-modal--details';
@@ -381,7 +381,11 @@ export default (function view() {
 
         modalHeading.textContent = 'Add Project';
 
+        //type="submit" form="form1"
         submitModalBtn.textContent = 'Submit Modal';
+        submitModalBtn.type = 'submit';
+        submitModalBtn.setAttribute('form', 'project-modal-form');
+        
         closeModalBtn.textContent = 'Close Modal';
         buttonGroup.append(submitModalBtn, closeModalBtn);
 
@@ -389,6 +393,17 @@ export default (function view() {
         modalContainer.appendChild(modal);
         
         return modalContainer;
+    }
+
+    const addProjectFromModal = (e) => {
+        e.preventDefault();
+        const form = document.getElementById('project-modal-form');
+        console.log(form);
+        const formData = new FormData(form);
+
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
     }
 
     function assignModalListener() {
@@ -401,9 +416,7 @@ export default (function view() {
             modalContainer.classList.add('showModal');
         });
 
-        submit.addEventListener('click', () => {
-            modalContainer.classList.remove('showModal');
-        });
+        submit.addEventListener('click', addProjectFromModal);
 
         close.addEventListener('click', () => {
             modalContainer.classList.remove('showModal');
