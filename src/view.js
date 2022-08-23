@@ -454,8 +454,8 @@ export default (function view() {
         // console.log([open, submit, close, modalContainer]);
     }
 
-    function setupHTML(config) {
-        let currentProject = config.projects['Daily'].newProject;
+    function setupHTML() {
+        let currentProject = this.config.projects['Daily'].newProject;
     
         const clickLastTodoItem = () => {
             const items = document.querySelectorAll('.todoItem');
@@ -498,7 +498,7 @@ export default (function view() {
             }
             
             const logProjects = () => {
-                console.log(config.projects);
+                console.log(this.config.projects);
             }
     
             const debugBtn = createButton('*', 'debugBtn', logProjects);
@@ -519,7 +519,7 @@ export default (function view() {
                 const listOfProjects = createElement('ul', 'projectList');
                 
                 // Insert list of projects into DOM
-                Object.keys(config.projects).forEach(project => {
+                Object.keys(this.config.projects).forEach(project => {
                     const projectItem = document.createElement('li');
                     projectItem.id = project;
                     projectItem.textContent = project;
@@ -542,12 +542,12 @@ export default (function view() {
         
         const gridContainer = createElement('div', 'gridContainer');
         const content = document.createElement('div');
-        content.id = config.CONTENT_DIV_ID;
+        content.id = this.config.CONTENT_DIV_ID;
         
         gridContainer.append(navbar(), content);
         document.body.append(setupHeader(), gridContainer);
         
-        insertProjectHeading(`#${config.CONTENT_DIV_ID}`, 'Replace with Project Name');
+        insertProjectHeading(`#${this.config.CONTENT_DIV_ID}`, 'Replace with Project Name');
     }
 
     return {
