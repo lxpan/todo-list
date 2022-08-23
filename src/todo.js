@@ -64,6 +64,10 @@ const setterMixin = {
 
     setCompletion (completion) {
         this.completion = completion;
+    },
+
+    setUUID (id) {
+        this.uuid = id;
     }
 }
 
