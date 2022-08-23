@@ -333,23 +333,52 @@ export default (function view() {
     const loremIpsum = (() => {
         return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     })();
-
+    
     const createModal = () => {
+        const createModalForm = () => {
+            const form = document.createElement('form');
+
+            const fieldset = document.createElement('fieldset');
+            const legend = document.createElement('legend');
+
+            const nameLabel = document.createElement('label');
+            const nameInput = document.createElement('input');
+            const notesLabel = document.createElement('label');
+            const notesInput = document.createElement('input');
+
+            legend.textContent = 'Project Details';
+
+            nameLabel.textContent = 'Name';
+            nameLabel.name = 'projectName';
+            nameInput.type = 'text';
+
+            notesLabel.textContent = 'Notes';
+            notesLabel.name = 'projectNotes';
+            notesInput.type = 'text';
+
+            fieldset.className = 'project-modal--form';
+            fieldset.append(legend, nameLabel, nameInput, notesLabel, notesInput);
+            form.appendChild(fieldset);
+        
+            return form;
+        }
+
+
         const modalContainer = createElement('div', 'modalContainer');
+        
         const modal = createElement('div', 'modal');
-        const modalHeading = document.createElement('h1');
-        const modalParagraph = document.createElement('p');
+        const modalHeading = createElement('div', 'project-modal--heading');
+        const modalForm = createModalForm();
         const closeModalBtn = document.createElement('button');
+        
         
         modalContainer.id = 'modalContainer';
         closeModalBtn.id = 'closeModal';
 
-        modalHeading.textContent = 'This my modal and this my life';
-        modalParagraph.textContent = loremIpsum;
+        modalHeading.textContent = 'Add Project';
         closeModalBtn.textContent = 'Close Modal';
-        
 
-        modal.append(modalHeading, modalParagraph, closeModalBtn);
+        modal.append(modalHeading, modalForm, closeModalBtn);
         modalContainer.appendChild(modal);
         
         return modalContainer;

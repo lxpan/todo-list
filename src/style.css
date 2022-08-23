@@ -139,20 +139,25 @@ input[type='text']::placeholder {
     padding: 30px 50px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    width: 600px;
+    width: 300px;
     max-width: 100%;
-    text-align: center;
-}
-
-.modal h1 {
-    margin: 0;
-}
-
-.modal p {
-    opacity: 0.7;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .modalContainer.showModal {
     opacity: 1;
     pointer-events: auto;
+}
+
+.project-modal--heading {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.project-modal--form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 15px;
 }
