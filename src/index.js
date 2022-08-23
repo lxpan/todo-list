@@ -191,7 +191,10 @@ addNewProject('Empty');
 addNewProject('Investigations');
 
 // setupHTML();
-view.setupHTML(DOM_CONFIG);
+view.config = DOM_CONFIG;
+view.setupHTML();
+console.log(view.config);
+
 projects['Daily'].run();
 
 // console.log(Object.keys(projects));
@@ -199,5 +202,5 @@ projects['Daily'].run();
 document.body.appendChild(view.createModal());
 view.assignModalListener(addNewProject, projects);
 
-const projectBtn = document.querySelector('.newProjectBtn');
-projectBtn.click();
+// const projectBtn = document.querySelector('.newProjectBtn');
+// projectBtn.click();
