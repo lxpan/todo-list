@@ -187,10 +187,6 @@ function addNewProject(name, notes=null) {
     else {
         console.log(`A project named "${name}" already exists. Please try another name.`);
     }
-}
-
-function createProjectFromForm(projectName) {
-    return addNewProject(projectName);
 } 
 
 let projects = {}
