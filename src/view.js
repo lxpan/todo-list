@@ -60,6 +60,7 @@ export default (function view() {
         const createCheckbox = () => {
             const input = document.createElement('input');
             input.type = 'checkbox';
+            input.name = 'itemCompletion';
             input.id = elementID; // link "id" and "for"
             input.addEventListener('click', toggleItemCompletionOnClick);            
             return input
@@ -221,6 +222,7 @@ export default (function view() {
                     item.setNotes(formObj.itemNotes)
                     item.setDate(formObj.itemDate);
                     item.setDueDate(formObj.itemDueDate);
+                    item.setCompletion( (formObj.itemCompletion) ? true : false );
                     console.log(formObj);
                 }
 
@@ -515,8 +517,12 @@ export default (function view() {
             const logProjects = () => {
                 console.log(this.config.projects);
             }
+
+            const logDefaultProjectItems = () => {
+                console.log(this.config.currentProject.todoItems);
+            }
     
-            const debugBtn = createButton('*', 'debugBtn', logProjects);
+            const debugBtn = createButton('*', 'debugBtn', logDefaultProjectItems);
             return debugBtn;
         }
         
