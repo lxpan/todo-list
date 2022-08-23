@@ -9,7 +9,7 @@ const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 // currently selected project
 // let currentProject = null;
 
-// Refactor away "defaultProject" usage
+
 function setupHTML() {
     let currentProject = projects['Daily'].newProject;
 
@@ -71,17 +71,6 @@ function setupHTML() {
     }
 
     const navbar = () => {
-        const addProject = () => {
-            // addNewProject('Foobar123');
-            // const nav = document.querySelector('.navbar');
-            // const currentList = document.querySelector('.projectList');
-
-            // nav.replaceChild(listProjects(), currentList);
-            // console.log(projects);
-
-
-        }
-
         const listProjects = () => {
             const listOfProjects = view.createElement('ul', 'projectList');
             
@@ -99,7 +88,7 @@ function setupHTML() {
         let projectList = listProjects();
         
         const navElement = view.createElement('div', 'navbar');
-        const newProjectBtn = view.createButton('New Project', 'newProjectBtn', addProject);    
+        const newProjectBtn = view.createButton('New Project', 'newProjectBtn', null);    
         newProjectBtn.id = 'openModal';    
 
         // todo: style and position new project button
