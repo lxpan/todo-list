@@ -490,14 +490,14 @@ export default (function view() {
                 currentProject.addItem('');
         
                 // clear current items and reset div
-                const content = document.querySelector(CONTENT_DIV_SELECTOR);
+                const content = document.querySelector(this.config.CONTENT_DIV_SELECTOR);
                 content.innerHTML = '';
-                view.insertProjectHeading(CONTENT_DIV_SELECTOR, currentProject.name);
+                insertProjectHeading(this.config.CONTENT_DIV_SELECTOR, currentProject.name);
         
                 // repopulate list items from project
                 Object.values(currentProject.todoItems).forEach(item => {
-                    view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
-                    view.insertItemChangeListener(item.uuid, currentProject);
+                    insertProjectItemForm(this.config.CONTENT_DIV_SELECTOR, item);
+                    insertItemChangeListener(item.uuid, currentProject);
                 });
         
                 clickLastTodoItem();
