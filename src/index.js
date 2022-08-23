@@ -180,11 +180,18 @@ function addNewProject(name, notes=null) {
 
 let projects = {}
 
+const DOM_CONFIG = {
+    'projects': projects,
+    'CONTENT_DIV_ID': CONTENT_DIV_ID,
+    'CONTENT_DIV_SELECTOR': CONTENT_DIV_SELECTOR
+}
+
 addNewProject('Daily');
 addNewProject('Empty');
 addNewProject('Investigations');
 
-setupHTML();
+// setupHTML();
+view.setupHTML(DOM_CONFIG);
 projects['Daily'].run();
 
 // console.log(Object.keys(projects));

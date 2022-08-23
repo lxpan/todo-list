@@ -454,6 +454,102 @@ export default (function view() {
         // console.log([open, submit, close, modalContainer]);
     }
 
+    function setupHTML(config) {
+        let currentProject = config.projects['Daily'].newProject;
+    
+        const clickLastTodoItem = () => {
+            const items = document.querySelectorAll('.todoItem');
+            const last = items[items.length - 1];
+            
+            const lastElementClickable =
+                (last.getAttribute('titleType') == 'input')
+                    ? last.querySelector("input[type='text']")
+                    : last.querySelector('label');
+            
+            lastElementClickable.click();
+        }
+        
+        const setNewItemBtn = () => {
+            const addNewItem = () => {
+                // add new item to project
+                currentProject.addItem('');
+        
+                // clear current items and reset div
+                const content = document.querySelector(CONTENT_DIV_SELECTOR);
+                content.innerHTML = '';
+                view.insertProjectHeading(CONTENT_DIV_SELECTOR, currentProject.name);
+        
+                // repopulate list items from project
+                Object.values(currentProject.todoItems).forEach(item => {
+                    view.insertProjectItemForm(CONTENT_DIV_SELECTOR, item);
+                    view.insertItemChangeListener(item.uuid, currentProject);
+                });
+        
+                clickLastTodoItem();
+            }
+        
+            const newItemBtn = createButton('+', 'newItemBtn', addNewItem)
+            return newItemBtn;
+        }
+        
+        const setupDebugBtn = () => {
+            const logItemsInObject = () => {
+                console.table(currentProject.todoItems, ['title', 'notes', 'date', 'dueDate', 'checklist', '_tags', 'completion', 'tagify']);
+            }
+            
+            const logProjects = () => {
+                console.log(projects);
+            }
+    
+            const debugBtn = createButton('*', 'debugBtn', logProjects);
+            return debugBtn;
+        }
+        
+        const setupHeader = () => {
+            const header = document.createElement('header');
+            const testHeading = document.createElement('h1');
+            testHeading.textContent = 'Todo List';
+        
+            header.append(testHeading, setNewItemBtn(), setupDebugBtn());
+            return header;
+        }
+    
+        const navbar = () => {
+            const listProjects = () => {
+                const listOfProjects = createElement('ul', 'projectList');
+                
+                // Insert list of projects into DOM
+                Object.keys(config.projects).forEach(project => {
+                    const projectItem = document.createElement('li');
+                    projectItem.id = project;
+                    projectItem.textContent = project;
+                    listOfProjects.appendChild(projectItem);
+                });
+    
+                return listOfProjects;
+            }
+    
+            let projectList = listProjects();
+            
+            const navElement = createElement('div', 'navbar');
+            const newProjectBtn = createButton('New Project', 'newProjectBtn', null);    
+            newProjectBtn.id = 'openModal';    
+    
+            // todo: style and position new project button
+            navElement.append(newProjectBtn, projectList);
+            return navElement;
+        }
+        
+        const gridContainer = createElement('div', 'gridContainer');
+        const content = document.createElement('div');
+        content.id = config.CONTENT_DIV_ID;
+        
+        gridContainer.append(navbar(), content);
+        document.body.append(setupHeader(), gridContainer);
+        
+        insertProjectHeading(`#${config.CONTENT_DIV_ID}`, 'Replace with Project Name');
+    }
+
     return {
         insertProjectHeading,
         insertProjectItemForm,
@@ -461,6 +557,7 @@ export default (function view() {
         createButton,
         insertItemChangeListener,
         createModal,
-        assignModalListener
+        assignModalListener,
+        setupHTML
     };
 })();
