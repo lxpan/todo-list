@@ -190,7 +190,7 @@ projects['Daily'].run();
 // console.log(Object.keys(projects));
 
 document.body.appendChild(view.createModal());
-view.assignModalListener(addNewProject);
+view.assignModalListener(addNewProject, projects);
 
 const projectBtn = document.querySelector('.newProjectBtn');
 projectBtn.click();

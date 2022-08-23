@@ -334,6 +334,26 @@ export default (function view() {
         return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     })();
 
+    const updateProjectList = (projectsObj) => {
+        const listProjects = () => {
+            const listOfProjects = createElement('ul', 'projectList');
+            
+            // Insert list of projects into DOM
+            Object.keys(projectsObj).forEach(project => {
+                const projectItem = document.createElement('li');
+                projectItem.id = project;
+                projectItem.textContent = project;
+                listOfProjects.appendChild(projectItem);
+            });
+
+            return listOfProjects;
+        }
+        
+        const currentProjectList = document.querySelector('.projectList');
+        currentProjectList.parentNode.replaceChild(listProjects(), currentProjectList);
+
+    }
+    
     const createModal = () => {
         const createModalForm = () => {
             const form = document.createElement('form');
@@ -401,15 +421,17 @@ export default (function view() {
         e.preventDefault();
         const form = document.getElementById('project-modal-form');
         const formData = new FormData(form);
-        const createProjectFunc = e.currentTarget.myParam;
+        const createProjectFunc = e.currentTarget.callbackFunc;
+        const currentProjects = e.currentTarget.projects;
 
         let projectName = formData.get('projectName');
         let projectNotes = formData.get('projectNotes');
 
         createProjectFunc(projectName, projectNotes);
+        updateProjectList(currentProjects);
     }
 
-    function assignModalListener(addProjectCallback) {
+    function assignModalListener(addProjectCallback, projectsList) {
         const open = document.getElementById('openModal');
         const submit = document.getElementById('submitModal');
         const close = document.getElementById('closeModal');
@@ -420,7 +442,8 @@ export default (function view() {
         });
 
         submit.addEventListener('click', addProjectFromModal, false);
-        submit.myParam = addProjectCallback;
+        submit.callbackFunc = addProjectCallback;
+        submit.projects = projectsList;
 
         close.addEventListener('click', () => {
             modalContainer.classList.remove('showModal');
