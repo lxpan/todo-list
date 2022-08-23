@@ -333,7 +333,7 @@ export default (function view() {
     const loremIpsum = (() => {
         return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     })();
-    
+
     const createModal = () => {
         const createModalForm = () => {
             const form = document.createElement('form');
@@ -401,16 +401,15 @@ export default (function view() {
         e.preventDefault();
         const form = document.getElementById('project-modal-form');
         const formData = new FormData(form);
+        const createProjectFunc = e.currentTarget.myParam;
 
-        // for (let [key, value] of formData.entries()) {
-        //     console.log(`${key}: ${value}`);
-        // }
+        let projectName = formData.get('projectName');
+        let projectNotes = formData.get('projectNotes');
 
-        console.log(formData.get('projectName'));
-        console.log(formData.get('projectNotes'));
+        createProjectFunc(projectName, projectNotes);
     }
 
-    function assignModalListener() {
+    function assignModalListener(addProjectCallback) {
         const open = document.getElementById('openModal');
         const submit = document.getElementById('submitModal');
         const close = document.getElementById('closeModal');
@@ -420,7 +419,8 @@ export default (function view() {
             modalContainer.classList.add('showModal');
         });
 
-        submit.addEventListener('click', addProjectFromModal);
+        submit.addEventListener('click', addProjectFromModal, false);
+        submit.myParam = addProjectCallback;
 
         close.addEventListener('click', () => {
             modalContainer.classList.remove('showModal');
