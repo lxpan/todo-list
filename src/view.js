@@ -231,16 +231,32 @@ export default (function view() {
                 btn.textContent = 'Save Changes';
                 btn.addEventListener('click', onSubmit);
 
-                const saveBtnContainer = createElement('div', 'saveBtnContainer');
-                saveBtnContainer.appendChild(btn);
+                // const saveBtnContainer = createElement('div', 'saveBtnContainer');
+                // saveBtnContainer.appendChild(btn);
 
-                return saveBtnContainer;
+                return btn;
             })();
+
+            const deleteBtn = (() => {
+                const deleteItem = (e) => {
+                    e.preventDefault();
+                    const itemId = e.target.closest('.todoItem').id;
+                    this.config.currentProject.deleteItem(itemId);
+                    localStorage.get()
+                }
+
+                const deleteBtn = createButton('Delete Item', 'deleteItemBtn', deleteItem);
+
+                return deleteBtn;
+            })();
+
+            const buttonGroup = createElement('div', 'itemButtonGroup');
+            buttonGroup.append(deleteBtn, saveBtn);
 
             // content that will show (expand) when item title is clicked
             const expandable = document.createElement('div');
             expandable.classList.add('itemInfo', 'contracted', 'hidden');
-            expandable.append(notesInput, itemTaskListDiv, datesDiv, tagsDiv, saveBtn);
+            expandable.append(notesInput, itemTaskListDiv, datesDiv, tagsDiv, buttonGroup);
 
             tagifyInput(expandable.querySelector('.tagsInput'));
             
