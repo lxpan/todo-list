@@ -363,47 +363,51 @@ export default (function view() {
             return form;
         }
 
+        const createModalContainer = () => {
+            const modalContainer = createElement('div', 'modalContainer');
+        
+            const modal = createElement('div', 'modal');
+            const modalHeading = createElement('div', 'project-modal--heading');
+            const modalForm = createModalForm();
+            const buttonGroup = document.createElement('div');
+            const submitModalBtn = document.createElement('button');
+            const closeModalBtn = document.createElement('button');
+            
+            
+            modalContainer.id = 'modalContainer';
+            modalForm.id = 'project-modal-form';
+            submitModalBtn.id = 'submitModal';
+            closeModalBtn.id = 'closeModal';
+    
+            modalHeading.textContent = 'Add Project';
+    
+            //type="submit" form="form1"
+            submitModalBtn.textContent = 'Submit Modal';
+            submitModalBtn.type = 'submit';
+            submitModalBtn.setAttribute('form', 'project-modal-form');
+            
+            closeModalBtn.textContent = 'Close Modal';
+            buttonGroup.append(submitModalBtn, closeModalBtn);
+    
+            modal.append(modalHeading, modalForm, buttonGroup);
+            modalContainer.appendChild(modal);
+            return modalContainer;    
+        }
 
-        const modalContainer = createElement('div', 'modalContainer');
-        
-        const modal = createElement('div', 'modal');
-        const modalHeading = createElement('div', 'project-modal--heading');
-        const modalForm = createModalForm();
-        const buttonGroup = document.createElement('div');
-        const submitModalBtn = document.createElement('button');
-        const closeModalBtn = document.createElement('button');
-        
-        
-        modalContainer.id = 'modalContainer';
-        modalForm.id = 'project-modal-form';
-        submitModalBtn.id = 'submitModal';
-        closeModalBtn.id = 'closeModal';
-
-        modalHeading.textContent = 'Add Project';
-
-        //type="submit" form="form1"
-        submitModalBtn.textContent = 'Submit Modal';
-        submitModalBtn.type = 'submit';
-        submitModalBtn.setAttribute('form', 'project-modal-form');
-        
-        closeModalBtn.textContent = 'Close Modal';
-        buttonGroup.append(submitModalBtn, closeModalBtn);
-
-        modal.append(modalHeading, modalForm, buttonGroup);
-        modalContainer.appendChild(modal);
-        
-        return modalContainer;
+        return createModalContainer();
     }
 
     const addProjectFromModal = (e) => {
         e.preventDefault();
         const form = document.getElementById('project-modal-form');
-        console.log(form);
         const formData = new FormData(form);
 
-        for (let [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
+        // for (let [key, value] of formData.entries()) {
+        //     console.log(`${key}: ${value}`);
+        // }
+
+        console.log(formData.get('projectName'));
+        console.log(formData.get('projectNotes'));
     }
 
     function assignModalListener() {
