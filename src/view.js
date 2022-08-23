@@ -455,7 +455,7 @@ export default (function view() {
     }
 
     function setupHTML() {
-        let currentProject = this.config.projects['Daily'].newProject;
+        let currentProject = this.config.currentProject;
     
         const clickLastTodoItem = () => {
             const items = document.querySelectorAll('.todoItem');

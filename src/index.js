@@ -23,7 +23,7 @@ function projectRunner(projectName) {
     }
     
     function setupMockProject() {
-        newProject.notes = 'My food journal';
+        newProject.notes = 'Everyday tasks.';
     
         newProject.addItem('Mail parcel to Mum');
         newProject.addItem('Pay the bills');
@@ -92,6 +92,8 @@ const DOM_CONFIG = {
 addNewProject('Daily');
 addNewProject('Empty');
 addNewProject('Investigations');
+
+DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject;
 
 view.config = DOM_CONFIG;
 view.setupHTML();
