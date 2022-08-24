@@ -551,7 +551,15 @@ export default (function view() {
                 if (projectOnDisplay.name != projectClicked) {
                     // switch global focus to clicked project
                     this.config.currentProject = this.config.projects[projectClicked].newProject;
-                    // run this project
+                    
+                    // remove existing todoItems
+                    const currentItems = document.querySelectorAll('.todoItem');
+                    
+                    currentItems.forEach(item => {
+                        item.remove();
+                    });
+                    
+                    // run this project (populate todo items)
                     this.config.projects[projectClicked].run();
 
 
