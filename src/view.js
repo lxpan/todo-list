@@ -5,6 +5,7 @@ import '@yaireo/tagify/dist/tagify.css';
 
 export default (function view() {
     let elementID = 0;
+    let config = null;
 
     function createElement(elementName, className=null) {
         const element = document.createElement(elementName);
@@ -540,6 +541,26 @@ export default (function view() {
         }
     
         const navbar = () => {
+            const switchProject = (e) => {
+                const projectClicked = e.target.parentNode.id;
+                const projectOnDisplay = this.config.currentProject;
+
+                // console.log(`Project clicked: ${projectClicked}`);
+                // console.log(`Current project: ${projectOnDisplay.name}`);
+        
+                if (projectOnDisplay.name != projectClicked) {
+                    // switch global focus to clicked project
+                    this.config.currentProject = this.config.projects[projectClicked].newProject;
+                    // run this project
+                    this.config.projects[projectClicked].run();
+
+
+                    console.log(this.config.currentProject);
+                } else {
+                    console.log("Project is already displayed!");
+                }
+            }
+
             const listProjects = () => {
                 const listOfProjects = createElement('ul', 'projectList');
                 listOfProjects.className = 'nav--links';
@@ -552,6 +573,7 @@ export default (function view() {
                     const link = document.createElement('a');
                     link.textContent = project;
                     link.href = '#';
+                    link.addEventListener('click', switchProject);
                     projectItem.appendChild(link);
                     
                     // projectItem.textContent = project;
