@@ -39,11 +39,18 @@ export default (function view() {
         return dateDiv;
     }
 
-    function insertProjectHeading(query, projectName) {
+    function insertProjectHeading(query, projectName, replace=false) {
         const targetDiv = document.querySelector(query);
         const projectHeading = document.createElement('h2');
         projectHeading.textContent = projectName;
-        targetDiv.appendChild(projectHeading);
+
+        const currentHeading = document.querySelector('#content > h2');
+
+        if(replace) {
+            targetDiv.replaceChild(projectHeading, currentHeading);
+        } else {
+            targetDiv.appendChild(projectHeading);
+        }
     }
 
     function insertProjectItemForm(query, item) {
@@ -561,6 +568,8 @@ export default (function view() {
                     
                     // run this project (populate todo items)
                     this.config.projects[projectClicked].run();
+
+                    insertProjectHeading(`#${this.config.CONTENT_DIV_ID}`, this.config.currentProject.name, true);
 
 
                     console.log(this.config.currentProject);
