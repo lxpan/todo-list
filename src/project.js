@@ -66,7 +66,7 @@ class Project {
 
     retrieveLocalStorage() {
         const parse = JSON.parse(localStorage.getItem(this.name));
-        console.log(parse);
+        // console.log(parse);
         this._reconstructTodoItemObjects(parse);
     }
 

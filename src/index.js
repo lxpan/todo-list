@@ -108,7 +108,7 @@ DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject;
 
 view.config = DOM_CONFIG;
 view.setupHTML();
-console.log(view.config);
+// console.log(view.config);
 
 projects['Daily'].run();
 
