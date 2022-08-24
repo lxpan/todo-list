@@ -611,7 +611,7 @@ export default (function view() {
         gridContainer.append(navbar(), content);
         document.body.append(setupHeader(), gridContainer);
         
-        insertProjectHeading(`#${this.config.CONTENT_DIV_ID}`, 'Replace with Project Name');
+        insertProjectHeading(`#${this.config.CONTENT_DIV_ID}`, this.config.currentProject.name);
     }
 
     return {
