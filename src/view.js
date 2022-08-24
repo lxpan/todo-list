@@ -378,7 +378,8 @@ export default (function view() {
             return listOfProjects;
         }
         
-        const currentProjectList = document.querySelector('.projectList');
+        const currentProjectList = document.querySelector('.nav--links');
+        console.log(currentProjectList);
         currentProjectList.parentNode.replaceChild(listProjects(), currentProjectList);
 
     }
