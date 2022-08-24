@@ -542,12 +542,21 @@ export default (function view() {
         const navbar = () => {
             const listProjects = () => {
                 const listOfProjects = createElement('ul', 'projectList');
+                listOfProjects.className = 'nav--links';
                 
                 // Insert list of projects into DOM
                 Object.keys(this.config.projects).forEach(project => {
                     const projectItem = document.createElement('li');
                     projectItem.id = project;
-                    projectItem.textContent = project;
+
+                    const link = document.createElement('a');
+                    link.textContent = project;
+                    link.href = '#';
+                    projectItem.appendChild(link);
+                    
+                    // projectItem.textContent = project;
+
+
                     listOfProjects.appendChild(projectItem);
                 });
     
