@@ -378,7 +378,7 @@ export default (function view() {
 
             // remove existing todoItems
             const currentItems = document.querySelectorAll('.todoItem');
-            console.log(currentItems);
+            // console.log(currentItems);
 
             currentItems.forEach(item => {
                 item.remove();
@@ -540,6 +540,7 @@ export default (function view() {
         
         const setNewItemBtn = () => {
             const addNewItem = () => {
+                const currentProject = configuration.currentProject;
                 // add new item to project
                 currentProject.addItem('');
         
