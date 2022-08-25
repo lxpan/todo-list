@@ -60,9 +60,10 @@ function projectRunner(projectName) {
     const run = () => {
         if(!localStorage.getItem(newProject.name)) {
             console.log('No stored data detected!');
-            setupMockProject();
             loadMockItemsIntoDOM();
-            addMockTags(newProject.todoItems);
+            // setupMockProject();
+            // loadMockItemsIntoDOM();
+            // addMockTags(newProject.todoItems);
         } else {
             console.log('Stored data detected!');
             loadMockItemsIntoDOM();
