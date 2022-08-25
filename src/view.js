@@ -5,7 +5,12 @@ import '@yaireo/tagify/dist/tagify.css';
 
 export default (function view() {
     let elementID = 0;
-    let config = null;
+    let configuration = null;
+
+    function bindConfig() {
+        configuration = this.config;
+        console.log(configuration);
+    }
 
     function createElement(elementName, className=null) {
         const element = document.createElement(elementName);
@@ -363,25 +368,60 @@ export default (function view() {
         return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     })();
 
-    const updateProjectList = (projectsObj) => {
-        const listProjects = () => {
-            const listOfProjects = createElement('ul', 'projectList');
-            
-            // Insert list of projects into DOM
-            Object.keys(projectsObj).forEach(project => {
-                const projectItem = document.createElement('li');
-                projectItem.id = project;
-                projectItem.textContent = project;
-                listOfProjects.appendChild(projectItem);
+    function switchProject(e) {
+        const projectClicked = e.target.parentNode.id;
+        const projectOnDisplay = configuration.currentProject;
+
+        if (projectOnDisplay.name != projectClicked) {
+            // switch global focus to clicked project
+            configuration.currentProject = configuration.projects[projectClicked].newProject;
+
+            // remove existing todoItems
+            const currentItems = document.querySelectorAll('.todoItem');
+            console.log(currentItems);
+
+            currentItems.forEach(item => {
+                item.remove();
             });
 
-            return listOfProjects;
+            // run this project (populate todo items)
+            configuration.projects[projectClicked].run();
+            // assign currentProject to clicked project
+            configuration.currentProject = configuration.projects[projectClicked].newProject;
+
+            // insertProjectHeading(`#${configuration.CONTENT_DIV_ID}`, configuration.currentProject.name, true);
+
+            console.log(configuration.currentProject);
+        } else {
+            console.log("Project is already displayed!");
         }
+    }
+
+    function refreshProjectsList() {
+        const listOfProjects = createElement('ul', 'projectList');
+        listOfProjects.className = 'nav--links';
         
+        // Insert list of projects into DOM
+        Object.keys(configuration.projects).forEach(project => {
+            const projectItem = document.createElement('li');
+            projectItem.id = project;
+
+            const link = document.createElement('a');
+            link.textContent = project;
+            link.href = '#';
+            link.addEventListener('click', switchProject);
+            
+            projectItem.appendChild(link);
+            listOfProjects.appendChild(projectItem);
+        });
+
+        return listOfProjects;
+    }
+
+    const updateProjectList = () => {
         const currentProjectList = document.querySelector('.nav--links');
         console.log(currentProjectList);
-        currentProjectList.parentNode.replaceChild(listProjects(), currentProjectList);
-
+        currentProjectList.parentNode.replaceChild(refreshProjectsList(), currentProjectList);
     }
     
     const createModal = () => {
@@ -452,13 +492,12 @@ export default (function view() {
         const form = document.getElementById('project-modal-form');
         const formData = new FormData(form);
         const createProjectFunc = e.currentTarget.callbackFunc;
-        const currentProjects = e.currentTarget.projects;
 
         let projectName = formData.get('projectName');
         let projectNotes = formData.get('projectNotes');
 
         createProjectFunc(projectName, projectNotes);
-        updateProjectList(currentProjects);
+        updateProjectList();
 
         e.target.closest('#modalContainer').classList.remove('showModal');
     }
@@ -549,68 +588,12 @@ export default (function view() {
         }
     
         const navbar = () => {
-            const switchProject = (e) => {
-                const projectClicked = e.target.parentNode.id;
-                const projectOnDisplay = this.config.currentProject;
-
-                // console.log(`Project clicked: ${projectClicked}`);
-                // console.log(`Current project: ${projectOnDisplay.name}`);
-        
-                if (projectOnDisplay.name != projectClicked) {
-                    // switch global focus to clicked project
-                    this.config.currentProject = this.config.projects[projectClicked].newProject;
-                    
-                    // remove existing todoItems
-                    const currentItems = document.querySelectorAll('.todoItem');
-                    
-                    currentItems.forEach(item => {
-                        item.remove();
-                    });
-                    
-                    // run this project (populate todo items)
-                    this.config.projects[projectClicked].run();
-
-                    insertProjectHeading(`#${this.config.CONTENT_DIV_ID}`, this.config.currentProject.name, true);
-
-
-                    console.log(this.config.currentProject);
-                } else {
-                    console.log("Project is already displayed!");
-                }
-            }
-
-            const listProjects = () => {
-                const listOfProjects = createElement('ul', 'projectList');
-                listOfProjects.className = 'nav--links';
-                
-                // Insert list of projects into DOM
-                Object.keys(this.config.projects).forEach(project => {
-                    const projectItem = document.createElement('li');
-                    projectItem.id = project;
-
-                    const link = document.createElement('a');
-                    link.textContent = project;
-                    link.href = '#';
-                    link.addEventListener('click', switchProject);
-                    projectItem.appendChild(link);
-                    
-                    // projectItem.textContent = project;
-
-
-                    listOfProjects.appendChild(projectItem);
-                });
-    
-                return listOfProjects;
-            }
-    
-            let projectList = listProjects();
-            
             const navElement = createElement('div', 'navbar');
             const newProjectBtn = createButton('New Project', 'newProjectBtn', null);    
             newProjectBtn.id = 'openModal';    
     
             // todo: style and position new project button
-            navElement.append(newProjectBtn, projectList);
+            navElement.append(newProjectBtn, refreshProjectsList());
             return navElement;
         }
         
@@ -632,6 +615,7 @@ export default (function view() {
         insertItemChangeListener,
         createModal,
         assignModalListener,
-        setupHTML
+        setupHTML,
+        bindConfig
     };
 })();
