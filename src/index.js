@@ -107,6 +107,7 @@ addNewProject('Investigations');
 DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject;
 
 view.config = DOM_CONFIG;
+view.bindConfig();
 view.setupHTML();
 // console.log(view.config);
 
