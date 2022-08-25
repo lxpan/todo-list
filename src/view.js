@@ -389,7 +389,7 @@ export default (function view() {
             // assign currentProject to clicked project
             configuration.currentProject = configuration.projects[projectClicked].newProject;
 
-            // insertProjectHeading(`#${configuration.CONTENT_DIV_ID}`, configuration.currentProject.name, true);
+            insertProjectHeading(`#${configuration.CONTENT_DIV_ID}`, configuration.currentProject.name, true);
 
             console.log(configuration.currentProject);
         } else {
