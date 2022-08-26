@@ -53,7 +53,7 @@ header {
 .newItemBtn {
     padding: 5px 10px;
     background-color: greenyellow;
-    font-size: 1rem;
+    border: 1px solid black;
 }
 
 .todoItem.active {

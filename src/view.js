@@ -3,6 +3,9 @@ import { format, addYears, subYears, parseISO } from 'date-fns';
 import Tagify from '@yaireo/tagify';
 import '@yaireo/tagify/dist/tagify.css';
 
+// Images
+import plantImg from './images/plant.png';
+
 export default (function view() {
     let elementID = 0;
     let configuration = null;
@@ -586,7 +589,14 @@ export default (function view() {
                 clickLastTodoItem();
             }
         
-            const newItemBtn = createButton('+', 'newItemBtn', addNewItem)
+            // const newItemBtn = createButton('+', 'newItemBtn', addNewItem)
+
+            const newItemBtn = document.createElement('input');
+            newItemBtn.type = 'image';
+            newItemBtn.src = plantImg;
+            newItemBtn.name = 'newItemBtn';
+            newItemBtn.addEventListener('click', addNewItem);
+            newItemBtn.className = 'newItemBtn';
             return newItemBtn;
         }
         
