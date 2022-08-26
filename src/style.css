@@ -50,10 +50,11 @@ header {
     width: 80%;
 }
 
-.newItemBtn {
-    padding: 5px 10px;
-    background-color: greenyellow;
-    border: 1px solid black;
+.newProjectBtn, .newItemBtn {
+    /* background-color: greenyellow; */
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
 }
 
 .todoItem.active {
@@ -160,10 +161,6 @@ input[type='text']::placeholder {
 
 .navbar li {
     list-style-type: none;
-}
-
-.newProjectBtn {
-    width: 100px;
 }
 
 /* New Project Modal Form */
