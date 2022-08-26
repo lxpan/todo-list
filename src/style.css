@@ -16,6 +16,10 @@
 
 :root {
     --default-font: "Montserrat", sans-serif;
+    --header-bg-colour: #7bb2a3;
+    --navbar-bg-colour: #7bb2a3;
+    --content-bg-colour: #7bb2a3;
+    --project-sign-bg-colour: #a05824;
 }
 
 
@@ -35,6 +39,7 @@ header {
     align-items: center;
     width: 100vw;
     font-family: var(--default-font);
+    background-color: var(--header-bg-colour);
 }
 
 .gridContainer {
@@ -48,6 +53,8 @@ header {
     /* font-size: 2rem; */
     font-family: arial;
     width: 80%;
+    background-color: var(--content-bg-colour);
+    ;
 }
 
 .newProjectBtn, .newItemBtn {
@@ -64,6 +71,7 @@ header {
 .todoItem input[type='text'] {
     font-size: 1rem;
     width: 80%;
+    background-color: skyblue;
     /* border: none; */
     /* border-bottom: 1px solid black; */
 }
@@ -148,7 +156,7 @@ input[type='text']::placeholder {
     flex-direction: column;
     height: 70vh;
     align-items: center;
-    /* background-color: #24252a; */
+    background-color: var(--navbar-bg-colour);
 }
 
 .nav__links > li, a, button {
@@ -163,6 +171,36 @@ input[type='text']::placeholder {
     list-style-type: none;
 }
 
+.pointer {
+    width: 140px;
+    height: 40px;
+    position: relative;
+    background: var(--project-sign-bg-colour);
+    border: 1px solid black;
+}
+
+.pointer:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
+
+.pointer:before {
+    content: "";
+    position: absolute;
+    right: -20px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 20px solid var(--project-sign-bg-colour);
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+}
 /* New Project Modal Form */
 .modalContainer {
     background-color: rgba(0, 0, 0, 0.3);
