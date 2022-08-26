@@ -5,6 +5,7 @@ import '@yaireo/tagify/dist/tagify.css';
 
 // Images
 import plantImg from './images/plant.png';
+import forestImg from './images/forest.png';
 
 export default (function view() {
     let elementID = 0;
@@ -635,7 +636,7 @@ export default (function view() {
     
         const navbar = () => {
             const navElement = createElement('div', 'navbar');
-            const newProjectBtn = createButton('New Project', 'newProjectBtn', null);    
+            const newProjectBtn = createImageButton(forestImg, 'newProjectBtn', null);
             newProjectBtn.id = 'openModal';    
     
             // todo: style and position new project button
