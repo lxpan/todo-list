@@ -610,9 +610,13 @@ export default (function view() {
         const setupHeader = () => {
             const header = document.createElement('header');
             const testHeading = document.createElement('h1');
+            const iconSpan = document.createElement('span');
+
             testHeading.textContent = 'Todo List';
+            iconSpan.className = "material-symbols-outlined";
+            iconSpan.textContent = 'receipt_long';
         
-            header.append(testHeading, setNewItemBtn(), setupDebugBtn());
+            header.append(iconSpan, testHeading, setNewItemBtn(), setupDebugBtn());
             return header;
         }
     
