@@ -6,6 +6,7 @@ import '@yaireo/tagify/dist/tagify.css';
 // Images
 import plantImg from './images/plant.png';
 import forestImg from './images/forest.png';
+import beaverImg from './images/beaver.png';
 
 export default (function view() {
     let elementID = 0;
@@ -616,7 +617,10 @@ export default (function view() {
                 console.log(this.config.currentProject.todoItems);
             }
     
-            const debugBtn = createButton('*', 'debugBtn', logDefaultProjectItems);
+            // const debugBtn = createButton('*', 'debugBtn', logDefaultProjectItems);
+            const debugBtn = createImageButton(beaverImg, 'debugBtn', logProjects);
+
+
             return debugBtn;
         }
         
