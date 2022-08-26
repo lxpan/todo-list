@@ -640,7 +640,7 @@ export default (function view() {
             newProjectBtn.id = 'openModal';    
     
             // todo: style and position new project button
-            navElement.append(setNewItemBtn(), setupDebugBtn(), newProjectBtn, refreshProjectsList());
+            navElement.append(setNewItemBtn(), newProjectBtn, setupDebugBtn(), refreshProjectsList());
             return navElement;
         }
         
