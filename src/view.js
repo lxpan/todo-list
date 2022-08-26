@@ -27,6 +27,16 @@ export default (function view() {
         }
     }
 
+    function createImageButton(src, className, listenerFunc) {
+        const newItemBtn = document.createElement('input');
+        newItemBtn.type = 'image';
+        newItemBtn.src = src
+        newItemBtn.name = className;
+        newItemBtn.addEventListener('click', listenerFunc);
+        newItemBtn.className = className;
+        return newItemBtn;
+    }
+
     function createDateInput(labelName, fieldName, defaultValue) {
         const dateDiv = document.createElement('div');
         const dateLabel = document.createElement('label');
@@ -588,16 +598,8 @@ export default (function view() {
         
                 clickLastTodoItem();
             }
-        
-            // const newItemBtn = createButton('+', 'newItemBtn', addNewItem)
 
-            const newItemBtn = document.createElement('input');
-            newItemBtn.type = 'image';
-            newItemBtn.src = plantImg;
-            newItemBtn.name = 'newItemBtn';
-            newItemBtn.addEventListener('click', addNewItem);
-            newItemBtn.className = 'newItemBtn';
-            return newItemBtn;
+            return createImageButton(plantImg, 'newItemBtn', addNewItem);
         }
         
         const setupDebugBtn = () => {
