@@ -616,7 +616,8 @@ export default (function view() {
             iconSpan.className = "material-symbols-outlined";
             iconSpan.textContent = 'forest';
         
-            header.append(iconSpan, testHeading, setNewItemBtn(), setupDebugBtn());
+            // header.append(iconSpan, testHeading, setNewItemBtn(), setupDebugBtn());
+            header.append(iconSpan, testHeading);
             return header;
         }
     
@@ -626,7 +627,7 @@ export default (function view() {
             newProjectBtn.id = 'openModal';    
     
             // todo: style and position new project button
-            navElement.append(newProjectBtn, refreshProjectsList());
+            navElement.append(setNewItemBtn(), setupDebugBtn(), newProjectBtn, refreshProjectsList());
             return navElement;
         }
         
