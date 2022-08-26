@@ -53,10 +53,6 @@ function projectRunner(projectName) {
         
     }
 
-    const loadStoredItemsIntoDOM = () => {
-        
-    }
-
     const run = () => {
         if(!localStorage.getItem(newProject.name)) {
             console.log('No stored data detected!');
@@ -77,6 +73,32 @@ function projectRunner(projectName) {
     }
 }
 
+function loadStoredProjects () {
+    for (const [name, value] of Object.entries(localStorage)) {
+        // console.log(`key: ${name}, value: ${projectParse}`);
+
+        const project = projectRunner(name);
+        project.newProject.retrieveLocalStorage();
+        
+        if(!projects[name]) {
+            projects[name] = project;
+    
+            // if(notes) {
+            //     projects[name].newProject.notes = notes;
+            // }
+        }
+        else {
+            console.log(`A project named "${name}" already exists. Please try another name.`);
+        }
+
+        
+
+    }
+
+
+
+}
+
 function addNewProject(name, notes=null) {
     const newProject = projectRunner(name);
     
@@ -91,7 +113,7 @@ function addNewProject(name, notes=null) {
     else {
         console.log(`A project named "${name}" already exists. Please try another name.`);
     }
-} 
+}
 
 let projects = {}
 
@@ -101,9 +123,11 @@ const DOM_CONFIG = {
     'CONTENT_DIV_SELECTOR': CONTENT_DIV_SELECTOR
 }
 
-addNewProject('Daily');
-addNewProject('Empty');
-addNewProject('Investigations');
+loadStoredProjects();
+
+// addNewProject('Daily');
+// addNewProject('Empty');
+// addNewProject('Investigations');
 
 DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject;
 
@@ -116,6 +140,9 @@ projects['Daily'].run();
 
 document.body.appendChild(view.createModal());
 view.assignModalListener(addNewProject, projects);
+
+loadStoredProjects();
+
 
 // const projectBtn = document.querySelector('.newProjectBtn');
 // projectBtn.click();
