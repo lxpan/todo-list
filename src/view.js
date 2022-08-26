@@ -612,9 +612,9 @@ export default (function view() {
             const testHeading = document.createElement('h1');
             const iconSpan = document.createElement('span');
 
-            testHeading.textContent = 'Todo List';
+            testHeading.textContent = 'Lister Grove — Todo Lists';
             iconSpan.className = "material-symbols-outlined";
-            iconSpan.textContent = 'receipt_long';
+            iconSpan.textContent = 'forest';
         
             header.append(iconSpan, testHeading, setNewItemBtn(), setupDebugBtn());
             return header;
