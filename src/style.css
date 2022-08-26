@@ -171,12 +171,19 @@ input[type='text']::placeholder {
     list-style-type: none;
 }
 
+.pointer a {
+    color: white;
+    font-weight: bolder;
+}
+
 .pointer {
     width: 140px;
     height: 40px;
     position: relative;
     background: var(--project-sign-bg-colour);
     border: 1px solid black;
+    text-indent: 10%;
+    line-height: 35px;
 }
 
 .pointer:after {
