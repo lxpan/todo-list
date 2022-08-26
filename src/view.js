@@ -207,6 +207,33 @@ export default (function view() {
                 }
             }
 
+            const priorityDropdown = (() => {
+                const priorityDiv = createElement('div', 'priorityDropdown');
+                const label = document.createElement('label');
+                const dropdown = document.createElement('select');
+                const priorities = ['low', 'medium', 'high'];
+
+                dropdown.name = 'itemPriority';
+                label.setAttribute('for', 'priority');
+                label.textContent = 'Priority';
+
+                priorities.forEach(priority => {
+                    const option = document.createElement('option');
+                    option.value = priority;
+                    option.textContent = priority;
+                    dropdown.appendChild(option);
+                });
+
+                if (item.priority) {
+                    let filter = Array.from(dropdown).filter(option => option.value == item.priority);
+                    console.assert(filter.length == 1);
+                    filter[0].selected = true;
+                }
+
+                priorityDiv.append(label, dropdown);
+                return priorityDiv;
+            })();
+
             const saveBtn = (() => {
                 const onSubmit = (e) => {
                     e.preventDefault();
@@ -236,7 +263,8 @@ export default (function view() {
                         }
                     }
                     item.setTitle(formObj.itemTitle);
-                    item.setNotes(formObj.itemNotes)
+                    item.setNotes(formObj.itemNotes);
+                    item.setPriority(formObj.itemPriority);
                     item.setDate(formObj.itemDate);
                     item.setDueDate(formObj.itemDueDate);
                     item.setCompletion( (formObj.itemCompletion) ? true : false );
@@ -274,7 +302,7 @@ export default (function view() {
             // content that will show (expand) when item title is clicked
             const expandable = document.createElement('div');
             expandable.classList.add('itemInfo', 'contracted', 'hidden');
-            expandable.append(notesInput, itemTaskListDiv, datesDiv, tagsDiv, buttonGroup);
+            expandable.append(notesInput, priorityDropdown, itemTaskListDiv, datesDiv, tagsDiv, buttonGroup);
 
             tagifyInput(expandable.querySelector('.tagsInput'));
             

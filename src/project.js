@@ -14,8 +14,8 @@ class Project {
             const finalObj = {};
             
             const selectedProperties = (
-                ({ title, notes, checklist, date, dueDate, _tags, completion }) =>
-                ({ title, notes, checklist, date, dueDate, _tags, completion })
+                ({ title, notes, priority, checklist, date, dueDate, _tags, completion }) =>
+                ({ title, notes, priority, checklist, date, dueDate, _tags, completion })
             )(item);
 
             finalObj[item.uuid] = selectedProperties;
@@ -52,6 +52,7 @@ class Project {
 
             // update remaining fields using setters
             item.setNotes(value.notes);
+            item.setPriority(value.priority);
             item.setChecklist(value.checklist);
             item.setDate(value.date);
             item.setDueDate(value.dueDate);
@@ -66,7 +67,7 @@ class Project {
 
     retrieveLocalStorage() {
         const parse = JSON.parse(localStorage.getItem(this.name));
-        // console.log(parse);
+        console.log(parse);
         this._reconstructTodoItemObjects(parse);
     }
 

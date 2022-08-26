@@ -68,6 +68,10 @@ const setterMixin = {
 
     setUUID (id) {
         this.uuid = id;
+    },
+
+    setPriority (priority) {
+        this.priority = priority;
     }
 }
 
@@ -94,7 +98,8 @@ const getDefaultArgs = function() {
         itemDueDate: null, 
         itemTags: new Array(),
         itemTagify: null,
-        itemNotes: null, 
+        itemNotes: null,
+        itemPriority: null,
         itemChecklist: new Array(),
         itemCompletion: false,
     }
@@ -108,6 +113,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     const tags = def.itemTags;
     const tagify = def.itemTagify;
     const notes = def.itemNotes;
+    const priority = def.itemPriority;
     const _checklist = def.itemChecklist;
     let completion = def.itemCompletion;
 
@@ -156,6 +162,7 @@ export default function todoItemFactory(itemTitle, {...def} = getDefaultArgs()) 
     todoItemObj.checklist = _checklist;
     todoItemObj.completion = completion;
     todoItemObj.uuid = uuid;
+    todoItemObj.priority = priority;
 
     return todoItemObj;
 }
