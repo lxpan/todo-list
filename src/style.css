@@ -4,6 +4,11 @@
 /* forest icon */
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
 
 .material-symbols-outlined {
     font-variation-settings:
@@ -73,8 +78,12 @@ header {
 .todoItem input[type='text'] {
     font-size: 1rem;
     min-width: 60vw;
-    /* border: none; */
-    /* border-bottom: 1px solid black; */
+}
+
+/* Styling Form Inputs */
+input[type='text']::placeholder {
+    color: grey;
+    opacity: 0.5;
 }
 
 .itemInfo {
@@ -125,12 +134,6 @@ header {
         transform: scaleY(0);
         max-height: 0px;
     }
-}
-
-/* Styling Form Inputs */
-input[type='text']::placeholder {
-    color: grey;
-    opacity: 0.5;
 }
 
 /* Save Button and Message */
