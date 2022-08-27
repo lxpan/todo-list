@@ -630,7 +630,7 @@ export default (function view() {
             const testHeading = document.createElement('h1');
             const iconSpan = document.createElement('span');
 
-            testHeading.textContent = 'Lister Grove — Todo Lists';
+            testHeading.textContent = 'Lister Grove';
             iconSpan.className = "material-symbols-outlined";
             iconSpan.textContent = 'forest';
         
