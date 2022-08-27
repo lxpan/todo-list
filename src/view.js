@@ -307,6 +307,12 @@ export default (function view() {
                     e.preventDefault();
                     const itemId = e.target.closest('.todoItem').id;
                     this.config.currentProject.deleteItem(itemId);
+
+                    const todoContainer = document.querySelector(configuration.TODO_CONTAINER);
+                    todoContainer.innerHTML = '';
+                    // this is clumsy - is there a better solution?
+                    configuration.projects[configuration.currentProject.name].run();
+
                 }
 
                 const deleteBtn = createButton('Delete Item', 'deleteItemBtn', deleteItem);
