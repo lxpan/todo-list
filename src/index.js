@@ -122,7 +122,8 @@ let projects = {}
 const DOM_CONFIG = {
     'projects': projects,
     'CONTENT_DIV_ID': CONTENT_DIV_ID,
-    'CONTENT_DIV_SELECTOR': CONTENT_DIV_SELECTOR
+    'CONTENT_DIV_SELECTOR': CONTENT_DIV_SELECTOR,
+    'TODO_CONTAINER': '#todoItemContainer'
 }
 
 loadStoredProjects();

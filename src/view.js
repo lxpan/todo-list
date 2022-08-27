@@ -592,14 +592,13 @@ export default (function view() {
                 currentProject.addItem('');
         
                 // clear current items and reset div
-                const todoItemContainer = document.querySelector('#todoItemContainer');
+                const todoItemContainer = document.querySelector(configuration.TODO_CONTAINER);
                 todoItemContainer.innerHTML = '';
-                // insertProjectHeading(this.config.CONTENT_DIV_SELECTOR, currentProject.name);
-                insertProjectHeading(`#todoItemContainer`, currentProject.name);
+                insertProjectHeading(configuration.TODO_CONTAINER, currentProject.name);
         
                 // repopulate list items from project
                 Object.values(currentProject.todoItems).forEach(item => {
-                    insertProjectItemForm('#todoItemContainer', item);
+                    insertProjectItemForm(configuration.TODO_CONTAINER, item);
                     insertItemChangeListener(item.uuid, currentProject);
                 });
         
