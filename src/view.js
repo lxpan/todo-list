@@ -10,11 +10,11 @@ import beaverImg from './images/beaver.png';
 
 export default (function view() {
     let elementID = 0;
-    let configuration = null;
+    let config = null;
 
-    function bindConfig() {
-        configuration = this.config;
-        console.log(configuration);
+    function bindConfiguration() {
+        config = this.config;
+        console.log(config);
     }
 
     function createElement(elementName, className=null) {
@@ -308,10 +308,10 @@ export default (function view() {
                     const itemId = e.target.closest('.todoItem').id;
                     this.config.currentProject.deleteItem(itemId);
 
-                    const todoContainer = document.querySelector(configuration.TODO_CONTAINER);
+                    const todoContainer = document.querySelector(config.TODO_CONTAINER);
                     todoContainer.innerHTML = '';
                     // this is clumsy - is there a better solution?
-                    configuration.projects[configuration.currentProject.name].run();
+                    config.projects[config.currentProject.name].run();
 
                 }
 
@@ -422,11 +422,11 @@ export default (function view() {
 
     function switchProject(e) {
         const projectClicked = e.target.parentNode.id;
-        const projectOnDisplay = configuration.currentProject;
+        const projectOnDisplay = config.currentProject;
 
         if (projectOnDisplay.name != projectClicked) {
             // switch global focus to clicked project
-            configuration.currentProject = configuration.projects[projectClicked].newProject;
+            config.currentProject = config.projects[projectClicked].newProject;
 
             // remove existing todoItems
             const currentItems = document.querySelectorAll('.todoItem');
@@ -437,13 +437,13 @@ export default (function view() {
             });
 
             // run this project (populate todo items)
-            configuration.projects[projectClicked].run();
+            config.projects[projectClicked].run();
             // assign currentProject to clicked project
-            configuration.currentProject = configuration.projects[projectClicked].newProject;
+            config.currentProject = config.projects[projectClicked].newProject;
 
-            // insertProjectHeading(`#${configuration.CONTENT_DIV_ID}`, configuration.currentProject.name, true);
+            // insertProjectHeading(`#${config.CONTENT_DIV_ID}`, config.currentProject.name, true);
 
-            console.log(configuration.currentProject);
+            console.log(config.currentProject);
         } else {
             console.log("Project is already displayed!");
         }
@@ -454,7 +454,7 @@ export default (function view() {
         listOfProjects.className = 'nav--links';
         
         // Insert list of projects into DOM
-        Object.keys(configuration.projects).forEach(project => {
+        Object.keys(config.projects).forEach(project => {
             const projectItem = document.createElement('li');
             projectItem.id = project;
             projectItem.className = 'project--signpost';
@@ -599,18 +599,18 @@ export default (function view() {
         
         const setNewItemBtn = () => {
             const addNewItem = () => {
-                const currentProject = configuration.currentProject;
+                const currentProject = config.currentProject;
                 // add new item to project
                 currentProject.addItem('');
         
                 // clear current items and reset div
-                const todoItemContainer = document.querySelector(configuration.TODO_CONTAINER);
+                const todoItemContainer = document.querySelector(config.TODO_CONTAINER);
                 todoItemContainer.innerHTML = '';
-                insertProjectHeading(configuration.TODO_CONTAINER, currentProject.name);
+                insertProjectHeading(config.TODO_CONTAINER, currentProject.name);
         
                 // repopulate list items from project
                 Object.values(currentProject.todoItems).forEach(item => {
-                    insertProjectItemForm(configuration.TODO_CONTAINER, item);
+                    insertProjectItemForm(config.TODO_CONTAINER, item);
                     insertItemChangeListener(item.uuid, currentProject);
                 });
         
@@ -688,6 +688,6 @@ export default (function view() {
         createModal,
         assignModalListener,
         setupHTML,
-        bindConfig
+        bindConfiguration
     };
 })();

@@ -135,7 +135,7 @@ loadStoredProjects();
 DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject;
 
 view.config = DOM_CONFIG;
-view.bindConfig();
+view.bindConfiguration();
 view.setupHTML();
 // console.log(view.config);
 
