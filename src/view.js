@@ -547,6 +547,12 @@ export default (function view() {
         updateProjectList();
 
         e.target.closest('#modalContainer').classList.remove('showModal');
+
+        // switch to new project with default empty item
+        const newProjectLink = document.querySelector(`#${projectName} > a`);
+        const newItemBtn = document.querySelector('.newItemBtn');
+        newProjectLink.click();
+        newItemBtn.click();
     }
 
     function assignModalListener(addProjectCallback, projectsList) {
