@@ -64,6 +64,11 @@ header {
     align-items: center;
 }
 
+.project--heading__container {
+    display: flex;
+    width: 100%;
+}
+
 .newProjectBtn, .newItemBtn {
     /* background-color: greenyellow; */
     margin: 0;

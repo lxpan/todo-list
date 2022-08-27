@@ -61,15 +61,18 @@ export default (function view() {
 
     function insertProjectHeading(query, projectName, replace=false) {
         const targetDiv = document.querySelector(query);
+        const headingFlexContainer = createElement('div', 'project--heading__container');
         const projectHeading = document.createElement('h2');
         projectHeading.textContent = projectName;
 
-        const currentHeading = document.querySelector('#content > h2');
+        headingFlexContainer.appendChild(projectHeading);
 
-        if(replace) {
-            targetDiv.replaceChild(projectHeading, currentHeading);
+        const currentHeadingContainer = document.querySelector('.project--heading__container');
+
+        if(replace && currentHeadingContainer) {
+            targetDiv.replaceChild(headingFlexContainer, currentHeadingContainer);
         } else {
-            targetDiv.appendChild(projectHeading);
+            targetDiv.appendChild(headingFlexContainer);
         }
     }
 
@@ -432,7 +435,7 @@ export default (function view() {
             // assign currentProject to clicked project
             configuration.currentProject = configuration.projects[projectClicked].newProject;
 
-            insertProjectHeading(`#${configuration.CONTENT_DIV_ID}`, configuration.currentProject.name, true);
+            // insertProjectHeading(`#${configuration.CONTENT_DIV_ID}`, configuration.currentProject.name, true);
 
             console.log(configuration.currentProject);
         } else {
@@ -652,11 +655,16 @@ export default (function view() {
         const gridContainer = createElement('div', 'gridContainer');
         const content = document.createElement('div');
         content.id = this.config.CONTENT_DIV_ID;
+
+        const todoItemContainer = document.createElement('div');
+        todoItemContainer.id = 'todoItemContainer';
+
+        content.appendChild(todoItemContainer);
         
         gridContainer.append(navbar(), content);
         document.body.append(setupHeader(), gridContainer);
         
-        insertProjectHeading(`#${this.config.CONTENT_DIV_ID}`, this.config.currentProject.name);
+        // insertProjectHeading(`#${this.config.CONTENT_DIV_ID}`, this.config.currentProject.name);
     }
 
     return {

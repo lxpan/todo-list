@@ -43,10 +43,12 @@ function projectRunner(projectName) {
         if(localStorage.getItem(newProject.name)) {
             newProject.retrieveLocalStorage();
         }
+
+        view.insertProjectHeading(`#todoItemContainer`, DOM_CONFIG.currentProject.name, true);
         
         // enumerate items in default project
         Object.values(newProject.todoItems).forEach(item => {
-            view.insertProjectItemForm(`#${CONTENT_DIV_ID}`, item);
+            view.insertProjectItemForm(`#todoItemContainer`, item);
             view.insertItemChangeListener(item.uuid, newProject);
         });
 
@@ -88,7 +90,7 @@ function loadStoredProjects () {
             // }
         }
         else {
-            console.log(`A project named "${name}" already exists. Please try another name.`);
+            // console.log(`A project named "${name}" already exists. Please try another name.`);
         }
 
         
