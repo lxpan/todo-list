@@ -171,12 +171,12 @@ input[type='text']::placeholder {
     list-style-type: none;
 }
 
-.pointer a {
+.project--signpost a {
     color: white;
     font-weight: bolder;
 }
 
-.pointer {
+.project--signpost {
     width: 140px;
     height: 40px;
     position: relative;
@@ -186,7 +186,7 @@ input[type='text']::placeholder {
     line-height: 35px;
 }
 
-.pointer:after {
+.project--signpost:after {
     content: "";
     position: absolute;
     left: 0;
@@ -197,7 +197,7 @@ input[type='text']::placeholder {
     border-bottom: 20px solid transparent;
 }
 
-.pointer:before {
+.project--signpost:before {
     content: "";
     position: absolute;
     right: -20px;

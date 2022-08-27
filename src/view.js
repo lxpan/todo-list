@@ -448,6 +448,7 @@ export default (function view() {
         Object.keys(configuration.projects).forEach(project => {
             const projectItem = document.createElement('li');
             projectItem.id = project;
+            projectItem.className = 'project--signpost';
 
             const link = document.createElement('a');
             link.textContent = project;
