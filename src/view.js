@@ -306,7 +306,7 @@ export default (function view() {
                 const deleteItem = (e) => {
                     e.preventDefault();
                     const itemId = e.target.closest('.todoItem').id;
-                    this.config.currentProject.deleteItem(itemId);
+                    config.currentProject.deleteItem(itemId);
 
                     const todoContainer = document.querySelector(config.TODO_CONTAINER);
                     todoContainer.innerHTML = '';
@@ -583,7 +583,7 @@ export default (function view() {
     }
 
     function setupHTML() {
-        let currentProject = this.config.currentProject;
+        let currentProject = config.currentProject;
     
         const clickLastTodoItem = () => {
             const items = document.querySelectorAll('.todoItem');
@@ -626,11 +626,11 @@ export default (function view() {
             }
             
             const logProjects = () => {
-                console.log(this.config.projects);
+                console.log(config.projects);
             }
 
             const logDefaultProjectItems = () => {
-                console.log(this.config.currentProject.todoItems);
+                console.log(config.currentProject.todoItems);
             }
     
             // const debugBtn = createButton('*', 'debugBtn', logDefaultProjectItems);
@@ -666,7 +666,7 @@ export default (function view() {
         
         const gridContainer = createElement('div', 'gridContainer');
         const content = document.createElement('div');
-        content.id = this.config.CONTENT_DIV_ID;
+        content.id = config.CONTENT_DIV_ID;
 
         const todoItemContainer = document.createElement('div');
         todoItemContainer.id = 'todoItemContainer';
@@ -676,7 +676,7 @@ export default (function view() {
         gridContainer.append(navbar(), content);
         document.body.append(setupHeader(), gridContainer);
         
-        // insertProjectHeading(`#${this.config.CONTENT_DIV_ID}`, this.config.currentProject.name);
+        // insertProjectHeading(`#${config.CONTENT_DIV_ID}`, config.currentProject.name);
     }
 
     return {
