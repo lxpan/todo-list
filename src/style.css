@@ -17,8 +17,8 @@
 :root {
     --default-font: "Montserrat", sans-serif;
     --header-bg-colour: #7bb2a3;
-    --navbar-bg-colour: #7bb2a3;
-    --content-bg-colour: #7bb2a3;
+    --navbar-bg-colour: #415d2e;
+    --content-bg-colour: #fff;
     --project-sign-bg-colour: #a05824;
 }
 
@@ -71,7 +71,6 @@ header {
 .todoItem input[type='text'] {
     font-size: 1rem;
     width: 80%;
-    background-color: skyblue;
     /* border: none; */
     /* border-bottom: 1px solid black; */
 }
