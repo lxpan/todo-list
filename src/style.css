@@ -170,18 +170,18 @@ input[type='text']::placeholder {
     background-color: var(--navbar-bg-colour);
 }
 
-.navbar--button__action {
+.navbar--action__button {
     display: flex;
     align-items: center;
     margin-top: 10px;
     gap: 10px;
 }
 
-.navbar--button__action img {
+.navbar--action__button img {
     width: 32px;
 }
 
-.navbar--button__action span {
+.navbar--action__button span {
     font-family: "Montserrat";
     font-size: .9rem;
     color: white;
