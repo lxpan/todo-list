@@ -29,6 +29,29 @@ export default (function view() {
         }
     }
 
+    function createNavAction(src, text, listenerFunc) {
+        const actionDiv = document.createElement('a');
+        const actionIcon = new Image();
+        const actionText = document.createElement('span');
+
+        actionIcon.src = src;
+        actionText.textContent = text;
+
+        actionDiv.className = 'navbar--button__action';
+        actionDiv.href = '#';
+        actionDiv.append(actionIcon, actionText);
+        actionDiv.addEventListener('click', listenerFunc);
+
+        return actionDiv;
+        // const newItemBtn = document.createElement('input');
+        // newItemBtn.type = 'image';
+        // newItemBtn.src = src
+        // newItemBtn.name = className;
+        // newItemBtn.addEventListener('click', listenerFunc);
+        // newItemBtn.className = className;
+        // return newItemBtn;
+    }
+
     function createImageButton(src, className, listenerFunc) {
         const newItemBtn = document.createElement('input');
         newItemBtn.type = 'image';
@@ -617,7 +640,8 @@ export default (function view() {
                 clickLastTodoItem();
             }
 
-            return createImageButton(plantImg, 'newItemBtn', addNewItem);
+            // return createImageButton(plantImg, 'newItemBtn', addNewItem);
+            return createNavAction(plantImg, 'Add Todo Item', addNewItem);
         }
         
         const setupDebugBtn = () => {
@@ -634,10 +658,8 @@ export default (function view() {
             }
     
             // const debugBtn = createButton('*', 'debugBtn', logDefaultProjectItems);
-            const debugBtn = createImageButton(beaverImg, 'debugBtn', logProjects);
-
-
-            return debugBtn;
+            // const debugBtn = createImageButton(beaverImg, 'debugBtn', logProjects);
+            return createNavAction(beaverImg, 'Debug', logProjects);
         }
         
         const setupHeader = () => {
@@ -656,7 +678,8 @@ export default (function view() {
     
         const navbar = () => {
             const navElement = createElement('div', 'navbar');
-            const newProjectBtn = createImageButton(forestImg, 'newProjectBtn', null);
+            // const newProjectBtn = createImageButton(forestImg, 'newProjectBtn', null);
+            const newProjectBtn = createNavAction(forestImg, 'Add Project', null);
             newProjectBtn.id = 'openModal';    
     
             // todo: style and position new project button
