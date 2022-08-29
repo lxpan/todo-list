@@ -37,7 +37,7 @@ export default (function view() {
         actionIcon.src = src;
         actionText.textContent = text;
 
-        actionDiv.className = 'navbar--action__button';
+        actionDiv.className = 'navbar--action__button newItemBtn';
         actionDiv.href = '#';
         actionDiv.append(actionIcon, actionText);
         actionDiv.addEventListener('click', listenerFunc);
