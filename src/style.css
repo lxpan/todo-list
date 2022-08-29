@@ -262,6 +262,8 @@ input[type='text']::placeholder {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+
+
 .modalContainer.showModal {
     opacity: 1;
     pointer-events: auto;
@@ -277,4 +279,29 @@ input[type='text']::placeholder {
     flex-direction: column;
     gap: 5px;
     margin-bottom: 15px;
+}
+
+.project--modal__buttons button {
+    padding: 5px 15px;
+    border-radius: 8px;
+    border: none;
+    font-family: var(--default-font);
+}
+
+#submitModal {
+    background-color: var(--navbar-bg-colour);
+    color: white;   
+}
+
+#submitModal:hover {
+    background-color: #344b24;
+}
+
+#closeModal {
+    background-color: lightgray;
+    margin-left: 15px;
+}
+
+#closeModal:hover {
+    background-color: rgb(171, 168, 168);
 }
