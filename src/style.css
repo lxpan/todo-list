@@ -189,11 +189,10 @@ input[type='text']::placeholder {
 
 
 
-.nav__links > li, a, button {
+.navbar--projects__links > li, a, button {
     font-family: var(--default-font);
     font-weight: 500;
     font-size: 16px;
-    /* color: #edf0f1; */
     text-decoration: none;
 }
 

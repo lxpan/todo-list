@@ -467,7 +467,7 @@ export default (function view() {
 
     function refreshProjectsList() {
         const listOfProjects = createElement('ul', 'projectList');
-        listOfProjects.className = 'nav--links';
+        listOfProjects.className = 'navbar--projects__links';
         
         // Insert list of projects into DOM
         Object.keys(config.projects).forEach(project => {
@@ -488,7 +488,7 @@ export default (function view() {
     }
 
     const updateProjectList = () => {
-        const currentProjectList = document.querySelector('.nav--links');
+        const currentProjectList = document.querySelector('.navbar--projects__links');
         console.log(currentProjectList);
         currentProjectList.parentNode.replaceChild(refreshProjectsList(), currentProjectList);
     }
