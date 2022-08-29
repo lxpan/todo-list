@@ -168,7 +168,6 @@ input[type='text']::placeholder {
 .navbar {
     display: flex;
     flex-direction: column;
-    height: 70vh;
     align-items: center;
     background-color: var(--navbar-bg-colour);
 }
