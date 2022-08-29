@@ -542,11 +542,11 @@ export default (function view() {
             modalHeading.textContent = 'Add Project';
     
             //type="submit" form="form1"
-            submitModalBtn.textContent = 'Submit Modal';
+            submitModalBtn.textContent = 'Accept';
             submitModalBtn.type = 'submit';
             submitModalBtn.setAttribute('form', 'project-modal-form');
             
-            closeModalBtn.textContent = 'Close Modal';
+            closeModalBtn.textContent = 'Cancel';
             buttonGroup.append(submitModalBtn, closeModalBtn);
     
             modal.append(modalHeading, modalForm, buttonGroup);
