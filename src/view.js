@@ -7,6 +7,7 @@ import '@yaireo/tagify/dist/tagify.css';
 import plantImg from './images/plant.png';
 import forestImg from './images/forest.png';
 import beaverImg from './images/beaver.png';
+import lumberjackImg from './images/lumberjacking.png';
 
 export default (function view() {
     let elementID = 0;
@@ -651,6 +652,21 @@ export default (function view() {
     
             return createNavAction(beaverImg, 'Debug', logProjects);
         }
+
+        const setupDeleteProjectBtn = () => {
+            const deleteProject = (e) => {
+                const current = config.currentProject.name;
+                if (localStorage.getItem(current)) {
+                    localStorage.removeItem(current);
+                    location.reload();
+                    console.log(`Project "${current}" exists in localstorage!`);
+                } else {
+                    console.log(`Project "${current}" not found!`);
+                }
+            }
+
+            return createNavAction(lumberjackImg, 'Delete Project', deleteProject);
+        }
         
         const setupHeader = () => {
             const header = document.createElement('header');
@@ -675,7 +691,7 @@ export default (function view() {
             const newProjectBtn = createNavAction(forestImg, 'Add Project', null);
             newProjectBtn.id = 'openModal';
 
-            navbarActionContainer.append(setNewItemBtn(), newProjectBtn, setupDebugBtn())
+            navbarActionContainer.append(setNewItemBtn(), newProjectBtn, setupDebugBtn(), setupDeleteProjectBtn());
     
             // todo: style and position new project button
             navContainer.append(navbarActionContainer, refreshProjectsList());
