@@ -529,7 +529,7 @@ export default (function view() {
             const modal = createElement('div', 'modal');
             const modalHeading = createElement('div', 'project-modal--heading');
             const modalForm = createModalForm();
-            const buttonGroup = document.createElement('div');
+            const buttonGroup = createElement('div', 'project--modal__buttons');
             const submitModalBtn = document.createElement('button');
             const closeModalBtn = document.createElement('button');
             
@@ -541,7 +541,6 @@ export default (function view() {
     
             modalHeading.textContent = 'Add Project';
     
-            //type="submit" form="form1"
             submitModalBtn.textContent = 'Accept';
             submitModalBtn.type = 'submit';
             submitModalBtn.setAttribute('form', 'project-modal-form');
