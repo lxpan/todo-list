@@ -668,11 +668,17 @@ export default (function view() {
     
         const navbar = () => {
             const navContainer = createElement('div', 'navbar');
+
+            // create action buttons
+            const navbarActionContainer = createElement('div', 'navbar--actions');
+            
             const newProjectBtn = createNavAction(forestImg, 'Add Project', null);
-            newProjectBtn.id = 'openModal';    
+            newProjectBtn.id = 'openModal';
+
+            navbarActionContainer.append(setNewItemBtn(), newProjectBtn, setupDebugBtn())
     
             // todo: style and position new project button
-            navContainer.append(setNewItemBtn(), newProjectBtn, setupDebugBtn(), refreshProjectsList());
+            navContainer.append(navbarActionContainer, refreshProjectsList());
             return navContainer;
         }
         
