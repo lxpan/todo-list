@@ -189,6 +189,11 @@ input[type='text']::placeholder {
     color: white;
 }
 
+.navbar--actions__bottom {
+    position: absolute;
+    bottom: 0px;
+}
+
 .navbar--projects__links {
     padding: 0;
 }
