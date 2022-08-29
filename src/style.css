@@ -25,6 +25,9 @@
     --navbar-bg-colour: #415d2e;
     --content-bg-colour: #fff;
     --project-sign-bg-colour: #a05824;
+
+    --header-height: 100px;
+    --header-width: 100vw;
 }
 
 
@@ -39,10 +42,10 @@ body {
 
 header {
     display: flex;
-    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 100vw;
+    width: var(--header-width);
+    height: var(--header-height);
     font-family: var(--default-font);
     background-color: var(--header-bg-colour);
 }
