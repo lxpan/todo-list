@@ -43,13 +43,6 @@ export default (function view() {
         actionDiv.addEventListener('click', listenerFunc);
 
         return actionDiv;
-        // const newItemBtn = document.createElement('input');
-        // newItemBtn.type = 'image';
-        // newItemBtn.src = src
-        // newItemBtn.name = className;
-        // newItemBtn.addEventListener('click', listenerFunc);
-        // newItemBtn.className = className;
-        // return newItemBtn;
     }
 
     function createImageButton(src, className, listenerFunc) {
@@ -640,7 +633,6 @@ export default (function view() {
                 clickLastTodoItem();
             }
 
-            // return createImageButton(plantImg, 'newItemBtn', addNewItem);
             return createNavAction(plantImg, 'Add Todo Item', addNewItem);
         }
         
@@ -657,8 +649,6 @@ export default (function view() {
                 console.log(config.currentProject.todoItems);
             }
     
-            // const debugBtn = createButton('*', 'debugBtn', logDefaultProjectItems);
-            // const debugBtn = createImageButton(beaverImg, 'debugBtn', logProjects);
             return createNavAction(beaverImg, 'Debug', logProjects);
         }
         
@@ -677,14 +667,13 @@ export default (function view() {
         }
     
         const navbar = () => {
-            const navElement = createElement('div', 'navbar');
-            // const newProjectBtn = createImageButton(forestImg, 'newProjectBtn', null);
+            const navContainer = createElement('div', 'navbar');
             const newProjectBtn = createNavAction(forestImg, 'Add Project', null);
             newProjectBtn.id = 'openModal';    
     
             // todo: style and position new project button
-            navElement.append(setNewItemBtn(), newProjectBtn, setupDebugBtn(), refreshProjectsList());
-            return navElement;
+            navContainer.append(setNewItemBtn(), newProjectBtn, setupDebugBtn(), refreshProjectsList());
+            return navContainer;
         }
         
         const gridContainer = createElement('div', 'gridContainer');
