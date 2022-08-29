@@ -187,7 +187,9 @@ input[type='text']::placeholder {
     color: white;
 }
 
-
+.navbar--projects__links {
+    padding: 0;
+}
 
 .navbar--projects__links > li, a, button {
     font-family: var(--default-font);
@@ -213,17 +215,6 @@ input[type='text']::placeholder {
     border: 1px solid black;
     text-indent: 10%;
     line-height: 35px;
-}
-
-.project--signpost:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
 }
 
 .project--signpost:before {
