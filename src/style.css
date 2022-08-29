@@ -54,6 +54,7 @@ header {
     display: grid;
     grid-template-columns: 300px 1fr;
     width: 100vw;
+    height: calc(100vh - var(--header-height));
 }
 
 #content {
