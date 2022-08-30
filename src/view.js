@@ -463,12 +463,14 @@ export default (function view() {
     })();
 
     function removeHeadings() {
-        const headings = document.querySelectorAll('.project--heading__container');
-        console.log(headings);
-        
-        headings.forEach(node => {
+        const projectHeadings = document.querySelectorAll('.project--heading__container');
+    
+        projectHeadings.forEach(node => {
             node.remove();
         });
+
+        const todayTitle = document.querySelector('.today--title');
+        todayTitle.remove();
 
     }
 
@@ -674,10 +676,8 @@ export default (function view() {
             const listTodayItems = () => {
                 const todayItems = {}
 
-                /* 
-                name: project name
-                value: projectRunner object properties (name, run(), etc)
-                */
+                /* name: project name
+                value: projectRunner object properties (name, run(), etc) */
                 for (let [name, value] of Object.entries(config.projects)) {                    
                     const todo = Object.values(value.newProject.todoItems);
                     // todayItems[name] = todo.filter(item => item.date == '2022-08-30');
@@ -695,6 +695,14 @@ export default (function view() {
                 
                 const content = document.getElementById('todoItemContainer');
                 content.innerHTML = '';
+
+                const todayDiv = createElement('div', 'today--title');
+                const todayHeading = createElement('span', 'today--title__heading');
+                const todayDate = createElement('span', 'today--title__date');
+                todayHeading.textContent = 'Today';
+                todayDate.textContent = 'Wed Aug 31';
+                todayDiv.append(todayHeading, todayDate);
+                content.appendChild(todayDiv);
 
                 // value = object containing project's todoItems
                 for (let [name, value] of Object.entries(todayItems)) {

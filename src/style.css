@@ -344,3 +344,17 @@ input[type='text']::placeholder {
 #closeModal:hover {
     background-color: rgb(171, 168, 168);
 }
+
+.today--title {
+}
+
+.today--title__heading {
+    font-size: 1.8rem;
+    font-weight: bolder;
+}
+
+.today--title__date {
+    font-size: 1rem;
+    opacity: 0.5;
+    margin-left: 5px;
+}
