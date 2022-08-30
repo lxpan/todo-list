@@ -15,7 +15,7 @@ export default (function view() {
 
     function bindConfiguration() {
         config = this.config;
-        console.log(config);
+        // console.log(config);
     }
 
     function createElement(elementName, className=null) {
@@ -312,8 +312,8 @@ export default (function view() {
                 btn.type = 'submit';
                 btn.value = 'Save Changes';
                 btn.textContent = 'Save Changes';
+                
                 btn.addEventListener('click', onSubmit);
-
                 // const saveBtnContainer = createElement('div', 'saveBtnContainer');
                 // saveBtnContainer.appendChild(btn);
 
@@ -332,8 +332,9 @@ export default (function view() {
                     config.projects[config.currentProject.name].run();
 
                 }
-
+                // refresh project numItems on create or delete
                 const deleteBtn = createButton('Delete Item', 'deleteItemBtn', deleteItem);
+                deleteBtn.addEventListener('click', updateProjectList());
 
                 return deleteBtn;
             })();
@@ -412,6 +413,8 @@ export default (function view() {
             } else {
                 smartAppendMessage('No Changed Detected');
             }
+
+            updateProjectList();
         }
         
         let formChanged = false;
@@ -477,8 +480,11 @@ export default (function view() {
             projectItem.id = project;
             projectItem.className = 'project--signpost';
 
+            const projectItemStore = localStorage.getItem(project)
+            const numItemsInProject = (projectItemStore) ? Object.keys(JSON.parse(projectItemStore)).length : 0;
+
             const link = document.createElement('a');
-            link.textContent = project;
+            link.textContent = `${project} :: ${numItemsInProject}`;
             link.href = '#';
             link.addEventListener('click', switchProject);
             
