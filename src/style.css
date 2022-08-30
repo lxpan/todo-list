@@ -120,6 +120,10 @@ input[type='text']::placeholder {
     background-color: lightgreen;
 }
 
+.noneSelected {
+    display: none;
+}
+
 .priority--dropdown option {
    color: red;
    background-color: red;

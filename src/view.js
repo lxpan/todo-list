@@ -247,7 +247,7 @@ export default (function view() {
                 const priorityDiv = createElement('div', 'priorityDropdown');
                 const label = document.createElement('label');
                 const dropdown = document.createElement('select');
-                const priorities = ['Low', 'Medium', 'High'];
+                const priorities = ['Select Priority', 'Low', 'Medium', 'High'];
 
                 dropdown.name = 'itemPriority';
                 label.setAttribute('for', 'priority');
@@ -376,7 +376,9 @@ export default (function view() {
                 break;
             case 'Low':
                 priorityLabel.classList.add('low');
+                break;
             default:
+                priorityLabel.classList.add('noneSelected');
                 break;
         }
 
