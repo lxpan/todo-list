@@ -247,11 +247,11 @@ export default (function view() {
                 const priorityDiv = createElement('div', 'priorityDropdown');
                 const label = document.createElement('label');
                 const dropdown = document.createElement('select');
-                const priorities = ['low', 'medium', 'high'];
+                const priorities = ['Low', 'Medium', 'High'];
 
                 dropdown.name = 'itemPriority';
                 label.setAttribute('for', 'priority');
-                label.textContent = 'Priority';
+                label.textContent = 'Priority: ';
 
                 priorities.forEach(priority => {
                     const option = document.createElement('option');
