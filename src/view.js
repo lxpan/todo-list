@@ -462,11 +462,28 @@ export default (function view() {
         return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     })();
 
+    function removeHeadings() {
+        const headings = document.querySelectorAll('.project--heading__container');
+        console.log(headings);
+        
+        headings.forEach(node => {
+            node.remove();
+        });
+
+    }
+
     function switchProject(e) {
         const projectClicked = e.target.parentNode.id;
         const projectOnDisplay = config.currentProject;
 
         if (projectOnDisplay.name != projectClicked) {
+            console.log(config.currentProject);
+            
+            if(config.currentProject == '__today') {
+                console.log('Remove headings!');
+                removeHeadings();
+            }
+
             // switch global focus to clicked project
             config.currentProject = config.projects[projectClicked].newProject;
 
@@ -477,7 +494,7 @@ export default (function view() {
             currentItems.forEach(item => {
                 item.remove();
             });
-
+            
             // run this project (populate todo items)
             config.projects[projectClicked].run();
             // assign currentProject to clicked project
@@ -485,7 +502,7 @@ export default (function view() {
 
             // insertProjectHeading(`#${config.CONTENT_DIV_ID}`, config.currentProject.name, true);
 
-            console.log(config.currentProject);
+            // console.log(config.currentProject);
         } else {
             console.log("Project is already displayed!");
         }
@@ -518,7 +535,7 @@ export default (function view() {
 
     const updateProjectList = () => {
         const currentProjectList = document.querySelector('.navbar--projects__links');
-        console.log(currentProjectList);
+        // console.log(currentProjectList);
         currentProjectList.parentNode.replaceChild(refreshProjectsList(), currentProjectList);
     }
     
