@@ -674,6 +674,7 @@ export default (function view() {
         // today date hardcoded to '2022-08-30'
         const setupShowTodayBtn = () => {
             const listTodayItems = () => {
+                const currentDate = '2022-08-31';
                 const todayItems = {}
 
                 /* name: project name
@@ -681,7 +682,7 @@ export default (function view() {
                 for (let [name, value] of Object.entries(config.projects)) {                    
                     const todo = Object.values(value.newProject.todoItems);
                     // todayItems[name] = todo.filter(item => item.date == '2022-08-30');
-                    const f = todo.filter(item => item.date == '2022-08-30');
+                    const f = todo.filter(item => item.date == currentDate);
                     const itemsFiltered = {}
                     f.forEach(item => {
                         itemsFiltered[item.uuid] = item;
