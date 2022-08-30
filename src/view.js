@@ -96,13 +96,14 @@ export default (function view() {
     function insertProjectItemForm(query, item) {
         // callback function for the 'todo' checkbox
         const toggleItemCompletionOnClick = (e) => {
-            if(e.target.checked) {
-                item.toggleCompletion();
-                // console.log(item);
-            } else {
-                item.toggleCompletion();
-                // console.log(item);
-            }
+            const project = config.currentProject.name;
+            const itemId = item.uuid;
+            const projectStore = JSON.parse(localStorage.getItem(project));
+
+            item.toggleCompletion();
+            projectStore[itemId].completion = item.completion;
+            // update stored data with new completion status
+            localStorage.setItem(project, JSON.stringify(projectStore));
         }
 
         const createCheckbox = () => {
