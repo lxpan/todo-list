@@ -574,7 +574,7 @@ export default (function view() {
             submitModalBtn.setAttribute('form', 'project-modal-form');
             
             closeModalBtn.textContent = 'Cancel';
-            buttonGroup.append(submitModalBtn, closeModalBtn);
+            buttonGroup.append(closeModalBtn, submitModalBtn);
     
             modal.append(modalHeading, modalForm, buttonGroup);
             modalContainer.appendChild(modal);
