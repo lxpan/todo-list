@@ -715,6 +715,11 @@ export default (function view() {
         
         const setNewItemBtn = () => {
             const addNewItem = () => {
+                if(config.currentProject == '__today') {
+                    alert('Item creation disabled in Today section. Please navigate to the individual projects.');
+                    return;
+                }
+
                 const currentProject = config.currentProject;
                 // add new item to project
                 currentProject.addItem('');
