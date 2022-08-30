@@ -626,6 +626,17 @@ export default (function view() {
         // console.log([open, submit, close, modalContainer]);
     }
 
+    function priorityToInteger(priority) {
+        const weights = {
+            'High': 3,
+            'Medium': 2,
+            'Low': 1,
+            'Select Priority': 0
+        }
+
+        return weights[priority];
+    }
+
     function setupHTML() {
         let currentProject = config.currentProject;
     
@@ -639,6 +650,48 @@ export default (function view() {
                     : last.querySelector('label');
             
             lastElementClickable.click();
+        }
+
+        // today date hardcoded to '2022-08-30'
+        const setupShowTodayBtn = () => {
+            const listTodayItems = () => {
+                const todayItems = {}
+
+                /* 
+                name: project name
+                value: projectRunner object properties (name, run(), etc)
+                */
+                for (let [name, value] of Object.entries(config.projects)) {                    
+                    const todo = Object.values(value.newProject.todoItems);
+                    // todayItems[name] = todo.filter(item => item.date == '2022-08-30');
+                    const f = todo.filter(item => item.date == '2022-08-30');
+                    const itemsFiltered = {}
+                    f.forEach(item => {
+                        itemsFiltered[item.uuid] = item;
+                    });
+                    todayItems[name] = itemsFiltered
+                }
+
+                console.log(todayItems);
+                
+                const content = document.getElementById('todoItemContainer');
+                content.innerHTML = '';
+
+                // value = object containing project's todoItems
+                for (let [name, value] of Object.entries(todayItems)) {
+                    insertProjectHeading(`#todoItemContainer`, name);
+                    
+                    for (let [id, item] of Object.entries(value)) {
+                        insertProjectItemForm(`#todoItemContainer`, item);
+                        insertItemChangeListener(id, config.projects[name].newProject);
+                    }
+                }
+                
+                config.currentProject = '__today';
+            }
+            
+
+            return createNavAction(beaverImg, 'Today', listTodayItems);
         }
         
         const setNewItemBtn = () => {
@@ -719,7 +772,7 @@ export default (function view() {
             const newProjectBtn = createNavAction(forestImg, 'Plant Project', null);
             newProjectBtn.id = 'openModal';
 
-            navbarActionContainer__Top.append(setNewItemBtn(), newProjectBtn, setupDebugBtn());
+            navbarActionContainer__Top.append(setupShowTodayBtn(), setNewItemBtn(), newProjectBtn, setupDebugBtn());
             navBarActionContainer__Bottom.appendChild(setupDeleteProjectBtn());
     
             // todo: style and position new project button
