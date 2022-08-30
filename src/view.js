@@ -686,7 +686,9 @@ export default (function view() {
                     f.forEach(item => {
                         itemsFiltered[item.uuid] = item;
                     });
-                    todayItems[name] = itemsFiltered
+                    if (Object.values(itemsFiltered).length > 0 ) {
+                        todayItems[name] = itemsFiltered
+                    }
                 }
 
                 console.log(todayItems);
