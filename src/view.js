@@ -363,13 +363,32 @@ export default (function view() {
         const checkbox = createCheckbox();
 
         let _titleType = 'input';
+        const priorityLabel = createElement('span', 'todoItem--priority__label');
+        const priorityText = createElement('span', 'todoItem--priority__text');
+        priorityText.textContent = item.priority;
+        
+        switch (item.priority) {
+            case 'High':
+                priorityLabel.classList.add('high');
+                break;
+            case 'Medium':
+                priorityLabel.classList.add('medium');
+                break;
+            case 'Low':
+                priorityLabel.classList.add('low');
+            default:
+                break;
+        }
+
+        priorityLabel.append(priorityText);
+        
         const itemLabel = createLabel(_titleType);
         itemInfoForm.setAttribute('titleType', _titleType);
         
 
         const targetDiv = document.querySelector(query);
         
-        itemInfoForm.append(checkbox, itemLabel, createItemInfoExpandable());
+        itemInfoForm.append(checkbox, itemLabel, priorityLabel, createItemInfoExpandable());
         targetDiv.appendChild(itemInfoForm);
 
         // ensure each input-label pair has a unique integer identifier

@@ -96,6 +96,35 @@ input[type='text']::placeholder {
     opacity: 0.5;
 }
 
+.todoItem--priority__label {
+    position: fixed;
+    width: 60px;
+    text-align: left;
+    transform: translate(-60px, 2px);
+}
+
+.todoItem--priority__text {
+    opacity: 0.6;
+    color: black;
+}
+
+.high {
+    background-color: orange;
+}
+
+.medium {
+    background-color: yellow;
+}
+
+.low {
+    background-color: lightgreen;
+}
+
+.priority--dropdown option {
+   color: red;
+   background-color: red;
+}
+
 .itemInfo {
     display: flex;
     flex-direction: column;
