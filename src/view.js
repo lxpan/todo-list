@@ -661,7 +661,7 @@ export default (function view() {
                 clickLastTodoItem();
             }
 
-            return createNavAction(plantImg, 'Add Todo Item', addNewItem);
+            return createNavAction(plantImg, 'Grow Todo Item', addNewItem);
         }
         
         const setupDebugBtn = () => {
@@ -697,15 +697,15 @@ export default (function view() {
         
         const setupHeader = () => {
             const header = document.createElement('header');
-            const testHeading = document.createElement('h1');
+            const appHeading = createElement('h1', 'app--heading');
             const iconSpan = document.createElement('span');
 
-            testHeading.textContent = 'Lister Grove';
+            appHeading.textContent = 'Forests - a todo app';
             iconSpan.className = "material-symbols-outlined";
             iconSpan.textContent = 'forest';
         
             // header.append(iconSpan, testHeading, setNewItemBtn(), setupDebugBtn());
-            header.append(iconSpan, testHeading);
+            header.append(iconSpan, appHeading);
             return header;
         }
     
@@ -716,7 +716,7 @@ export default (function view() {
             const navbarActionContainer__Top = createElement('div', 'navbar--actions__top');
             const navBarActionContainer__Bottom = createElement('div', 'navbar--actions__bottom');
             
-            const newProjectBtn = createNavAction(forestImg, 'Add Project', null);
+            const newProjectBtn = createNavAction(forestImg, 'Plant Project', null);
             newProjectBtn.id = 'openModal';
 
             navbarActionContainer__Top.append(setNewItemBtn(), newProjectBtn, setupDebugBtn());
