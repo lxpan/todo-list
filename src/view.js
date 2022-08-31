@@ -762,9 +762,16 @@ export default (function view() {
             const deleteProject = (e) => {
                 const current = config.currentProject.name;
                 if (localStorage.getItem(current)) {
-                    localStorage.removeItem(current);
-                    location.reload();
-                    console.log(`Project "${current}" exists in localstorage!`);
+                    const confirmationText = `Are you sure you want to delete project ${current}? Deletion is final.`;
+                    
+                    if (confirm(confirmationText) == true) {
+                        console.log(`User initiated deletion of ${current}.`);
+                        localStorage.removeItem(current);
+                        location.reload();
+                        // console.log(`Project "${current}" exists in localstorage!`);
+                    } else {
+                        console.log('User cancelled deletion!');
+                    }
                 } else {
                     console.log(`Project "${current}" not found!`);
                 }
