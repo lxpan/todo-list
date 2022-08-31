@@ -3,9 +3,6 @@ import view from './view.js';
 import './style.css';
 
 
-const CONTENT_DIV_ID = 'content';
-const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
-
 // instantiate project and load mock items
 function projectRunner(projectName) {
     const name = projectName;
@@ -114,10 +111,11 @@ function addNewProject(name, notes=null) {
 
 let projects = {}
 
+const CONTENT_DIV_ID = 'content';
+const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
+
 const DOM_CONFIG = {
     'projects': projects,
-    'CONTENT_DIV_ID': CONTENT_DIV_ID,
-    'CONTENT_DIV_SELECTOR': CONTENT_DIV_SELECTOR,
     'TODO_CONTAINER': '#todoItemContainer'
 }
 
