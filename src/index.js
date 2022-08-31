@@ -6,9 +6,6 @@ import './style.css';
 const CONTENT_DIV_ID = 'content';
 const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`;
 
-// currently selected project
-// let currentProject = null;
-
 // instantiate project and load mock items
 function projectRunner(projectName) {
     const name = projectName;
@@ -77,8 +74,6 @@ function projectRunner(projectName) {
 
 function loadStoredProjects () {
     for (const [name, value] of Object.entries(localStorage)) {
-        // console.log(`key: ${name}, value: ${projectParse}`);
-
         const project = projectRunner(name);
         project.newProject.retrieveLocalStorage();
         
@@ -137,7 +132,6 @@ DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject;
 view.config = DOM_CONFIG;
 view.bindConfiguration();
 view.setupHTML();
-// console.log(view.config);
 
 projects['Daily'].run();
 
@@ -145,7 +139,3 @@ document.body.appendChild(view.createModal());
 view.assignModalListener(addNewProject, projects);
 
 loadStoredProjects();
-
-
-// const projectBtn = document.querySelector('.newProjectBtn');
-// projectBtn.click();
