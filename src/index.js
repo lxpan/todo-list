@@ -121,7 +121,7 @@ const DOM_CONFIG = {
 
 loadStoredProjects();
 
-// addNewProject('Daily');
+addNewProject('Daily');
 // addNewProject('Empty');
 // addNewProject('Investigations');
 
