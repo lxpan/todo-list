@@ -426,12 +426,24 @@ export default (function view() {
             
             if(formChanged) {
                 smartAppendMessage('Changes Saved');
+                triggerItemListRefresh();
                 formChanged = false;
             } else {
                 smartAppendMessage('No Changed Detected');
             }
 
             updateProjectList();
+        }
+
+        const triggerItemListRefresh = () => {
+            const currentItems = document.querySelectorAll('.todoItem');
+
+            currentItems.forEach(item => {
+                item.remove();
+            });
+
+            // insert todo items again
+            config.projects[config.currentProject.name].run();
         }
         
         let formChanged = false;
@@ -442,7 +454,9 @@ export default (function view() {
             formChanged = true;
         });
         
-        saveBtn.addEventListener('click', showItemSavedMessageOnFormChange);
+        [showItemSavedMessageOnFormChange].forEach(listener => {
+            saveBtn.addEventListener('click', listener);
+        })
     }
 
     const createButton = (buttonText, buttonClass, eventCallback) => {
