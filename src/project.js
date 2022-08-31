@@ -36,12 +36,7 @@ class Project {
             Object.assign(objectMerge, o);
         }
 
-        // console.log(objectMerge);
-
         localStorage.setItem(this.name, JSON.stringify(objectMerge));
-
-        //    console.log(this.todoItems)
-        //    console.log(objectStrings);
     }
 
     _reconstructTodoItemObjects(_parse) {
