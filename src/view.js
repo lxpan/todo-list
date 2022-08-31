@@ -504,6 +504,11 @@ export default (function view() {
     function refreshProjectsList() {
         const listOfProjects = createElement('ul', 'projectList');
         listOfProjects.className = 'navbar--projects__links';
+
+        const projectsTitle = createElement('h2', 'navbar--projects__title');
+        projectsTitle.textContent = 'Projects';
+
+        listOfProjects.appendChild(projectsTitle);
         
         // Insert list of projects into DOM
         Object.keys(config.projects).forEach(project => {
