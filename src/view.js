@@ -270,7 +270,7 @@ export default (function view() {
             })();
 
             const saveBtn = (() => {
-                const onSubmit = (e) => {
+                const saveFormDataToMemory = (e) => {
                     e.preventDefault();
 
                     const formElement = e.target.closest('.todoItem');
@@ -312,7 +312,7 @@ export default (function view() {
                 btn.value = 'Save Changes';
                 btn.textContent = 'Save Changes';
                 
-                btn.addEventListener('click', onSubmit);
+                btn.addEventListener('click', saveFormDataToMemory);
                 return btn;
             })();
 
@@ -394,7 +394,7 @@ export default (function view() {
     }
 
     function insertItemChangeListener(id, project) {
-        const onItemSave = (e) => {
+        const showItemSavedMessageOnFormChange = (e) => {
             const createSaveSpan = (msg) => {
                 const messageContainer = document.createElement('div');
                 const messageSpan = document.createElement('span');
@@ -442,7 +442,7 @@ export default (function view() {
             formChanged = true;
         });
         
-        saveBtn.addEventListener('click', onItemSave);
+        saveBtn.addEventListener('click', showItemSavedMessageOnFormChange);
     }
 
     const createButton = (buttonText, buttonClass, eventCallback) => {
