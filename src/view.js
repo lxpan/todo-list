@@ -8,6 +8,7 @@ import plantImg from './images/plant.png';
 import forestImg from './images/forest.png';
 import beaverImg from './images/beaver.png';
 import lumberjackImg from './images/lumberjacking.png';
+import sunriseImg from './images/sunrise.png';
 
 export default (function view() {
     let elementID = 0;
@@ -719,7 +720,7 @@ export default (function view() {
             }
             
 
-            return createNavAction(beaverImg, 'Today', listTodayItems);
+            return createNavAction(sunriseImg, 'Today', listTodayItems);
         }
         
         const setNewItemBtn = () => {

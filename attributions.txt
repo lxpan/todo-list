@@ -2,3 +2,4 @@
 <a href="https://www.flaticon.com/free-icons/forest" title="forest icons">Forest icons created by Smashicons - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/beaver" title="beaver icons">Beaver icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/lumberjacking" title="lumberjacking icons">Lumberjacking icons created by pongsakornRed - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/sunrise" title="sunrise icons">Sunrise icons created by Smashicons - Flaticon</a>
