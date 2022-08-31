@@ -238,9 +238,7 @@ export default (function view() {
                 item.tagify = tagifyInstance;
         
                 function tagifyEventListener (e) {
-                    // console.log(e.target.value);
                     item.updateTags();
-                    // console.log(item._tags);
                 }
             }
 
@@ -315,9 +313,6 @@ export default (function view() {
                 btn.textContent = 'Save Changes';
                 
                 btn.addEventListener('click', onSubmit);
-                // const saveBtnContainer = createElement('div', 'saveBtnContainer');
-                // saveBtnContainer.appendChild(btn);
-
                 return btn;
             })();
 
@@ -492,7 +487,6 @@ export default (function view() {
 
             // remove existing todoItems
             const currentItems = document.querySelectorAll('.todoItem');
-            // console.log(currentItems);
 
             currentItems.forEach(item => {
                 item.remove();
@@ -502,10 +496,6 @@ export default (function view() {
             config.projects[projectClicked].run();
             // assign currentProject to clicked project
             config.currentProject = config.projects[projectClicked].newProject;
-
-            // insertProjectHeading(`#${config.CONTENT_DIV_ID}`, config.currentProject.name, true);
-
-            // console.log(config.currentProject);
         } else {
             console.log("Project is already displayed!");
         }
@@ -538,7 +528,6 @@ export default (function view() {
 
     const updateProjectList = () => {
         const currentProjectList = document.querySelector('.navbar--projects__links');
-        // console.log(currentProjectList);
         currentProjectList.parentNode.replaceChild(refreshProjectsList(), currentProjectList);
     }
     
@@ -642,8 +631,6 @@ export default (function view() {
         close.addEventListener('click', () => {
             modalContainer.classList.remove('showModal');
         });
-
-        // console.log([open, submit, close, modalContainer]);
     }
 
     function priorityToInteger(priority) {
@@ -682,7 +669,6 @@ export default (function view() {
                 value: projectRunner object properties (name, run(), etc) */
                 for (let [name, value] of Object.entries(config.projects)) {                    
                     const todo = Object.values(value.newProject.todoItems);
-                    // todayItems[name] = todo.filter(item => item.date == '2022-08-30');
                     const f = todo.filter(item => item.date == currentDate);
                     const itemsFiltered = {}
                     f.forEach(item => {
@@ -791,7 +777,6 @@ export default (function view() {
             iconSpan.className = "material-symbols-outlined";
             iconSpan.textContent = 'forest';
         
-            // header.append(iconSpan, testHeading, setNewItemBtn(), setupDebugBtn());
             header.append(iconSpan, appHeading);
             return header;
         }
@@ -825,8 +810,6 @@ export default (function view() {
         
         gridContainer.append(navbar(), content);
         document.body.append(setupHeader(), gridContainer);
-        
-        // insertProjectHeading(`#${config.CONTENT_DIV_ID}`, config.currentProject.name);
     }
 
     return {
