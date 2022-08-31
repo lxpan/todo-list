@@ -750,7 +750,7 @@ export default (function view() {
                 console.log(config.currentProject.todoItems);
             }
     
-            return createNavAction(beaverImg, 'Debug', logProjects);
+            return createNavAction(beaverImg, 'Log JSON', logProjects);
         }
 
         const setupDeleteProjectBtn = () => {
