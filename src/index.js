@@ -156,4 +156,12 @@ view.assignModalListener(addNewProject, projects);
 loadStoredProjects();
 
 // write mock projects into localStorage for use by app
-writeLocalStorage(savedLocalStorageData);
+
+
+if (Object.keys(localStorage).length == 0) {
+    console.log('Local storage is empty!');
+    writeLocalStorage(savedLocalStorageData);
+    location.reload();
+} else {
+    console.log('Projects found in local storage. No loading of mock projects required')
+}
