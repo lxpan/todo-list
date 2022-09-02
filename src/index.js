@@ -88,7 +88,7 @@ function projectRunner(projectName) {
 }
 
 function loadStoredProjects() {
-    for (const [name, value] of Object.entries(localStorage)) {
+    for (const name of Object.keys(localStorage)) {
         const project = projectRunner(name)
         project.newProject.retrieveLocalStorage()
 
@@ -143,8 +143,6 @@ projects['Daily'].run()
 
 document.body.appendChild(view.createModal())
 view.assignModalListener(addNewProject, projects)
-
-loadStoredProjects()
 
 // write mock projects into localStorage for use by app
 
