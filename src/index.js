@@ -122,9 +122,6 @@ function addNewProject(name, notes = null) {
 
 let projects = {}
 
-const CONTENT_DIV_ID = 'content'
-const CONTENT_DIV_SELECTOR = `#${CONTENT_DIV_ID}`
-
 const DOM_CONFIG = {
     projects: projects,
     TODO_CONTAINER: '#todoItemContainer',
