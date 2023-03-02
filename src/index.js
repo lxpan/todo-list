@@ -19,10 +19,6 @@ const firebaseConfig = {
   appId: "1:656016513916:web:6495df170c62b5492ca2f9"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
 // Saves a new message to Cloud Firestore.
 async function saveProject(name, projectJSON) {
     // Add a new message entry to the Firebase database.
@@ -93,8 +89,8 @@ function projectRunner(projectName) {
     // TODO: change to use Firestiore
     const loadMockItemsIntoDOM = () => {
         // only load from storage if key exists
-        if (localStorage.getItem(newProject.name)) {
-            newProject.retrieveLocalStorage()
+        if (myProjects[newProject.name]) {
+            newProject.retrieveLocalStorage(myProjects)
         }
 
         view.insertProjectHeading(
@@ -112,7 +108,7 @@ function projectRunner(projectName) {
 
     const run = () => {
         // TODO: change to use Firestore
-        if (!localStorage.getItem(newProject.name)) {
+        if ( !(newProject.name in myProjects) ) {
             console.log('No stored data detected!')
             loadMockItemsIntoDOM()
             // setupMockProject();
@@ -132,10 +128,10 @@ function projectRunner(projectName) {
 }
 
 // TODO: load from Firestore
-function loadStoredProjects() {
-    for (const name of Object.keys(localStorage)) {
+function loadStoredProjects(cachedStorage) {
+    for (const name of Object.keys(cachedStorage)) {
         const project = projectRunner(name)
-        project.newProject.retrieveLocalStorage()
+        project.newProject.retrieveLocalStorage(cachedStorage)
 
         if (!projects[name]) {
             projects[name] = project
@@ -172,42 +168,76 @@ const DOM_CONFIG = {
     TODO_CONTAINER: '#todoItemContainer',
 }
 
-function loadApp() {
-    loadStoredProjects()
+async function getProjects(db) {
+    const projectsCol = collection(db, 'projects');
+    const projectSnapshot = await getDocs(projectsCol);
+    const projectList = projectSnapshot.docs.map(doc => doc.data());
+    return projectList;
+}
 
-    addNewProject('Daily')
-    // addNewProject('Empty');
-    // addNewProject('Investigations');
-    
+let myProjects;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const list = getProjects(db).then((results) => {
+    const finalObj = {};
+    const arrayOfProjects = results.map(project => {
+        return ({
+            [project.name]: {...JSON.parse(project.json)}
+            }
+        );
+    });
+
+    arrayOfProjects.forEach(project => {
+        Object.assign(finalObj, project);
+    })
+
+    // console.log(finalObj);
+
+    myProjects = finalObj;
+    console.log(myProjects);
+
+    // console.log(JSON.stringify(finalObj));
+    // myProjects = finalObj;
+    loadStoredProjects(finalObj)
     DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject
-    
+
     view.config = DOM_CONFIG
     view.bindConfiguration()
     view.setupHTML()
-    
+
     projects['Daily'].run()
-    
+
     document.body.appendChild(view.createModal())
     view.assignModalListener(addNewProject, projects)
-    
-    // clear localStorage
-    localStorage.clear();
-    // TODO: modify to use Firestore
-    // write mock projects into localStorage for use by app
-    if (Object.keys(localStorage).length == 0) {
-        console.log('Local storage is empty!')
-        // writeLocalStorage(savedLocalStorageData)
-        Object.entries(savedLocalStorageData).forEach(([project, data]) => {
-            saveProject(project, data);
-            // console.log(project);
-            // console.log(data);
-        })
-        // location.reload()
-    } else {
-        console.log(
-            'Projects found in local storage. No loading of mock projects required'
-        )
-    }
+});
+
+
+
+addNewProject('Daily')
+// addNewProject('Empty');
+// addNewProject('Investigations');
+
+
+
+// clear localStorage
+// localStorage.clear();
+// TODO: modify to use Firestore
+// write mock projects into localStorage for use by app
+if (Object.keys(localStorage).length == 0) {
+    console.log('Local storage is empty!')
+    // writeLocalStorage(savedLocalStorageData)
+    Object.entries(savedLocalStorageData).forEach(([project, data]) => {
+        // saveProject(project, data);
+        // console.log(project);
+        // console.log(data);
+    })
+    // location.reload()
+} else {
+    console.log(
+        'Projects found in local storage. No loading of mock projects required'
+    )
 }
 
-loadApp();
+

@@ -24,6 +24,7 @@ class Project {
         return stringObjects;
     }
 
+    // TODO: modify to use Firestore instead of localStorage
     populateLocalStorage() {
         /* 
         Keys: this.name
@@ -60,10 +61,11 @@ class Project {
         // console.log(this.todoItems);
     }
 
-    retrieveLocalStorage() {
-        const parse = JSON.parse(localStorage.getItem(this.name));
-        // console.log(parse);
-        this._reconstructTodoItemObjects(parse);
+    // TODO: modify to use Firestore
+    retrieveLocalStorage(cachedStorage) {
+        const items = cachedStorage[this.name];
+        // console.log(items);
+        this._reconstructTodoItemObjects(items);
     }
 
     addItem(title) {
@@ -71,7 +73,8 @@ class Project {
         // this.todoItems.push(item);
         this.todoItems[item.uuid] = item;
     }
-
+    
+    // TODO: modify to use Firestore
     deleteItem(uuid) {
         if(this.todoItems[uuid]) {
             delete this.todoItems[uuid];
