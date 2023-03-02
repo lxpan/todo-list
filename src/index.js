@@ -20,7 +20,7 @@ const firebaseConfig = {
 };
 
 // Saves a new message to Cloud Firestore.
-async function saveProject(name, projectJSON) {
+async function saveProjectToFirestore(name, projectJSON) {
     // Add a new message entry to the Firebase database.
     try {
       await addDoc(collection(getFirestore(), 'projects'), {
@@ -36,10 +36,10 @@ async function saveProject(name, projectJSON) {
 
 /* ---------- END Firebase Code ---------- */
 
-function getLocalStorage() {
-    // TODO: Retrieve from Firebase instead of localStorage
-    return JSON.stringify(localStorage)
-}
+// function getLocalStorage() {
+//     // TODO: Retrieve from Firebase instead of localStorage
+//     return JSON.stringify(localStorage)
+// }
 
 function writeLocalStorage(data) {
     // TODO: Write to Firestore instead of localStorage
@@ -90,7 +90,7 @@ function projectRunner(projectName) {
     const loadMockItemsIntoDOM = () => {
         // only load from storage if key exists
         if (myProjects[newProject.name]) {
-            newProject.retrieveLocalStorage(myProjects)
+            newProject.assignFirestoreObjToProject(myProjects)
         }
 
         view.insertProjectHeading(
@@ -131,7 +131,7 @@ function projectRunner(projectName) {
 function loadStoredProjects(cachedStorage) {
     for (const name of Object.keys(cachedStorage)) {
         const project = projectRunner(name)
-        project.newProject.retrieveLocalStorage(cachedStorage)
+        project.newProject.assignFirestoreObjToProject(cachedStorage)
 
         if (!projects[name]) {
             projects[name] = project
@@ -225,18 +225,15 @@ addNewProject('Daily')
 // localStorage.clear();
 // TODO: modify to use Firestore
 // write mock projects into localStorage for use by app
-if (Object.keys(localStorage).length == 0) {
+if (getProjects.length === 0) {
     console.log('Local storage is empty!')
-    // writeLocalStorage(savedLocalStorageData)
     Object.entries(savedLocalStorageData).forEach(([project, data]) => {
-        // saveProject(project, data);
-        // console.log(project);
-        // console.log(data);
+        saveProjectToFirestore(project, data);
     })
     // location.reload()
 } else {
     console.log(
-        'Projects found in local storage. No loading of mock projects required'
+        'Projects found in Firestore. No loading of mock projects required'
     )
 }
 

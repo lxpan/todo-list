@@ -62,7 +62,7 @@ class Project {
     }
 
     // TODO: modify to use Firestore
-    retrieveLocalStorage(cachedStorage) {
+    assignFirestoreObjToProject(cachedStorage) {
         const items = cachedStorage[this.name];
         // console.log(items);
         this._reconstructTodoItemObjects(items);
