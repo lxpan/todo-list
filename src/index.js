@@ -2,16 +2,45 @@ import buildProject from './project.js'
 import view from './view.js'
 import './style.css'
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAiruh40D6_oqBcwZSwhrbVHIiJ0v2tRNA",
+  authDomain: "todo-list-5556b.firebaseapp.com",
+  projectId: "todo-list-5556b",
+  storageBucket: "todo-list-5556b.appspot.com",
+  messagingSenderId: "656016513916",
+  appId: "1:656016513916:web:6495df170c62b5492ca2f9"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+
+
+/* ---------- END Firebase Code ---------- */
+
 function getLocalStorage() {
+    // TODO: Retrieve from Firebase instead of localStorage
     return JSON.stringify(localStorage)
 }
 
 function writeLocalStorage(data) {
+    // TODO: Write to Firestore instead of localStorage
     Object.keys(data).forEach(function (key) {
         localStorage.setItem(key, data[key])
     })
 }
 
+// TODO: Automatically upload this to Firebase if current db empty
 const savedLocalStorageData = {
     Daily: '{"0652cbf2-c716-4236-a13e-05f04717851d":{"title":"Do the dishes","notes":"","priority":"Low","checklist":[],"date":"2022-08-31","_tags":["Cleaning"],"completion":false},"eb3a8045-382a-478c-886f-1e83f0cd76e0":{"title":"Shop for groceries","notes":"Woolworths -- remember specials","priority":"Medium","checklist":[],"date":"2022-08-31","_tags":["Errands"],"completion":false},"1e0a4e87-6761-49b9-9430-9fc7d95f933e":{"title":"Pay the bills","notes":"Bills are overdue","priority":"High","checklist":[],"_tags":[],"completion":false}}',
     Mining: '{"f2621369-5e3f-4c6a-95fa-2c516ad98870":{"title":"Open the mine","notes":"","priority":"High","checklist":[],"date":"2022-08-31","_tags":["Mining"],"completion":false},"ac95854a-66c7-4a4e-afe2-138fbf62689b":{"title":"Dig tunnel","notes":"","priority":"Medium","checklist":[],"_tags":["Mining"],"completion":false}}',
@@ -48,6 +77,7 @@ function projectRunner(projectName) {
         itemValues[0].addTask('Mail parcel.')
     }
 
+    // TODO: change to use Firestiore
     const loadMockItemsIntoDOM = () => {
         // only load from storage if key exists
         if (localStorage.getItem(newProject.name)) {
@@ -68,6 +98,7 @@ function projectRunner(projectName) {
     }
 
     const run = () => {
+        // TODO: change to use Firestore
         if (!localStorage.getItem(newProject.name)) {
             console.log('No stored data detected!')
             loadMockItemsIntoDOM()
@@ -87,6 +118,7 @@ function projectRunner(projectName) {
     }
 }
 
+// TODO: load from Firestore
 function loadStoredProjects() {
     for (const name of Object.keys(localStorage)) {
         const project = projectRunner(name)
@@ -144,8 +176,8 @@ projects['Daily'].run()
 document.body.appendChild(view.createModal())
 view.assignModalListener(addNewProject, projects)
 
+// TODO: modify to use Firestore
 // write mock projects into localStorage for use by app
-
 if (Object.keys(localStorage).length == 0) {
     console.log('Local storage is empty!')
     writeLocalStorage(savedLocalStorageData)
