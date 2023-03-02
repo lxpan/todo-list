@@ -4,7 +4,7 @@ import './style.css'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore/lite';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,7 +23,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
+// Saves a new message to Cloud Firestore.
+async function saveProject(name, projectJSON) {
+    // Add a new message entry to the Firebase database.
+    try {
+      await addDoc(collection(getFirestore(), 'projects'), {
+        name: name,
+        json: projectJSON,
+      });
+    }
+    catch(error) {
+      console.error('Error writing new message to Firebase Database', error);
+    }
+}
 
 
 /* ---------- END Firebase Code ---------- */
@@ -37,6 +49,7 @@ function writeLocalStorage(data) {
     // TODO: Write to Firestore instead of localStorage
     Object.keys(data).forEach(function (key) {
         localStorage.setItem(key, data[key])
+
     })
 }
 
@@ -159,31 +172,42 @@ const DOM_CONFIG = {
     TODO_CONTAINER: '#todoItemContainer',
 }
 
-loadStoredProjects()
+function loadApp() {
+    loadStoredProjects()
 
-addNewProject('Daily')
-// addNewProject('Empty');
-// addNewProject('Investigations');
-
-DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject
-
-view.config = DOM_CONFIG
-view.bindConfiguration()
-view.setupHTML()
-
-projects['Daily'].run()
-
-document.body.appendChild(view.createModal())
-view.assignModalListener(addNewProject, projects)
-
-// TODO: modify to use Firestore
-// write mock projects into localStorage for use by app
-if (Object.keys(localStorage).length == 0) {
-    console.log('Local storage is empty!')
-    writeLocalStorage(savedLocalStorageData)
-    location.reload()
-} else {
-    console.log(
-        'Projects found in local storage. No loading of mock projects required'
-    )
+    addNewProject('Daily')
+    // addNewProject('Empty');
+    // addNewProject('Investigations');
+    
+    DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject
+    
+    view.config = DOM_CONFIG
+    view.bindConfiguration()
+    view.setupHTML()
+    
+    projects['Daily'].run()
+    
+    document.body.appendChild(view.createModal())
+    view.assignModalListener(addNewProject, projects)
+    
+    // clear localStorage
+    localStorage.clear();
+    // TODO: modify to use Firestore
+    // write mock projects into localStorage for use by app
+    if (Object.keys(localStorage).length == 0) {
+        console.log('Local storage is empty!')
+        // writeLocalStorage(savedLocalStorageData)
+        Object.entries(savedLocalStorageData).forEach(([project, data]) => {
+            saveProject(project, data);
+            // console.log(project);
+            // console.log(data);
+        })
+        // location.reload()
+    } else {
+        console.log(
+            'Projects found in local storage. No loading of mock projects required'
+        )
+    }
 }
+
+loadApp();
