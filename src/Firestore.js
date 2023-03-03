@@ -21,7 +21,13 @@ export default function FirestoreFactory() {
     async function saveProjectToFirestore(projectName, projectJSON) {
         // Add new project entry to the Firebase database.
         try {
-            const json = JSON.parse(projectJSON);
+            let json;
+            if(typeof projectJSON === 'string') {
+                json = JSON.parse(projectJSON);
+            } else {
+                json = projectJSON;
+            }
+            
         await setDoc(doc(db, 'projects', projectName), {
             ...json,
         });
