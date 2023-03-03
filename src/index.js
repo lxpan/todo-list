@@ -158,6 +158,20 @@ async function fetchProjects() {
 fetchProjects();
 
 addNewProject('Daily')
+
+// function sleep(ms) {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+// async function clickProject() {
+//     await sleep(200);
+//     const currentProjectButton = document.querySelector(`#${'Leisure'} a`);
+//     console.log(currentProjectButton);
+//     currentProjectButton.click();
+// }
+
+// clickProject()
+
 // addNewProject('Empty');
 // addNewProject('Investigations');
 

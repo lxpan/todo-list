@@ -428,8 +428,6 @@ export default (function view() {
             }
 
             project.saveItemChanges();
-            location.reload();
-
 
             const infoParent = e.target.closest('.itemInfo');
             const existingSaveMsg = infoParent.querySelector('.saveMessage');            
