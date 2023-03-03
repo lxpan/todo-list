@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc, setDoc, doc } from 'firebase/firestore/lite';
+import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore/lite';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -60,10 +60,21 @@ export default function FirestoreFactory() {
         return finalObj;
     }
 
+    async function deleteDocument(documentName) {
+        try {
+            await deleteDoc(doc(db, 'projects', documentName));
+        }
+        catch(error) {
+            console.error(`Error deleting document: ${documentName}`);
+        }
+        
+    }
+
     return {
         saveProjectToFirestore,
         uploadProjectsToFirestore,
-        getProjects
+        getProjects,
+        deleteDocument
     }
 
 }
