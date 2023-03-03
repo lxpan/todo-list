@@ -77,7 +77,8 @@ export default (function view() {
         dateLabel.textContent = labelName;
         dateInput.type = 'date';
         dateInput.name = fieldName;
-        dateInput.value = defaultValue;
+        dateInput.dateAsValue = 
+        dateInput.valueAsDate = new Date(defaultValue);
         dateInput.min = format(minDate, 'yyyy-MM-dd');
         dateInput.max = format(maxDate, 'yyyy-MM-dd');
 
@@ -222,9 +223,9 @@ export default (function view() {
 
             const datesDiv = (() => {
                 const dateElements = document.createElement('div');
-                const date = createDateInput('Date: ', 'itemDate', (item.date) ? item.date : null);
+                const date = createDateInput('Date: ', 'itemDate', (item.date) ? item.date : '2023-03-03');
                 // 'Figure Space' used in dueDate label to align the date pickers (see: https://qwerty.dev/whitespace/)
-                const dueDate = createDateInput('Due: ', 'itemDueDate', (item.dueDate) ? item.dueDate : null);
+                const dueDate = createDateInput('Due: ', 'itemDueDate', (item.dueDate) ? item.dueDate : '2023-03-03');
                 
                 dateElements.append(date, dueDate);
                 return dateElements;
