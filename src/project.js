@@ -62,10 +62,10 @@ class Project {
     }
 
     // TODO: modify to use Firestore
-    assignFirestoreObjToProject(cachedStorage) {
-        const items = cachedStorage[this.name];
+    assignClassPropsFromObj(cachedStorage) {
+        const projectItems = cachedStorage[this.name];
         // console.log(items);
-        this._reconstructTodoItemObjects(items);
+        this._reconstructTodoItemObjects(projectItems);
     }
 
     addItem(title) {

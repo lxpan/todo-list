@@ -90,7 +90,7 @@ function projectRunner(projectName) {
     const loadMockItemsIntoDOM = () => {
         // only load from storage if key exists
         if (myProjects[newProject.name]) {
-            newProject.assignFirestoreObjToProject(myProjects)
+            newProject.assignClassPropsFromObj(myProjects)
         }
 
         view.insertProjectHeading(
@@ -132,7 +132,7 @@ function loadStoredProjects(cachedStorage) {
     console.log(cachedStorage);
     for (const name of Object.keys(cachedStorage)) {
         const project = projectRunner(name)
-        project.newProject.assignFirestoreObjToProject(cachedStorage)
+        project.newProject.assignClassPropsFromObj(cachedStorage)
 
         if (!projects[name]) {
             projects[name] = project
@@ -176,7 +176,7 @@ let myProjects;
 
 async function fetchProjects() {
     myProjects = await getProjects(db);
-    console.log(myProjects);
+    // console.log(myProjects);
     loadStoredProjects(myProjects)
 
     DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject
