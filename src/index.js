@@ -1,6 +1,7 @@
 import buildProject from './project.js'
 import view from './view.js'
 import FirestoreFactory from './Firestore.js';
+import defaultProjectObjects from './defaultProjectsObject.js';
 import './style.css'
 
 const ff = FirestoreFactory();
@@ -160,4 +161,4 @@ addNewProject('Daily')
 // addNewProject('Empty');
 // addNewProject('Investigations');
 
-ff.uploadProjectsToFirestore(projectObjectStrings);
+// ff.uploadProjectsToFirestore(defaultProjectObjects);
