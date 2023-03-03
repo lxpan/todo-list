@@ -636,6 +636,8 @@ export default (function view() {
         createProjectFunc(projectName, projectNotes);
         updateProjectList();
 
+        ffView.saveProjectToFirestore(projectName, {});
+
         e.target.closest('#modalContainer').classList.remove('showModal');
 
         // switch to new project with default empty item
