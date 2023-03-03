@@ -1,3 +1,4 @@
+import FirestoreFactory from './Firestore';
 import { format, addYears, subYears, parseISO } from 'date-fns';
 // Import Tagify
 import Tagify from '@yaireo/tagify';
@@ -9,6 +10,8 @@ import forestImg from './images/forest.png';
 import beaverImg from './images/beaver.png';
 import lumberjackImg from './images/lumberjacking.png';
 import sunriseImg from './images/sunrise.png';
+
+const ffView = FirestoreFactory();
 
 export default (function view() {
     let elementID = 0;
@@ -784,14 +787,22 @@ export default (function view() {
         const setupDeleteProjectBtn = () => {
             const deleteProject = (e) => {
                 const current = config.currentProject.name;
-                // if (localStorage.getItem(current)) {
                     if (projectsProp[current]) {
                     const confirmationText = `Are you sure you want to delete project ${current}? Deletion is final.`;
                     
                     if (confirm(confirmationText) == true) {
                         console.log(`User initiated deletion of ${current}.`);
                         localStorage.removeItem(current);
-                        location.reload();
+
+                        delete projectsProp[current];
+                        console.log(projectsProp);
+
+                        // write new modified object to Firestore
+
+                        // console.log(current);
+                        // console.log(newProjectObj);
+                        
+                        // location.reload();
                         // console.log(`Project "${current}" exists in localstorage!`);
                     } else {
                         console.log('User cancelled deletion!');
