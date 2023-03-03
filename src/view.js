@@ -328,7 +328,7 @@ export default (function view() {
                 const deleteItem = (e) => {
                     e.preventDefault();
                     const itemId = e.target.closest('.todoItem').id;
-                    config.currentProject.deleteItem(itemId);
+                    config.currentProject.deleteItem(itemId, projectsProp);
 
                     const todoContainer = document.querySelector(config.TODO_CONTAINER);
                     todoContainer.innerHTML = '';

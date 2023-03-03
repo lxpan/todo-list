@@ -1,4 +1,7 @@
 import todoItemFactory from './todo.js';
+import FirestoreFactory from './Firestore.js';
+
+const ffProject = FirestoreFactory();
 
 class Project {
     notes;
@@ -75,13 +78,14 @@ class Project {
     }
     
     // TODO: modify to use Firestore
-    deleteItem(uuid) {
+    deleteItem(uuid, projects) {
         if(this.todoItems[uuid]) {
+            const itemStore = projects[this.name];
+            // delete item from new project object and class property
+            delete itemStore[uuid];
             delete this.todoItems[uuid];
-
-            let storedItems = JSON.parse(localStorage.getItem(this.name));
-            delete storedItems[uuid];
-            localStorage.setItem(this.name, JSON.stringify(storedItems));
+            // upload modified project object to Firestore
+            ffProject.saveProjectToFirestore(this.name, itemStore);
         } else {
             console.log(`Item: ${uuid} does not exist!`);
         }
