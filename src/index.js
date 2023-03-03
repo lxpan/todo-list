@@ -160,6 +160,4 @@ addNewProject('Daily')
 // addNewProject('Empty');
 // addNewProject('Investigations');
 
-
-// ff.uploadProjectsToFirestore(projectObjectStrings);
-// ff.getProjects().then(results => console.log(results));
+ff.uploadProjectsToFirestore(projectObjectStrings);

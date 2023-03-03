@@ -790,19 +790,13 @@ export default (function view() {
                     
                     if (confirm(confirmationText) == true) {
                         console.log(`User initiated deletion of ${current}.`);
-                        localStorage.removeItem(current);
-
-                        delete projectsProp[current];
-                        // ffView.saveProjectToFirestore(current, projectsProp);
-                        console.log(projectsProp);
-
-                        // write new modified object to Firestore
-
-                        // console.log(current);
-                        // console.log(newProjectObj);
                         
-                        // location.reload();
-                        // console.log(`Project "${current}" exists in localstorage!`);
+                        // remove project document from Firestore
+                        ffView.deleteDocument(current);
+                        // remove project key from props
+                        delete projectsProp[current];
+                        console.log(projectsProp);
+                        location.reload();
                     } else {
                         console.log('User cancelled deletion!');
                     }
