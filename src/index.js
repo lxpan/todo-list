@@ -116,7 +116,7 @@ function projectRunner(projectName) {
 
 // TODO: load from Firestore
 function loadStoredProjects(cachedStorage) {
-    console.log(cachedStorage);
+    // console.log(cachedStorage);
     for (const name of Object.keys(cachedStorage)) {
         const project = projectRunner(name)
         project.newProject.assignClassPropsFromObj(cachedStorage)
@@ -169,6 +169,9 @@ async function fetchProjects() {
     DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject
 
     view.config = DOM_CONFIG
+    view.projectsProp = myProjects;
+    console.log(view.config);
+    console.log(view.projectsProp);
     view.bindConfiguration()
     view.setupHTML()
 
@@ -182,11 +185,6 @@ async function fetchProjects() {
 }
 
 fetchProjects();
-
-
-
-
-
 
 addNewProject('Daily')
 // addNewProject('Empty');
