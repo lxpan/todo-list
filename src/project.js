@@ -28,19 +28,24 @@ class Project {
     }
 
     // TODO: modify to use Firestore instead of localStorage
-    populateLocalStorage() {
+    saveItemChanges() {
         /* 
         Keys: this.name
         Values: todoItems object
         */
-        const objectMerge = {}
+        const updatedItemsObj = {}
         const arrayOfObjects = this.selectItemProperties();
 
         for (const o of arrayOfObjects) {
-            Object.assign(objectMerge, o);
+            Object.assign(updatedItemsObj, o);
         }
 
-        localStorage.setItem(this.name, JSON.stringify(objectMerge));
+        console.log(this.name);
+        console.log(updatedItemsObj);
+        console.log(updatedItemsObj.dueDate);
+
+        // localStorage.setItem(this.name, JSON.stringify(updatedItemsObj));
+        ffProject.saveProjectToFirestore(this.name, updatedItemsObj);
     }
 
     _reconstructTodoItemObjects(_parse) {
