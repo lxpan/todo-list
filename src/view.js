@@ -107,14 +107,12 @@ export default (function view() {
         const toggleItemCompletionOnClick = (e) => {
             const projectName = config.currentProject.name;
             const itemId = item.uuid;
-            // const projectStore = JSON.parse(localStorage.getItem(project));
             const projectStore = projectsProp[projectName];
-            console.log(projectStore);
 
             item.toggleCompletion();
             projectStore[itemId].completion = item.completion;
             // update stored data with new completion status
-            localStorage.setItem(projectName, JSON.stringify(projectStore));
+            ffView.saveProjectToFirestore(projectName, { ...projectStore });
         }
 
         const createCheckbox = () => {
@@ -795,6 +793,7 @@ export default (function view() {
                         localStorage.removeItem(current);
 
                         delete projectsProp[current];
+                        // ffView.saveProjectToFirestore(current, projectsProp);
                         console.log(projectsProp);
 
                         // write new modified object to Firestore
