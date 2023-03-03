@@ -36,21 +36,8 @@ async function saveProjectToFirestore(projectName, projectJSON) {
 
 /* ---------- END Firebase Code ---------- */
 
-// function getLocalStorage() {
-//     // TODO: Retrieve from Firebase instead of localStorage
-//     return JSON.stringify(localStorage)
-// }
-
-function writeLocalStorage(data) {
-    // TODO: Write to Firestore instead of localStorage
-    Object.keys(data).forEach(function (key) {
-        localStorage.setItem(key, data[key])
-
-    })
-}
-
 // TODO: Automatically upload this to Firebase if current db empty
-const savedLocalStorageData = {
+const projectObjectStrings = {
     Daily: '{"0652cbf2-c716-4236-a13e-05f04717851d":{"title":"Do the dishes","notes":"","priority":"Low","checklist":[],"date":"2022-08-31","_tags":["Cleaning"],"completion":false},"eb3a8045-382a-478c-886f-1e83f0cd76e0":{"title":"Shop for groceries","notes":"Woolworths -- remember specials","priority":"Medium","checklist":[],"date":"2022-08-31","_tags":["Errands"],"completion":false},"1e0a4e87-6761-49b9-9430-9fc7d95f933e":{"title":"Pay the bills","notes":"Bills are overdue","priority":"High","checklist":[],"_tags":[],"completion":false}}',
     Mining: '{"f2621369-5e3f-4c6a-95fa-2c516ad98870":{"title":"Open the mine","notes":"","priority":"High","checklist":[],"date":"2022-08-31","_tags":["Mining"],"completion":false},"ac95854a-66c7-4a4e-afe2-138fbf62689b":{"title":"Dig tunnel","notes":"","priority":"Medium","checklist":[],"_tags":["Mining"],"completion":false}}',
     Exercise:
@@ -205,22 +192,8 @@ addNewProject('Daily')
 // addNewProject('Empty');
 // addNewProject('Investigations');
 
-
-// if (getProjects == null || getProjects.length === 0) {
-//     console.log('Local storage is empty!')
-//     Object.entries(savedLocalStorageData).forEach(([project, data]) => {
-//         saveProjectToFirestore(project, data);
-//         console.log(`${project} written to Firestore`);
-//     })
-//     // location.reload()
-// } else {
-//     console.log(
-//         'Projects found in Firestore. No loading of mock projects required'
-//     )
-// }
-
 function uploadProjectsToFirestore() {
-    Object.entries(savedLocalStorageData).forEach(([project, data]) => {
+    Object.entries(projectObjectStrings).forEach(([project, data]) => {
         saveProjectToFirestore(project, data);
         console.log(`${project} written to Firestore`);
     })
