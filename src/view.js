@@ -311,7 +311,6 @@ export default (function view() {
                     item.setDate(formObj.itemDate);
                     item.setDueDate(formObj.itemDueDate);
                     item.setCompletion( (formObj.itemCompletion) ? true : false );
-                    console.log(formObj);
                 }
 
                 const btn = document.createElement('button');
@@ -427,7 +426,7 @@ export default (function view() {
                 }
             }
 
-            project.populateLocalStorage();
+            project.saveItemChanges();
 
             const infoParent = e.target.closest('.itemInfo');
             const existingSaveMsg = infoParent.querySelector('.saveMessage');            
