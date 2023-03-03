@@ -4,7 +4,7 @@ import './style.css'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs, addDoc, setDoc, doc } from 'firebase/firestore/lite';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,16 +20,16 @@ const firebaseConfig = {
 };
 
 // Saves a new message to Cloud Firestore.
-async function saveProjectToFirestore(name, projectJSON) {
+async function saveProjectToFirestore(projectName, projectJSON) {
     // Add a new message entry to the Firebase database.
     try {
-      await addDoc(collection(getFirestore(), 'projects'), {
-        name: name,
-        json: projectJSON,
+        const json = JSON.parse(projectJSON);
+      await setDoc(doc(db, 'projects', projectName), {
+        ...json,
       });
     }
     catch(error) {
-      console.error('Error writing new message to Firebase Database', error);
+      console.error('Error writing new project to Firebase Database', error);
     }
 }
 
@@ -129,6 +129,7 @@ function projectRunner(projectName) {
 
 // TODO: load from Firestore
 function loadStoredProjects(cachedStorage) {
+    console.log(cachedStorage);
     for (const name of Object.keys(cachedStorage)) {
         const project = projectRunner(name)
         project.newProject.assignFirestoreObjToProject(cachedStorage)
@@ -167,40 +168,17 @@ const DOM_CONFIG = {
     projects: projects,
     TODO_CONTAINER: '#todoItemContainer',
 }
-
-async function getProjects(db) {
-    const projectsCol = collection(db, 'projects');
-    const projectSnapshot = await getDocs(projectsCol);
-    const projectList = projectSnapshot.docs.map(doc => doc.data());
-    return projectList;
-}
-
-let myProjects;
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const list = getProjects(db).then((results) => {
-    const finalObj = {};
-    const arrayOfProjects = results.map(project => {
-        return ({
-            [project.name]: {...JSON.parse(project.json)}
-            }
-        );
-    });
+let myProjects;
 
-    arrayOfProjects.forEach(project => {
-        Object.assign(finalObj, project);
-    })
-
-    // console.log(finalObj);
-
-    myProjects = finalObj;
+async function fetchProjects() {
+    myProjects = await getProjects(db);
     console.log(myProjects);
+    loadStoredProjects(myProjects)
 
-    // console.log(JSON.stringify(finalObj));
-    // myProjects = finalObj;
-    loadStoredProjects(finalObj)
     DOM_CONFIG['currentProject'] = DOM_CONFIG.projects['Daily'].newProject
 
     view.config = DOM_CONFIG
@@ -211,7 +189,15 @@ const list = getProjects(db).then((results) => {
 
     document.body.appendChild(view.createModal())
     view.assignModalListener(addNewProject, projects)
-});
+
+    // DOM_CONFIG.projects = myProjects;
+    // console.log(DOM_CONFIG);
+}
+
+fetchProjects();
+
+
+
 
 
 
@@ -220,21 +206,40 @@ addNewProject('Daily')
 // addNewProject('Investigations');
 
 
+// if (getProjects == null || getProjects.length === 0) {
+//     console.log('Local storage is empty!')
+//     Object.entries(savedLocalStorageData).forEach(([project, data]) => {
+//         saveProjectToFirestore(project, data);
+//         console.log(`${project} written to Firestore`);
+//     })
+//     // location.reload()
+// } else {
+//     console.log(
+//         'Projects found in Firestore. No loading of mock projects required'
+//     )
+// }
 
-// clear localStorage
-// localStorage.clear();
-// TODO: modify to use Firestore
-// write mock projects into localStorage for use by app
-if (getProjects.length === 0) {
-    console.log('Local storage is empty!')
+function uploadProjectsToFirestore() {
     Object.entries(savedLocalStorageData).forEach(([project, data]) => {
         saveProjectToFirestore(project, data);
+        console.log(`${project} written to Firestore`);
     })
-    // location.reload()
-} else {
-    console.log(
-        'Projects found in Firestore. No loading of mock projects required'
-    )
 }
 
+async function getProjects(db) {
+    const finalObj = {}
+    const projectsCol = collection(db, 'projects');
+    const projectSnapshot = await getDocs(projectsCol);
+    const projectList = projectSnapshot.docs.map(doc => {
+        // return doc.data();
+        return {
+            [doc.id]: doc.data(),
+        }
+            
+    });
 
+    projectList.forEach(project => Object.assign(finalObj, project));
+    return finalObj;
+}
+
+// getProjects(db).then((results) => console.log(results));
