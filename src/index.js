@@ -170,9 +170,11 @@ async function fetchProjects() {
 
     view.config = DOM_CONFIG
     view.projectsProp = myProjects;
-    console.log(view.config);
-    console.log(view.projectsProp);
-    view.bindConfiguration()
+    view.bindConfiguration();
+    view.bindProjectsProp();
+    // console.log(view.config);
+    // console.log(view.projectsProp);
+    
     view.setupHTML()
 
     projects['Daily'].run()

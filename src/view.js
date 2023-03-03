@@ -13,10 +13,15 @@ import sunriseImg from './images/sunrise.png';
 export default (function view() {
     let elementID = 0;
     let config = null;
+    let projectsProp = null;
 
     function bindConfiguration() {
         config = this.config;
         // console.log(config);
+    }
+
+    function bindProjectsProp() {
+        projectsProp = this.projectsProp;
     }
 
     function createElement(elementName, className=null) {
@@ -97,14 +102,16 @@ export default (function view() {
     function insertProjectItemForm(query, item) {
         // callback function for the 'todo' checkbox
         const toggleItemCompletionOnClick = (e) => {
-            const project = config.currentProject.name;
+            const projectName = config.currentProject.name;
             const itemId = item.uuid;
-            const projectStore = JSON.parse(localStorage.getItem(project));
+            // const projectStore = JSON.parse(localStorage.getItem(project));
+            const projectStore = projectsProp[projectName];
+            console.log(projectStore);
 
             item.toggleCompletion();
             projectStore[itemId].completion = item.completion;
             // update stored data with new completion status
-            localStorage.setItem(project, JSON.stringify(projectStore));
+            localStorage.setItem(projectName, JSON.stringify(projectStore));
         }
 
         const createCheckbox = () => {
@@ -530,8 +537,10 @@ export default (function view() {
             projectItem.id = project;
             projectItem.className = 'project--signpost';
 
-            const projectItemStore = localStorage.getItem(project)
-            const numItemsInProject = (projectItemStore) ? Object.keys(JSON.parse(projectItemStore)).length : 0;
+            // console.log(`Project: ${project}`);
+            // console.log(projectsProp);
+            const projectItemStore = projectsProp[project];
+            const numItemsInProject = (projectItemStore) ? Object.keys(projectItemStore).length : 0;
 
             const link = document.createElement('a');
             link.textContent = `${project} :: ${numItemsInProject}`;
@@ -775,7 +784,8 @@ export default (function view() {
         const setupDeleteProjectBtn = () => {
             const deleteProject = (e) => {
                 const current = config.currentProject.name;
-                if (localStorage.getItem(current)) {
+                // if (localStorage.getItem(current)) {
+                    if (projectsProp[current]) {
                     const confirmationText = `Are you sure you want to delete project ${current}? Deletion is final.`;
                     
                     if (confirm(confirmationText) == true) {
@@ -847,6 +857,7 @@ export default (function view() {
         createModal,
         assignModalListener,
         setupHTML,
-        bindConfiguration
+        bindConfiguration,
+        bindProjectsProp
     };
 })();
